@@ -1,0 +1,14 @@
+@mixin rowFlex($justify-content: start, $align-items: stretch, $gap: 0px) {
+   display: flex;
+   justify-content: $justify-content;
+   align-items: $align-items;
+   gap: $gap;
+}
+
+@mixin colFlex($justify-content: start, $align-items: stretch, $gap: 0px) {
+   display: flex;
+   flex-direction: column;
+   justify-content: $justify-content;
+   align-items: $align-items;
+   gap: $gap;
+}

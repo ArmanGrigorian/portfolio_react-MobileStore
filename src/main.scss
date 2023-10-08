@@ -1,0 +1,18 @@
+:root {
+  --my-font-family: system-ui, sans-serif;
+  --my-color-black-l: rgb(50, 50, 50);
+  --my-color-grey-l: rgb(220, 220, 220);
+  --my-color-red-l: rgb(230, 50, 50);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  font-family: var(--my-font-family);
+}
+
+main{
+  width: min(100%, 1120px);
+  margin-inline: auto;
+}

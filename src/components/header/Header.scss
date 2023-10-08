@@ -1,0 +1,20 @@
+@use "../sass/mixins" as mxs;
+
+header {
+   background-color: rgb(230, 50, 50);
+   
+   .headerTop {
+      padding: 10px 20px;
+      @include mxs.rowFlex(space-between, center);
+
+      h1 {
+         text-align: center;
+         color: var(--my-color-black-l);
+      }
+
+      a{
+         text-decoration: none;
+         color: var(--my-color-black-l);
+      }
+   }
+}

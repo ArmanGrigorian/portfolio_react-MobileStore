@@ -1,0 +1,27 @@
+@use "../sass/mixins" as mxs;
+
+.StorePage {
+
+   h2 {
+      padding: 0px 20px 10px;
+   }
+
+   .auxNav {
+      padding-inline: 20px;
+      background-color: var(--my-color-grey-l);
+
+      ul {
+         padding-block: 10px;
+         @include mxs.rowFlex(start, center, 5%);
+
+         li {
+            list-style-type: none;
+
+            a {
+               text-decoration: none;
+               color: var(--my-color-black-l);
+            }
+         }
+      }
+   }
+}
