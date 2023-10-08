@@ -3,7 +3,7 @@
 .StorePage {
 
    h2 {
-      padding: 0px 20px 10px;
+      padding: 20px 20px 10px;
    }
 
    .auxNav {
@@ -23,5 +23,11 @@
             }
          }
       }
+   }
+
+   .items{
+      @include mxs.rowFlex(space-between, center, 20px 10px);
+      flex-wrap: wrap;
+      padding: 20px;
    }
 }

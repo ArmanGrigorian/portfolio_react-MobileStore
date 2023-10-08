@@ -6,6 +6,6 @@ const instance = axios.create({
 
 export const productsAPI = {
    getProducts: () => {
-      return instance.get("");
+      return instance.get("/mobileStore");
    }
 }
