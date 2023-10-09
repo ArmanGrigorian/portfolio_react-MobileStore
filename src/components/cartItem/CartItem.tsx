@@ -1,6 +1,6 @@
 import "./CartItem.scss";
 import { useDispatch } from "react-redux";
-import { removeFromCart } from "../../redux/slices/cartSlice";
+import { addToCart, deleteFromCart, removeFromCart } from "../../redux/slices/productsSlice";
 
 const CartItem = ({ item }) => {
 	const dispatch = useDispatch();
@@ -11,13 +11,17 @@ const CartItem = ({ item }) => {
 			<img src={item.src} alt={item.alt} />
 
 			<div>
-				<button>&#45;</button>
+				<button type="button" onClick={() => dispatch(removeFromCart(item))}>
+					&#45;
+				</button>
 				<p>{item.count}</p>
-				<button>&#43;</button>
+				<button type="button" onClick={() => dispatch(addToCart(item))}>
+					&#43;
+				</button>
 			</div>
 
-			<p>{item.price} &#36;</p>
-			<button type="button" onClick={() => dispatch(removeFromCart(item))}>
+			<p>{item.price * item.count} &#36;</p>
+			<button type="button" onClick={() => dispatch(deleteFromCart(item))}>
 				&#88;
 			</button>
 		</figure>

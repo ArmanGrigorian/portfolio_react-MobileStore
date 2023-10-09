@@ -1,9 +1,10 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./StoreItem.scss";
-import { addToCart } from "../../redux/slices/cartSlice";
+import { addToCart } from "../../redux/slices/productsSlice.ts";
 
 const StoreItem = ({ item }) => {
 
+	const cartItems = useSelector((state)=>state.products.cartItems)
 	const dispatch = useDispatch()
 
 	return (
@@ -15,7 +16,9 @@ const StoreItem = ({ item }) => {
 
 			<div>
 				<p>{item.price} &#36; </p>
-				<button type="button" onClick={() => dispatch(addToCart(item))}>
+				<button type="button" onClick={() => {
+					dispatch(addToCart(item));
+				}}>
 					ADD TO CART
 				</button>
 			</div>

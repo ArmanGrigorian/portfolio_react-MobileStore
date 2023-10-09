@@ -2,16 +2,16 @@ import { Link } from "react-router-dom";
 import "./StorePage.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { itemsFetch } from "../../redux/slices/productsSlice.ts";
+import { storeItemsFetch } from "../../redux/slices/productsSlice.ts";
 import StoreItem from "../storeItem/StoreItem.tsx";
 import MyLoader from "../skeleton/ItemSkeleton.tsx";
 
 const StorePage = () => {
-	const { items, isLoading } = useSelector((state) => state.products);
+	const { storeItems, isLoading } = useSelector((state) => state.products);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(itemsFetch());
+		dispatch(storeItemsFetch());
 	}, [dispatch]);
 
 	return (
@@ -32,7 +32,11 @@ const StorePage = () => {
 			<h2>Store</h2>
 
 			<div className="storeItems">
-				{!isLoading ? items.map((item) => <StoreItem key={item.id} item={item} />) : <MyLoader />}
+				{!isLoading ? (
+					storeItems.map((item) => <StoreItem key={item.id} item={item} />)
+				) : (
+					<MyLoader />
+				)}
 			</div>
 		</section>
 	);
