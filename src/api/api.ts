@@ -5,7 +5,11 @@ const instance = axios.create({
 });
 
 export const productsAPI = {
-   getProducts: () => {
-      return instance.get("/mobileStore");
-   }
-}
+	getAllProducts: () => {
+		return instance.get("/mobileStore");
+	},
+
+   getProductsBy: ({param1, param2}) => {
+       return instance.get(`/mobileStore?sortBy=${param1}&order=${param2}`);
+   },
+};

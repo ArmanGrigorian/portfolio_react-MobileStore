@@ -1,0 +1,21 @@
+@use "../sass/mixins" as mxs;
+
+.AdminPage{
+
+   h2{
+      padding: 20px;
+   }
+
+   .adminPanel{
+      @include mxs.rowFlex();
+
+      form{
+         padding: 10px;
+
+         fieldset{
+            @include mxs.colFlex();
+            padding: 10px;
+         }
+      }
+   }
+}

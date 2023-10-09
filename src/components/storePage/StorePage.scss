@@ -7,6 +7,7 @@
    }
 
    .auxNav {
+      @include mxs.rowFlex(space-between, center);
       padding-inline: 20px;
       background-color: var(--my-color-grey-l);
 
@@ -22,6 +23,11 @@
                color: var(--my-color-black-l);
             }
          }
+      }
+
+      select{
+         padding: 2px 20px;
+         border: none
       }
    }
 
