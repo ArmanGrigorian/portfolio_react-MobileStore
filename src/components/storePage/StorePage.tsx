@@ -2,12 +2,12 @@ import { Link } from "react-router-dom";
 import "./StorePage.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setSortParams, sortFetch, storeItemsFetch } from "../../redux/slices/productsSlice.ts";
+import { setParams, separateFetch, storeItemsFetch } from "../../redux/slices/productsSlice.ts";
 import StoreItem from "../storeItem/StoreItem.tsx";
 import MyLoader from "../skeleton/ItemSkeleton.tsx";
 
 const StorePage = () => {
-	const { sortParams, storeItems, isLoading } = useSelector((state) => state.products);
+	const { params, storeItems, isLoading } = useSelector((state) => state.products);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -15,35 +15,55 @@ const StorePage = () => {
 	}, [dispatch]);
 
 	useEffect(() => {
-		dispatch(sortFetch(sortParams));
-	}, [dispatch, sortParams]);
+		dispatch(separateFetch(params));
+	}, [dispatch, params]);
+
+
+	function handleClick(e) {
+		switch (e.target.dataset.name) {
+			case "all":
+				dispatch(storeItemsFetch());
+				break;
+			case "apple":
+				console.log(e.target.dataset.name);
+				dispatch(setParams({...params, param4: "filter", param5: e.target.dataset.name}));
+				break;
+			case "samsung":
+				console.log(e.target.dataset.name);
+				dispatch(setParams({...params, param4: "filter", param5: e.target.dataset.name}));
+				break;
+			default:
+				break;
+		}
+	}
 
 	return (
 		<section className={"StorePage"}>
 			<nav className={"auxNav"}>
-				<ul>
-					<li>
-						<Link to={""}>All</Link>
-					</li>
-					<li>
-						<Link to={""}>Apple</Link>
-					</li>
-					<li>
-						<Link to={""}>Samsung</Link>
-					</li>
+				<ul onClick={handleClick}>
+					<li data-name={"all"}>All</li>
+					<li data-name={"apple"}>Apple</li>
+					<li data-name={"samsung"}>Samsung</li>
 				</ul>
 
 				<select
 					name="sort"
 					defaultValue={"release desc"}
 					onChange={(e) => {
-						const params = e.target.value.split(" ");
-						dispatch(setSortParams({ param1: params[0], param2: params[1] }));
+						const oParams = e.target.value.split(" ");
+						dispatch(
+							setParams({
+								...params,
+								param1: "sortBy",
+								param2: oParams[0],
+								param3: oParams[1],
+							}),
+						);
 					}}>
 					<option value={"price asc"}>Price &#40; Low - High &#41;</option>
 					<option value={"price desc"}>Price &#40; High - Low &#41;</option>
 					<option value={"model asc"}>Name &#40; A - Z &#41;</option>
-					<option value={"model desc"}>Name &#40; A - A &#41;</option>
+					<option value={"model desc"}>Name &#40; Z - A &#41;</option>
 					<option value={"release asc"}>Release &#40; old first &#41;</option>
 					<option value={"release desc"}>Release &#40; new first &#41;</option>
 					<option value={"rating asc"}>Rating &#40; from highest &#41;</option>
