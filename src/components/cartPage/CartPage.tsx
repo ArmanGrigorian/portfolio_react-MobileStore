@@ -6,10 +6,10 @@ const CartPage = () => {
 	const cartItems = useSelector((state) => state.products.cartItems);
 
 	return (
-		<section className="CartPage">
+		<section className={"CartPage"}>
 			<h2>CartPage</h2>
 
-			<div className="cartItems">
+			<div className={"cartItems"}>
 				{cartItems.map((item) => {
 					return <CartItem key={item.id} item={item} />;
 				})}

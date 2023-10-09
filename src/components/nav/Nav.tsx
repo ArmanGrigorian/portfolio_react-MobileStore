@@ -3,10 +3,10 @@ import "./Nav.scss";
 
 const Nav = () => {
   return (
-     <nav className="Nav">
+     <nav className={"Nav"}>
         <ul>
-           <li><NavLink to="/">Store</NavLink></li>
-           <li><NavLink to="/cart">Cart</NavLink></li>
+           <li><NavLink to={"/"}>Store</NavLink></li>
+           <li><NavLink to={"/cart"}>Cart</NavLink></li>
         </ul>
     </nav>
   )

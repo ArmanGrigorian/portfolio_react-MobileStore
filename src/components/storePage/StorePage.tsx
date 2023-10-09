@@ -15,23 +15,23 @@ const StorePage = () => {
 	}, [dispatch]);
 
 	return (
-		<section className="StorePage">
-			<nav className="auxNav">
+		<section className={"StorePage"}>
+			<nav className={"auxNav"}>
 				<ul>
 					<li>
-						<Link to="">All</Link>
+						<Link to={""}>All</Link>
 					</li>
 					<li>
-						<Link to="">Apple</Link>
+						<Link to={""}>Apple</Link>
 					</li>
 					<li>
-						<Link to="">Samsung</Link>
+						<Link to={""}>Samsung</Link>
 					</li>
 				</ul>
 			</nav>
 			<h2>Store</h2>
 
-			<div className="storeItems">
+			<div className={"storeItems"}>
 				{!isLoading ? (
 					storeItems.map((item) => <StoreItem key={item.id} item={item} />)
 				) : (

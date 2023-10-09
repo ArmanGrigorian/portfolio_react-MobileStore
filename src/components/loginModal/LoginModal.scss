@@ -1,0 +1,32 @@
+@use "../sass/mixins" as mxs;
+
+.LoginModal{
+   position: absolute;
+   inset: 0;
+   margin: auto;
+   padding: 10px 20px 20px;
+   border: none;
+
+   fieldset{
+      @include mxs.colFlex(center, center, 10px);
+      padding: 10px;
+      position: relative;
+
+      legend{
+
+      }
+
+      button{
+         position: absolute;
+         top: -23px;
+         right: -6px;
+         border: 1px solid black;
+         padding: 1px 3px 1px 3px;
+      }
+
+      input{
+         width: 100%;
+         padding: 2px 4px;
+      }
+   }
+}
