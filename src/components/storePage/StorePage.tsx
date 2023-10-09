@@ -2,18 +2,17 @@ import { Link } from "react-router-dom";
 import "./StorePage.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { itemsFetch } from "../../redux/slices/productsSlice";
-import Item from "../item/Item.tsx";
+import { itemsFetch } from "../../redux/slices/productsSlice.ts";
+import StoreItem from "../storeItem/StoreItem.tsx";
+import MyLoader from "../skeleton/ItemSkeleton.tsx";
 
 const StorePage = () => {
-	const items = useSelector((state) => state.products.items);
+	const { items, isLoading } = useSelector((state) => state.products);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
 		dispatch(itemsFetch());
 	}, [dispatch]);
-
-	console.log(items);
 
 	return (
 		<section className="StorePage">
@@ -32,10 +31,8 @@ const StorePage = () => {
 			</nav>
 			<h2>Store</h2>
 
-			<div className="items">
-				{items.map((item) => (
-					<Item key={item.id} item={item} />
-				))}
+			<div className="storeItems">
+				{!isLoading ? items.map((item) => <StoreItem key={item.id} item={item} />) : <MyLoader />}
 			</div>
 		</section>
 	);

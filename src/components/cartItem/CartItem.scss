@@ -1,0 +1,21 @@
+@use "../sass/mixins" as mxs;
+
+.CartItem{
+   @include mxs.rowFlex(space-between, center);
+   border: 1px solid black;
+   border-radius: 10px;
+   height: 90px;
+   padding: 10px;
+
+   img{
+      height: 100%;
+   }
+
+   div{
+      @include mxs.rowFlex(space-between, center, 10px);
+   }
+
+   button{
+      padding: 2px 4px;
+   }
+}

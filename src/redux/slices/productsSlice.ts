@@ -21,7 +21,17 @@ const productsSlice = createSlice({
 
 	initialState: initialState,
 
-	reducers: {},
+	reducers: {
+		addNewItem: (state, action) => {
+			state.items = [...state.items, action.payload];
+		},
+
+		removeItem: (state, action) => {
+			state.items = state.items.filter((item) => {
+				return item.id !== action.payload.id;
+			});
+		},
+	},
 
 	extraReducers: (builder) => {
 		builder.addCase(itemsFetch.pending, (state, action) => {
@@ -37,5 +47,7 @@ const productsSlice = createSlice({
 			});
 	},
 });
+
+export const { addNewItem, removeItem } = productsSlice.actions;
 
 export default productsSlice.reducer;
