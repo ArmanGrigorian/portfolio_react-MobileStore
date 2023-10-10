@@ -17,11 +17,9 @@
 
          li {
             list-style-type: none;
+            color: var(--my-color-black-l);
+            cursor: pointer;
 
-            a {
-               text-decoration: none;
-               color: var(--my-color-black-l);
-            }
          }
       }
 

@@ -7,7 +7,7 @@ import StoreItem from "../storeItem/StoreItem.tsx";
 import MyLoader from "../skeleton/ItemSkeleton.tsx";
 
 const StorePage = () => {
-	const { params, storeItems, isLoading } = useSelector((state) => state.products);
+	const { categories, params, storeItems, isLoading } = useSelector((state) => state.products);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -18,32 +18,21 @@ const StorePage = () => {
 		dispatch(separateFetch(params));
 	}, [dispatch, params]);
 
-
 	function handleClick(e) {
-		switch (e.target.dataset.name) {
-			case "all":
-				dispatch(storeItemsFetch());
-				break;
-			case "apple":
-				console.log(e.target.dataset.name);
-				dispatch(setParams({...params, param4: "filter", param5: e.target.dataset.name}));
-				break;
-			case "samsung":
-				console.log(e.target.dataset.name);
-				dispatch(setParams({...params, param4: "filter", param5: e.target.dataset.name}));
-				break;
-			default:
-				break;
-		}
+		e.target.dataset.name === "all"
+			? dispatch(storeItemsFetch())
+			: dispatch(setParams({ ...params, param4: "filter", param5: e.target.dataset.name }));
 	}
 
 	return (
 		<section className={"StorePage"}>
 			<nav className={"auxNav"}>
-				<ul onClick={handleClick}>
-					<li data-name={"all"}>All</li>
-					<li data-name={"apple"}>Apple</li>
-					<li data-name={"samsung"}>Samsung</li>
+				<ul>
+					{categories.map((category) => (
+						<li data-name={category.toLocaleLowerCase()} onClick={handleClick}>
+							{category}
+						</li>
+					))}
 				</ul>
 
 				<select
@@ -74,11 +63,9 @@ const StorePage = () => {
 			<h2>Store</h2>
 
 			<div className={"storeItems"}>
-				{!isLoading ? (
-					storeItems.map((item) => <StoreItem key={item.id} item={item} />)
-				) : (
-					<MyLoader />
-				)}
+				{!isLoading
+					? storeItems.map((item) => <StoreItem key={item.id} item={item} />)
+					: [...new Array(6)].map(() => <MyLoader />)}
 			</div>
 		</section>
 	);

@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { productsAPI } from "../../api/api";
 
 const initialState = {
+	categories : ["All", "Apple", "Samsung", "Xiaomi", "Nokia"],
 	params: {
 		param1: "sortBy",
 		param2: "release",

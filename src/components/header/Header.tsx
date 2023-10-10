@@ -1,5 +1,5 @@
 import "./Header.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Nav from "../nav/Nav";
 import { useSelector } from "react-redux";
 import LoginModal from "../loginModal/LoginModal";
