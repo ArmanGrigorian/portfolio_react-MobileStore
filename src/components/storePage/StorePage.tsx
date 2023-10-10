@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setParams, separateFetch, storeItemsFetch } from "../../redux/slices/productsSlice.ts";
 import StoreItem from "../storeItem/StoreItem.tsx";
-import MyLoader from "../skeleton/ItemSkeleton.tsx";
+import ItemSkeleton from "../skeleton/ItemSkeleton.tsx";
 
 const StorePage = () => {
 	const { categories, params, storeItems, isLoading } = useSelector((state) => state.products);
@@ -67,7 +67,7 @@ const StorePage = () => {
 			<div className={"storeItems"}>
 				{!isLoading
 					? storeItems.map((item) => <StoreItem key={item.id} item={item} />)
-					: [...new Array(6)].map(() => <MyLoader key={crypto.randomUUID()} />)}
+					: [...new Array(6)].map(() => <ItemSkeleton key={crypto.randomUUID()} />)}
 			</div>
 		</section>
 	);
