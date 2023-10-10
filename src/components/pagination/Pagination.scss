@@ -1,0 +1,21 @@
+@use "../sass/mixins" as mxs;
+
+.Pagination {
+   width: 50%;
+   margin-inline: auto;
+   padding-bottom: 20px;
+   @include mxs.rowFlex(space-between, center);
+
+   li {
+      list-style-type: none;
+      cursor: pointer;
+
+      &:hover{
+         color: var(--my-color-red-l);
+      }
+
+      &.selected{
+         color: var(--my-color-red-l);
+      }
+   }
+}

@@ -1,10 +1,15 @@
-import { Link } from "react-router-dom";
 import "./StorePage.scss";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setParams, separateFetch, storeItemsFetch } from "../../redux/slices/productsSlice.ts";
+import {
+	setParams,
+	separateFetch,
+	storeItemsFetch,
+} from "../../redux/slices/productsSlice.ts";
 import StoreItem from "../storeItem/StoreItem.tsx";
 import ItemSkeleton from "../skeleton/ItemSkeleton.tsx";
+
+import Pagination from "../pagination/Pagination.tsx";
 
 const StorePage = () => {
 	const { categories, params, storeItems, isLoading } = useSelector((state) => state.products);
@@ -21,7 +26,7 @@ const StorePage = () => {
 	function handleClick(e) {
 		e.target.dataset.name === "all"
 			? dispatch(storeItemsFetch())
-			: dispatch(setParams({ ...params, param4: "filter", param5: e.target.dataset.name }));
+			: dispatch(setParams({ ...params, param5: "filter", param6: e.target.dataset.name }));
 	}
 
 	return (
@@ -31,7 +36,8 @@ const StorePage = () => {
 					{categories.map((category) => (
 						<li
 							key={crypto.randomUUID()}
-							data-name={category.toLocaleLowerCase()} onClick={handleClick}>
+							data-name={category.toLocaleLowerCase()}
+							onClick={handleClick}>
 							{category}
 						</li>
 					))}
@@ -45,9 +51,9 @@ const StorePage = () => {
 						dispatch(
 							setParams({
 								...params,
-								param1: "sortBy",
-								param2: oParams[0],
-								param3: oParams[1],
+								param2: "sortBy",
+								param3: oParams[0],
+								param4: oParams[1],
 							}),
 						);
 					}}>
@@ -69,6 +75,8 @@ const StorePage = () => {
 					? storeItems.map((item) => <StoreItem key={item.id} item={item} />)
 					: [...new Array(6)].map(() => <ItemSkeleton key={crypto.randomUUID()} />)}
 			</div>
+
+			<Pagination/>
 		</section>
 	);
 };

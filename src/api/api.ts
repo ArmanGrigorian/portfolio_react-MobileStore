@@ -6,10 +6,12 @@ const instance = axios.create({
 
 export const productsAPI = {
 	getAllProducts: () => {
-		return instance.get("/mobileStore?sortBy=release&order=desc");
+		return instance.get("/mobileStore?page=1&limit=8&sortBy=release&order=desc");
 	},
 
-   getProductsBy: ({param1 = "sortBy", param2 = "release", param3 = "desc", param4 = "", param5= ""}) => {
-      return instance.get(`/mobileStore?${param1}=${param2}&order=${param3}&${param4}=${param5}`);
+   getProductsBy: ({param1 = "1", param2 = "sortBy", param3 = "release", param4 = "desc", param5 = "", param6= ""}) => {
+      return instance.get(
+				`/mobileStore?page=${param1}&limit=8&${param2}=${param3}&order=${param4}&${param5}=${param6}`,
+			);
    },
 };

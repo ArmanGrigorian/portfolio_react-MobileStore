@@ -2,11 +2,12 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { productsAPI } from "../../api/api";
 
 const initialState = {
-	categories : ["All", "Apple", "Samsung", "Xiaomi", "Nokia"],
+	categories: ["All", "Apple", "Samsung", "Xiaomi", "Nokia"],
 	params: {
-		param1: "sortBy",
-		param2: "release",
-		param3: "desc",
+		param1: "1",
+		param2: "sortBy",
+		param3: "release",
+		param4: "desc",
 	},
 	storeItems: [],
 	cartItems: [],
@@ -33,7 +34,6 @@ export const separateFetch = createAsyncThunk("products/separateFetch", async (p
 	}
 });
 
-
 const productsSlice = createSlice({
 	name: "products",
 
@@ -41,7 +41,7 @@ const productsSlice = createSlice({
 
 	reducers: {
 		setParams: (state, action) => {
-			state.params = action.payload
+			state.params = action.payload;
 		},
 
 		addToCart: (state, action) => {
