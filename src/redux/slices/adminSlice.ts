@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const initialState = {
 	isAdmin: false,
 	login: "admin",
 	password: "admin",
+	loginValue: "",
+	passwordValue: "",
 };
 
 const adminSlice = createSlice({
@@ -13,6 +14,14 @@ const adminSlice = createSlice({
 	initialState: initialState,
 
 	reducers: {
+		setLoginValue: (state, action) => {
+			state.loginValue = action.payload;
+		},
+
+		setPasswordValue: (state, action) => {
+			state.passwordValue = action.payload;
+		},
+
 		setLogin: (state, action) => {
 			state.password = action.payload;
 		},
@@ -30,6 +39,7 @@ const adminSlice = createSlice({
 	},
 });
 
-export const { setLogin, setPassword, checkLogPass } = adminSlice.actions;
+export const { setLoginValue, setPasswordValue, setLogin, setPassword, checkLogPass } =
+	adminSlice.actions;
 
 export default adminSlice.reducer;
