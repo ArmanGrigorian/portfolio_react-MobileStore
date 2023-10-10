@@ -1,5 +1,6 @@
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
+import "./Pagination.scss";
 import { setParams } from "../../redux/slices/productsSlice";
 
 const Pagination = () => {

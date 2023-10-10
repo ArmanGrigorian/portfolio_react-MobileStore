@@ -3,11 +3,12 @@
 .Pagination {
    width: 50%;
    margin-inline: auto;
-   padding-bottom: 20px;
+   padding-block: 20px;
    @include mxs.rowFlex(space-between, center);
 
    li {
       list-style-type: none;
+      user-select: none;
       cursor: pointer;
 
       &:hover{

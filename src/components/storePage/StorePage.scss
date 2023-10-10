@@ -3,7 +3,7 @@
 .StorePage {
 
    h2 {
-      padding: 20px 20px 0px;
+      padding: 20px;
    }
 
    .auxNav {
@@ -30,28 +30,7 @@
    }
 
    .storeItems{
-      @include mxs.rowFlex(space-between, center, 27px 17px);
+      @include mxs.rowFlex(space-evenly, center, 30px);
       flex-wrap: wrap;
-      padding: 20px;
    }
-
-      .Pagination {
-         width: 50%;
-         margin-inline: auto;
-         padding-bottom: 20px;
-         @include mxs.rowFlex(space-between, center);
-   
-         li {
-            list-style-type: none;
-            cursor: pointer;
-   
-            &:hover {
-               color: var(--my-color-red-l);
-            }
-   
-            &.selected {
-               color: var(--my-color-red-l);
-            }
-         }
-      }
 }

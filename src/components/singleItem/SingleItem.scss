@@ -1,0 +1,57 @@
+@use "../sass/mixins" as mxs;
+
+.SingleItem {
+   height: 70vh;
+   padding: 20px;
+   @include mxs.rowFlex(space-between, center);
+
+
+   .left {
+      width: 50%;
+      height: 100%;
+      @include mxs.colFlex(center, center);
+
+      div{
+         @include mxs.rowFlex(center, center, 10px);
+         width: 100%;
+         height: 10%;
+      }
+
+      img {
+         width: 100%;
+         height: 90%;
+      }
+   }
+
+   .right {
+      width: 50%;
+      height: 100%;
+      @include mxs.rowFlex(center, center);
+
+      table {
+         border: 1px solid black;
+         border-collapse: collapse;
+
+         caption{
+            color: var(--my-color-red-l);
+            text-decoration: underline solid 1px var(--my-color-red-l);
+            text-underline-offset: 1px;
+            padding-bottom: 10px;
+            font-weight: 600;
+            letter-spacing: 1px;
+         }
+
+         tr {
+
+            th,
+            td {
+               padding: 10px;
+               text-align: center;
+               border: 1px solid black;
+            }
+         }
+      }
+   }
+
+
+}

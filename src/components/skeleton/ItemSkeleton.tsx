@@ -4,16 +4,16 @@ const ItemSkeleton = (props) => (
 	<ContentLoader
 		speed={2}
 		width={248.39}
-		height={335.39}
-		viewBox={"0 0 248.39 335.39"}
+		height={360}
+		viewBox={"0 0 248.39 360"}
 		backgroundColor={"#f3f3f3"}
 		foregroundColor={"#ecebeb"}
 		{...props}>
-		<rect x={"80"} y="21" rx={"8"} ry={"8"} width={"85"} height={"16"} />
-		<rect x={"69"} y="50" rx={"8"} ry={"8"} width={"107"} height={"19"} />
-		<rect x={"40"} y="84" rx="24" ry="24" width={"172"} height={"190"} />
-		<rect x={"157"} y="288" rx={"8"} ry={"8"} width={"62"} height={"45"} />
-		<rect x={"26"} y={"295"} rx={"8"} ry={"8"} width={"71"} height={"25"} />
+		<rect x={"98"} y={"12"} rx={"8"} ry={"8"} width={"50"} height={"16"} />
+		<rect x={"81"} y={"36"} rx={"8"} ry={"8"} width={"87"} height={"19"} />
+		<rect x={"52"} y={"66"} rx="24" ry="24" width={"149"} height={"178"} />
+		<rect x={"168"} y={"256"} rx={"8"} ry={"8"} width={"56"} height={"48"} />
+		<rect x={"26"} y={"258"} rx={"8"} ry={"8"} width={"71"} height={"24"} />
 	</ContentLoader>
 );
 

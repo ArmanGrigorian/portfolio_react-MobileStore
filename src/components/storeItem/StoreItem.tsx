@@ -2,7 +2,8 @@ import { useDispatch } from "react-redux";
 import "./StoreItem.scss";
 import { addToCart } from "../../redux/slices/productsSlice.ts";
 import { DiscountIcon } from "../svgs/DiscountIcon.tsx";
-import { discounter } from "../../utilities/discounter.tsx";
+import { discounter } from "../../utilities/discounter.ts";
+import { Link } from "react-router-dom";
 
 const StoreItem = ({ item }) => {
 	const dispatch = useDispatch();
@@ -13,7 +14,9 @@ const StoreItem = ({ item }) => {
 			<figcaption>{item.brand}</figcaption>
 			<p>{item.model}</p>
 
-			<img src={item.src} alt={item.alt} />
+			<Link to={"/" + item.id}>
+				<img src={item.src} alt={item.alt} />
+			</Link>
 
 			<div>
 				{item.isDiscounted ? (
