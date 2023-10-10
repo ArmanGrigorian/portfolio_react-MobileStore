@@ -29,7 +29,9 @@ const StorePage = () => {
 			<nav className={"auxNav"}>
 				<ul>
 					{categories.map((category) => (
-						<li data-name={category.toLocaleLowerCase()} onClick={handleClick}>
+						<li
+							key={crypto.randomUUID()}
+							data-name={category.toLocaleLowerCase()} onClick={handleClick}>
 							{category}
 						</li>
 					))}
@@ -65,7 +67,7 @@ const StorePage = () => {
 			<div className={"storeItems"}>
 				{!isLoading
 					? storeItems.map((item) => <StoreItem key={item.id} item={item} />)
-					: [...new Array(6)].map(() => <MyLoader />)}
+					: [...new Array(6)].map(() => <MyLoader key={crypto.randomUUID()} />)}
 			</div>
 		</section>
 	);

@@ -1,11 +1,96 @@
-.StoreItem{
-   width: max(200px, 30%);
+@use "../sass/mixins" as mxs;
+
+.StoreItem {
+   width: max(200px, 23%);
    padding: 20px;
-   border-radius: 20px;
-   border: 1px solid black;
+   border-radius: 24px;
+   box-shadow: 0px 0px 3px 0px var(--my-color-black-l);
+   position: relative;
+
+   &:hover {
+      scale: 1.01;
+      box-shadow: 0px 0px 3px 1px var(--my-color-black-l);
+   }
+
+   svg {
+      position: absolute;
+      top: -22px;
+      right: -15px;
+      user-select: none;
+      pointer-events: none;
+
+      path {
+         user-select: none;
+         pointer-events: none;
+      }
+   }
+
+   figcaption {
+      text-align: center;
+      font-weight: 700;
+   }
 
 
-   img{
+   p {
+      text-align: center;
+      font-weight: 500;
+      padding-bottom: 5px;
+   }
+
+   img {
       width: 100%;
+      aspect-ratio: 1;
+   }
+
+   & > div {
+      padding-top: 10px;
+      @include mxs.rowFlex(space-between, center);
+
+      .discountDiv {
+
+         p{
+            color: var(--my-color-red-l);
+         }
+         
+         div {
+            @include mxs.rowFlex(start, center, 5px);
+            p {
+               &:first-child {
+                  color: var(--my-color-black-l);
+                  text-decoration-line: line-through;
+               }
+
+               &:last-child {
+                  color: var(--my-color-green);
+               }
+            }
+         }
+      }
+
+      p {
+         color: var(--my-color-black-l);
+      }
+
+      button {
+         color: var(--my-color-black-l);
+         background-color: var(--my-color-white-l);
+         border: 1px solid var(--my-color-black-l);
+         border-radius: 8px;
+         padding: 2px 8px;
+         font-weight: 500;
+         transition:
+            color 150ms, linear,
+            background-color 150ms linear,
+            scale 150ms linear;
+
+         &:hover {
+            color: var(--my-color-white-l);
+            background-color: var(--my-color-red-l);
+         }
+
+         &:active {
+            scale: 0.9;
+         }
+      }
    }
 }

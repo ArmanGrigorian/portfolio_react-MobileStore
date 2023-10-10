@@ -1,8 +1,11 @@
 :root {
   --my-font-family: system-ui, sans-serif;
+  // colors
   --my-color-black-l: rgb(50, 50, 50);
+  --my-color-white-l: rgb(255, 255, 255);
   --my-color-grey-l: rgb(220, 220, 220);
   --my-color-red-l: rgb(230, 50, 50);
+  --my-color-green: rgb(0, 140, 0);
 }
 
 * {
@@ -12,7 +15,7 @@
   font-family: var(--my-font-family);
 }
 
-main{
+main {
   width: min(100%, 1120px);
   margin-inline: auto;
 }
