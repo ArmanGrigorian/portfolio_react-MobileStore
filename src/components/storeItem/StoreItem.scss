@@ -1,18 +1,21 @@
 @use "../sass/mixins" as mxs;
 
 .StoreItem {
-   @include mxs.colFlex(space-between, space-between,);
+   @include mxs.colFlex(space-between, space-between, );
    width: max(240px, 20%);
    min-height: 360px;
    padding: 20px;
    border-radius: 24px;
-   box-shadow: 0px 0px 3px 0px var(--my-color-black-l);
+   box-shadow: 0px 0px 3px 0px var(--my-color-black);
    position: relative;
    cursor: default;
+   transition:
+      scale 150ms linear,
+      box-shadow 150ms linear;
 
    &:hover {
       scale: 1.01;
-      box-shadow: 0px 0px 3px 1px var(--my-color-black-l);
+      box-shadow: 0px 0px 3px 2px var(--my-color-red);
    }
 
    svg {
@@ -40,13 +43,13 @@
       padding-bottom: 5px;
    }
 
-   a{
+   a {
       width: 100%;
 
       img {
-            width: 100%;
-            aspect-ratio: 1;
-         }
+         width: 100%;
+         aspect-ratio: 1;
+      }
    }
 
    & > div {
@@ -55,15 +58,16 @@
 
       .discountDiv {
 
-         p{
-            color: var(--my-color-red-l);
+         p {
+            color: var(--my-color-red);
          }
-         
+
          div {
             @include mxs.rowFlex(start, center, 3px);
+
             p {
                &:first-child {
-                  color: var(--my-color-black-l);
+                  color: var(--my-color-black);
                   text-decoration-line: line-through;
                }
 
@@ -75,14 +79,14 @@
       }
 
       p {
-         color: var(--my-color-black-l);
+         color: var(--my-color-black);
       }
 
       button {
          width: 70px;
-         color: var(--my-color-black-l);
-         background-color: var(--my-color-white-l);
-         border: 1px solid var(--my-color-black-l);
+         color: var(--my-color-black);
+         background-color: var(--my-color-white);
+         border: 1px solid var(--my-color-black);
          border-radius: 8px;
          padding: 4px;
          font-weight: 500;
@@ -90,11 +94,13 @@
          transition:
             color 150ms, linear,
             background-color 150ms linear,
+            border-color 150ms linear,
             scale 150ms linear;
 
          &:hover {
-            color: var(--my-color-white-l);
-            background-color: var(--my-color-red-l);
+            color: var(--my-color-white);
+            background-color: var(--my-color-red);
+            border-color: var(--my-color-red);
          }
 
          &:active {

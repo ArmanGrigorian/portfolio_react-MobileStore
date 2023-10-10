@@ -14,6 +14,17 @@ const CartPage = () => {
 					return <CartItem key={item.id} item={item} />;
 				})}
 			</div>
+
+			<div className={"cartBottomDiv"}>
+				<div>
+					<p>total count:</p>
+					<p>total price:</p>
+				</div>
+
+				<div>
+					<button>BUY NOW</button>
+				</div>
+			</div>
 		</section>
 	);
 };

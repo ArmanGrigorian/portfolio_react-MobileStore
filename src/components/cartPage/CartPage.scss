@@ -1,7 +1,44 @@
+@use "../sass/mixins" as mxs;
+
 .CartPage {
    padding-block: 20px;
 
-   .cartItems{
+   h2 {
+      padding-left: 20px;
+   }
+
+   .cartItems {
+      @include mxs.colFlex(space-between, start, 20px);
       padding: 20px;
+   }
+
+   .cartBottomDiv {
+      @include mxs.rowFlex(space-between, center);
+      padding: 0px 20px;
+
+      p {
+         color: var(--my-color-red);
+      }
+
+      button {
+         color: var(--my-color-green);
+         background-color: var(--my-color-white);
+         border: 1px solid var(--my-color-green);
+         border-radius: 8px;
+         padding: 8px 16px;
+         cursor: pointer;
+         transition: color 150ms linear,
+            background-color 150ms linear,
+            scale 150ms linear;
+
+         &:hover {
+            color: var(--my-color-white);
+            background-color: var(--my-color-green);
+         }
+
+         &:active {
+            scale: 0.95;
+         }
+      }
    }
 }

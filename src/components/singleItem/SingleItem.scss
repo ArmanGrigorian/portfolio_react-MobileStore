@@ -29,12 +29,12 @@
       @include mxs.rowFlex(center, center);
 
       table {
-         border: 1px solid black;
+         border: 1px solid var(--my-color-black);
          border-collapse: collapse;
 
          caption{
-            color: var(--my-color-red-l);
-            text-decoration: underline solid 1px var(--my-color-red-l);
+            color: var(--my-color-red);
+            text-decoration: underline solid 1px var(--my-color-red);
             text-underline-offset: 1px;
             padding-bottom: 10px;
             font-weight: 600;
@@ -47,7 +47,7 @@
             td {
                padding: 10px;
                text-align: center;
-               border: 1px solid black;
+               border: 1px solid var(--my-color-black);
             }
          }
       }

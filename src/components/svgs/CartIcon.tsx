@@ -1,4 +1,4 @@
-const CartIcon = ({size}) => {
+const CartIcon = ({ size = 20 }) => {
 	return (
 		<svg
 			width={size}

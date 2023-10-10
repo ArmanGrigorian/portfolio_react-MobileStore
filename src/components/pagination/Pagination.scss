@@ -12,11 +12,11 @@
       cursor: pointer;
 
       &:hover{
-         color: var(--my-color-red-l);
+         color: var(--my-color-red);
       }
 
       &.selected{
-         color: var(--my-color-red-l);
+         color: var(--my-color-red);
       }
    }
 }

@@ -1,7 +1,7 @@
 @use "../sass/mixins" as mxs;
 
 .Nav{
-   background-color: var(--my-color-grey-l);
+   background-color: var(--my-color-red);
    
    ul{
       padding: 10px 20px;
@@ -12,7 +12,7 @@
 
          a{
             text-decoration: none;
-            color: var(--my-color-black-l);
+            color: var(--my-color-black);
          }
       }
    }

@@ -1,4 +1,4 @@
-const StarIcon = ({ size }) => {
+const StarIcon = ({ size = 20 }) => {
 	return (
 		<svg
 			width={size}

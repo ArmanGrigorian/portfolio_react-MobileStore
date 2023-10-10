@@ -9,7 +9,7 @@
    .auxNav {
       @include mxs.rowFlex(space-between, center);
       padding-inline: 20px;
-      background-color: var(--my-color-grey-l);
+      background-color: var(--my-color-grey);
 
       ul {
          padding-block: 10px;
@@ -17,7 +17,7 @@
 
          li {
             list-style-type: none;
-            color: var(--my-color-black-l);
+            color: var(--my-color-black);
             cursor: pointer;
 
          }
