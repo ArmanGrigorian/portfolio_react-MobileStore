@@ -1,20 +1,29 @@
   @use "../sass/mixins" as mxs;
 
   .NewItemForm {
-     width: 38%;
+     width: 100%;
+     min-height: calc((100vh - 248px) / 3.6);
+     overflow-y: auto;
+     scroll-snap-align: center;
 
      fieldset {
         @include mxs.colFlex(space-between, center, 20px);
         padding: 10px;
         border-radius: 8px;
 
-        & > input {
+        & > div {
+           @include mxs.rowFlex(start, center, 5px);
            width: 100%;
-        }
 
-        div {
-           width: 100%;
-           @include mxs.rowFlex(space-between, center);
+           p{
+            width: 50%;
+            text-align: center;
+            color: var(--my-color-red);
+           }
+
+           input:not([type="checkbox"]) {
+              width: 50%;
+           }
 
 
            input[type="checkbox"] {
@@ -38,10 +47,12 @@
               user-select: none;
            }
 
-           input[type="number"] {
-              width: 50%;
+           .discountPercent.discountPercent {
+              width: calc(50% - 82px);
               visibility: hidden;
            }
         }
+
+
      }
   }

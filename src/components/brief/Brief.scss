@@ -3,7 +3,7 @@
 .Brief{
    @include mxs.colFlex(center, center);
    width: max(49%, 200px);
-   height: calc((100vh - 248px) / 3.6);
+   min-height: calc((100vh - 248px) / 3.6);
    margin-bottom: 20px;
    background-color: var(--my-color-white);
    border-radius: 8px;

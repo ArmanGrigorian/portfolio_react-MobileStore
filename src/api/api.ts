@@ -13,13 +13,26 @@ export const productsAPI = {
 		return instance.get("/mobileStore?page=1&limit=8&sortBy=release&order=desc");
 	},
 
-   getProductsBy: ({param1 = "1", param2 = "sortBy", param3 = "release", param4 = "desc", param5 = "", param6= ""}) => {
-      return instance.get(
-				`/mobileStore?page=${param1}&limit=8&${param2}=${param3}&order=${param4}&${param5}=${param6}`,
-			);
+	getProductsBy: ({
+		param1 = "1",
+		param2 = "sortBy",
+		param3 = "release",
+		param4 = "desc",
+		param5 = "",
+		param6 = "",
+	}) => {
+		return instance.get(
+			`/mobileStore?page=${param1}&limit=8&${param2}=${param3}&order=${param4}&${param5}=${param6}`,
+		);
+	},
+
+	putItem: (id, data) => {
+		return instance.put("/mobileStore/" + id, data, config, {
+			headers: { "content-type": "application/json" },
+		});
 	},
 
 	deleteItem: (id) => {
 		return instance.delete("/mobileStore/" + id);
-	}
+	},
 };

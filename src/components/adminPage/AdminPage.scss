@@ -12,19 +12,17 @@
 
    .adminPanel {
       padding: 0px 20px 20px;
+      @include mxs.rowFlex(space-evenly, center, 2%);
+      flex-wrap: wrap;
+      scroll-snap-type: y mandatory;
+      margin-top: 10px;
+      height: calc(100vh - 248px);
+      padding: 20px;
+      overflow-y: auto;
+      border: 1px solid var(--my-color-black);
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
       
-      .adminItems{
-         @include mxs.rowFlex(space-evenly, center, 2%);
-         flex-wrap: wrap;
-         scroll-snap-type: y mandatory;
-         margin-top: 10px;
-         height: calc(100vh - 248px);
-         padding: 20px;
-         overflow-y: auto;
-         border: 1px solid var(--my-color-black);
-         border-top-left-radius: 10px;
-         border-bottom-left-radius: 10px;
-      }
 
 
    }

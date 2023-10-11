@@ -31,6 +31,16 @@ export const certainItemFetch = createAsyncThunk("admin/certainItemFetch", async
 	}
 });
 
+export const putFetch = createAsyncThunk("admin/putFetch", async (id, data) => {
+	try {
+		await productsAPI.putItem(id, data);
+		const response = await productsAPI.getAllProducts();
+		return response.data;
+	} catch (err) {
+		console.log(err);
+	}
+});
+
 export const deleteFetch = createAsyncThunk("admin/deleteFetch", async (id) => {
 	try {
 		await productsAPI.deleteItem(id);
@@ -106,7 +116,14 @@ const adminSlice = createSlice({
 		builder.addCase(certainItemFetch.rejected, (state) => {
 			state.isLoading = false;
 		});
-		// Delete
+		// PATCH
+		builder.addCase(putFetch.fulfilled, (state, action) => {
+			state.allItems = action.payload;
+		});
+		builder.addCase(putFetch.rejected, (state) => {
+			state.isLoading = false;
+		});
+		// DELETE
 		builder.addCase(deleteFetch.fulfilled, (state, action) => {
 			state.allItems = action.payload;
 		});
