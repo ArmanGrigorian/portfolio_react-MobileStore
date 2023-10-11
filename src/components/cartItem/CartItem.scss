@@ -2,6 +2,7 @@
 
 .CartItem{
    @include mxs.rowFlex(space-between, center);
+   background-color: var(--my-color-white);
    border: 1px solid var(--my-color-black);
    border-radius: 10px;
    width: 100%;

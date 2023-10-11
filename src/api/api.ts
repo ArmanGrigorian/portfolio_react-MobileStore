@@ -18,7 +18,7 @@ export const productsAPI = {
 				`/mobileStore?page=${param1}&limit=8&${param2}=${param3}&order=${param4}&${param5}=${param6}`,
 			);
 	},
-	
+
 	deleteItem: (id) => {
 		return instance.delete("/mobileStore/" + id);
 	}

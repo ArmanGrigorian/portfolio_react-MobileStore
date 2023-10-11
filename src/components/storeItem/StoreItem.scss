@@ -5,6 +5,7 @@
    width: max(240px, 20%);
    min-height: 360px;
    padding: 20px;
+   background-color: var(--my-color-white);
    border-radius: 24px;
    box-shadow: 0px 0px 3px 0px var(--my-color-black);
    position: relative;
@@ -83,29 +84,7 @@
       }
 
       button {
-         width: 70px;
-         color: var(--my-color-black);
-         background-color: var(--my-color-white);
-         border: 1px solid var(--my-color-black);
-         border-radius: 8px;
-         padding: 4px;
-         font-weight: 500;
-         cursor: pointer;
-         transition:
-            color 150ms, linear,
-            background-color 150ms linear,
-            border-color 150ms linear,
-            scale 150ms linear;
-
-         &:hover {
-            color: var(--my-color-white);
-            background-color: var(--my-color-red);
-            border-color: var(--my-color-red);
-         }
-
-         &:active {
-            scale: 0.9;
-         }
+         @include mxs.button;
       }
    }
 }

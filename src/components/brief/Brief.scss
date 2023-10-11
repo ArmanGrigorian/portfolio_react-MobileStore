@@ -2,9 +2,18 @@
 
 .Brief{
    @include mxs.colFlex(center, center);
-   width: 46%;
-   min-height: 100px;
-   border: 1px solid black;
+   width: max(49%, 200px);
+   height: calc((100vh - 248px) / 3.6);
+   margin-bottom: 20px;
+   background-color: var(--my-color-white);
+   border-radius: 8px;
+   box-shadow: 0px 0px 2px 0px var(--my-color-black);
+   scroll-snap-align: center;
+
+   &:hover{
+      box-shadow: 0px 0px 2px 1px var(--my-color-black);
+   }
+
 
    h4, p{
       text-align: center;
@@ -13,6 +22,9 @@
    div{
       @include mxs.rowFlex(center, center, 10px);
       padding: 10px;
-      
+
+      button{
+         @include mxs.button;
+      }
    }
 }

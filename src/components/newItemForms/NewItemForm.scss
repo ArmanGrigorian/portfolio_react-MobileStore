@@ -1,17 +1,19 @@
   @use "../sass/mixins" as mxs;
 
   .NewItemForm {
-     width: 32%;
+     width: 38%;
 
      fieldset {
         @include mxs.colFlex(space-between, center, 20px);
         padding: 10px;
+        border-radius: 8px;
 
         & > input {
            width: 100%;
         }
 
         div {
+           width: 100%;
            @include mxs.rowFlex(space-between, center);
 
 

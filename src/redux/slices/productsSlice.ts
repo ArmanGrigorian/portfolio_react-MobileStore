@@ -9,21 +9,11 @@ const initialState = {
 		param3: "release",
 		param4: "desc",
 	},
-	allItems: [],
 	storeItems: [],
 	cartItems: [],
 	isLoading: true,
 };
 
-export const allItemsFetch = createAsyncThunk("products/allItemsFetch", async () => {
-	try {
-		const response = await productsAPI.getAllProducts();
-		return response.data;
-	} catch (err) {
-		const data = [{ brand: err.message, model: err.request.status }];
-		return data;
-	}
-});
 
 export const pageItemsFetch = createAsyncThunk("products/pageItemsFetch", async () => {
 	try {
@@ -98,18 +88,6 @@ const productsSlice = createSlice({
 	},
 
 	extraReducers: (builder) => {
-		// ALL
-		builder.addCase(allItemsFetch.pending, (state) => {
-			state.isLoading = true;
-		});
-		builder.addCase(allItemsFetch.fulfilled, (state, action) => {
-			state.isLoading = false;
-			state.allItems = action.payload;
-		});
-		builder.addCase(allItemsFetch.rejected, (state, action) => {
-			state.isLoading = false;
-			state.allItems = action.payload;
-		});
 		// PAGE
 		builder.addCase(pageItemsFetch.pending, (state) => {
 			state.isLoading = true;

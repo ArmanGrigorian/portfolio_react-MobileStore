@@ -1,0 +1,28 @@
+@use "../sass/mixins" as mxs;
+
+.SearchBar {
+   @include mxs.rowFlex(end, center, 10px);
+   width: 24%;
+
+
+   input {
+      width: 30px;
+      height: 30px;
+      padding-inline: 10px;
+      transition: width 250ms linear;
+      
+      &:focus {
+         width: calc(100% - 40px);
+         border: none;
+      }
+   }
+
+   button {
+      width: 30px;
+      height: 30px;
+      background-color: transparent;
+      border: 1px solid var(--my-color-green);
+      border-radius: 50%;
+      cursor: pointer;
+   }
+}

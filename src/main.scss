@@ -3,7 +3,7 @@
   // colors
   --my-color-black: rgb(20, 20, 20);
   --my-color-white: rgb(255, 255, 255);
-  --my-color-grey: rgb(240, 240, 240, 0.9);
+  --my-color-grey: rgb(248, 248, 248);
   --my-color-red: rgb(230, 50, 50);
   --my-color-green: rgb(0, 140, 0);
 }
@@ -18,4 +18,5 @@
 main {
   width: min(100%, 1120px);
   margin-inline: auto;
+  background-color: var(--my-color-grey);
 }
