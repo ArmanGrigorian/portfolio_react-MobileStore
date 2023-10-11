@@ -1,3 +1,4 @@
+import "./NewItemForm.scss";
 import { Formik } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
 
@@ -39,7 +40,7 @@ const NewItemForm = () => {
 			validationSchema={newItemValidation}>
 			{({ values, errors, touched, isValid, dirty, handleChange, handleBlur, handleSubmit }) => {
 				return (
-					<form onSubmit={handleSubmit}>
+					<form className={"NewItemForm"} onSubmit={handleSubmit}>
 						<fieldset>
 							<legend>ADD NEW ITEM</legend>
 

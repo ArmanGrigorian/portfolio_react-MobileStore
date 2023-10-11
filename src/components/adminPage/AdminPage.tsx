@@ -1,20 +1,34 @@
-import { useSelector } from "react-redux";
 import "./AdminPage.scss";
-import NewItemForm from "../forms/NewItemForm";
-import ChangeItem from "../forms/ChangeItem";
-import RemoveItem from "../forms/RemoveItem";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import NewItemForm from "../newItemForms/NewItemForm";
+import { allItemsFetch } from "../../redux/slices/productsSlice";
+import Brief from "../brief/Brief";
 
 const AdminPage = () => {
 	const login = useSelector((state) => state.admin.login);
+	const allItems = useSelector((state) => state.products.allItems);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(allItemsFetch());
+	}, [dispatch]);
 
 	return (
 		<section className={"AdminPage"}>
-			<h2>Hello {login}</h2>
+			<div className="adminPageTopDiv">
+				<h2>Hello {login}</h2>
+				<input type="search" />
+			</div>
 
 			<div className={"adminPanel"}>
-				<ChangeItem />
-				<RemoveItem />
 				<NewItemForm />
+
+				<div className="adminItems">
+					{allItems.map((item) => {
+						return <Brief key={item.id} item={item} />;
+					})}
+				</div>
 			</div>
 		</section>
 	);

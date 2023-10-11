@@ -1,0 +1,45 @@
+  @use "../sass/mixins" as mxs;
+
+  .NewItemForm {
+     width: 32%;
+
+     fieldset {
+        @include mxs.colFlex(space-between, center, 20px);
+        padding: 10px;
+
+        & > input {
+           width: 100%;
+        }
+
+        div {
+           @include mxs.rowFlex(space-between, center);
+
+
+           input[type="checkbox"] {
+
+              &:checked {
+                 accent-color: var(--my-color-green);
+                 background-color: red;
+              }
+
+              &:checked + label {
+                 color: var(--my-color-green);
+              }
+
+              &:checked ~ input {
+                 visibility: visible;
+              }
+           }
+
+           label {
+              color: var(--my-color-red);
+              user-select: none;
+           }
+
+           input[type="number"] {
+              width: 50%;
+              visibility: hidden;
+           }
+        }
+     }
+  }

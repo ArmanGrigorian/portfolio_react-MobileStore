@@ -9,7 +9,7 @@ const StoreItem = ({ item }) => {
 	const dispatch = useDispatch();
 
 	return (
-		<figure key={item.id} className={"StoreItem"}>
+		<figure className={"StoreItem"}>
 			{item.isDiscounted && <DiscountIcon size={66} />}
 			<figcaption>{item.brand}</figcaption>
 			<p>{item.model}</p>

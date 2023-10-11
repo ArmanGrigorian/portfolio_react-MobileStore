@@ -1,0 +1,18 @@
+@use "../sass/mixins" as mxs;
+
+.Brief{
+   @include mxs.colFlex(center, center);
+   width: 46%;
+   min-height: 100px;
+   border: 1px solid black;
+
+   h4, p{
+      text-align: center;
+   }
+
+   div{
+      @include mxs.rowFlex(center, center, 10px);
+      padding: 10px;
+      
+   }
+}

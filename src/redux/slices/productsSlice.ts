@@ -9,14 +9,25 @@ const initialState = {
 		param3: "release",
 		param4: "desc",
 	},
+	allItems: [],
 	storeItems: [],
 	cartItems: [],
 	isLoading: true,
 };
 
-export const storeItemsFetch = createAsyncThunk("products/storeItemsFetch", async () => {
+export const allItemsFetch = createAsyncThunk("products/allItemsFetch", async () => {
 	try {
 		const response = await productsAPI.getAllProducts();
+		return response.data;
+	} catch (err) {
+		const data = [{ brand: err.message, model: err.request.status }];
+		return data;
+	}
+});
+
+export const pageItemsFetch = createAsyncThunk("products/pageItemsFetch", async () => {
+	try {
+		const response = await productsAPI.getPageProducts();
 		return response.data;
 	} catch (err) {
 		const data = [{ brand: err.message, model: err.request.status }];
@@ -31,6 +42,15 @@ export const separateFetch = createAsyncThunk("products/separateFetch", async (p
 	} catch (err) {
 		const data = [{ brand: err.message, model: err.request.status }];
 		return data;
+	}
+});
+
+export const deleteFetch = createAsyncThunk("products/deleteFetch", async (id) => {
+	try {
+		const response = await productsAPI.deleteItem(id);
+		return response.data;
+	} catch (err) {
+		console.log(err)
 	}
 });
 
@@ -75,32 +95,34 @@ const productsSlice = createSlice({
 				return item.id !== action.payload.id;
 			});
 		},
-
-		addToStore: (state, action) => {
-			state.storeItems = [...state.storeItems, action.payload];
-		},
-
-		deleteFromStore: (state, action) => {
-			state.storeItems = state.storeItems.filter((item) => {
-				return item.id !== action.payload.id;
-			});
-		},
 	},
 
 	extraReducers: (builder) => {
-		// MAIN FETCH
-		builder.addCase(storeItemsFetch.pending, (state) => {
+		// ALL
+		builder.addCase(allItemsFetch.pending, (state) => {
 			state.isLoading = true;
 		});
-		builder.addCase(storeItemsFetch.fulfilled, (state, action) => {
+		builder.addCase(allItemsFetch.fulfilled, (state, action) => {
+			state.isLoading = false;
+			state.allItems = action.payload;
+		});
+		builder.addCase(allItemsFetch.rejected, (state, action) => {
+			state.isLoading = false;
+			state.allItems = action.payload;
+		});
+		// PAGE
+		builder.addCase(pageItemsFetch.pending, (state) => {
+			state.isLoading = true;
+		});
+		builder.addCase(pageItemsFetch.fulfilled, (state, action) => {
 			state.isLoading = false;
 			state.storeItems = action.payload;
 		});
-		builder.addCase(storeItemsFetch.rejected, (state, action) => {
+		builder.addCase(pageItemsFetch.rejected, (state, action) => {
 			state.isLoading = false;
 			state.storeItems = action.payload;
 		});
-		// SORT CONTROL
+		// SORT
 		builder.addCase(separateFetch.pending, (state) => {
 			state.isLoading = true;
 		});
@@ -115,7 +137,6 @@ const productsSlice = createSlice({
 	},
 });
 
-export const { setParams, addToCart, removeFromCart, deleteFromCart, addToStore, deleteFromStore } =
-	productsSlice.actions;
+export const { setParams, addToCart, removeFromCart, deleteFromCart } = productsSlice.actions;
 
 export default productsSlice.reducer;

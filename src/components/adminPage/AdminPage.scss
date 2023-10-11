@@ -2,57 +2,29 @@
 
 .AdminPage {
 
-   h2 {
+   .adminPageTopDiv {
+      @include mxs.rowFlex(space-between);
       padding: 20px;
+
+      h2 {}
    }
 
+
    .adminPanel {
-      @include mxs.rowFlex(space-evenly, start, 20px);
+      @include mxs.rowFlex(space-between, start);
       flex-wrap: wrap;
       padding: 0px 20px 20px;
 
-      form {
-         width: max(28%, 260px);
-
-         fieldset {
-            @include mxs.colFlex(space-between, center, 20px);
-            padding: 10px;
-
-            & > input {
-               width: 100%;
-            }
-
-            div {
-               @include mxs.rowFlex(space-between, center);
-
-
-               input[type="checkbox"] {
-
-                  &:checked {
-                     accent-color: var(--my-color-green);
-                     background-color: red;
-                  }
-
-                  &:checked + label {
-                     color: var(--my-color-green);
-                  }
-
-                  &:checked ~ input {
-                     visibility: visible;
-                  }
-               }
-
-               label {
-                  color: var(--my-color-red);
-                  user-select: none;
-               }
-
-               input[type="number"] {
-                  width: 50%;
-                  visibility: hidden;
-               }
-            }
-         }
+      .adminItems{
+         @include mxs.rowFlex(space-evenly, start, 1%);
+         flex-wrap: wrap;
+         width: 64%;
+         height: calc(100vh - 238px);
+         padding-block: 10px;
+         overflow-y: auto;
+         border: 1px solid black;
       }
+
+
    }
 }

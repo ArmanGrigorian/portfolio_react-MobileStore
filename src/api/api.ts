@@ -6,6 +6,10 @@ const instance = axios.create({
 
 export const productsAPI = {
 	getAllProducts: () => {
+		return instance.get("/mobileStore");
+	},
+
+	getPageProducts: () => {
 		return instance.get("/mobileStore?page=1&limit=8&sortBy=release&order=desc");
 	},
 
@@ -13,5 +17,9 @@ export const productsAPI = {
       return instance.get(
 				`/mobileStore?page=${param1}&limit=8&${param2}=${param3}&order=${param4}&${param5}=${param6}`,
 			);
-   },
+	},
+	
+	deleteItem: (id) => {
+		return instance.delete("/mobileStore/" + id);
+	}
 };

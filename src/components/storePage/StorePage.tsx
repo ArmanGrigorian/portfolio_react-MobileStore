@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
 	setParams,
 	separateFetch,
-	storeItemsFetch,
+	pageItemsFetch,
 } from "../../redux/slices/productsSlice.ts";
 import StoreItem from "../storeItem/StoreItem.tsx";
 import ItemSkeleton from "../skeleton/ItemSkeleton.tsx";
@@ -16,7 +16,7 @@ const StorePage = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(storeItemsFetch());
+		dispatch(pageItemsFetch());
 	}, [dispatch]);
 
 	useEffect(() => {
@@ -25,7 +25,7 @@ const StorePage = () => {
 
 	function handleClick(e) {
 		e.target.dataset.name === "all"
-			? dispatch(storeItemsFetch())
+			? dispatch(pageItemsFetch())
 			: dispatch(setParams({ ...params, param5: "filter", param6: e.target.dataset.name }));
 	}
 
