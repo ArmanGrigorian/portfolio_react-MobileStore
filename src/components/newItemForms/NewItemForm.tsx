@@ -2,13 +2,16 @@ import "./NewItemForm.scss";
 import { Formik } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
 import { dateToNumber, numberToDate } from "../../utilities/dateRevealer";
+import { useDispatch } from "react-redux";
+import { postFetch } from "../../redux/slices/adminSlice";
 
 const NewItemForm = () => {
+
+	const dispatch = useDispatch()
 
 	function handleSubmit(e) {
 		e.preventDefault();
 		const newItem = {
-			id: crypto.randomUUID(),
 			brand: e.target.brand.value,
 			model: e.target.model.value,
 			price: Number(e.target.price.value),
@@ -20,7 +23,8 @@ const NewItemForm = () => {
 			src: e.target.src.value,
 			alt: e.target.alt.value,
 		};
-		console.log(newItem);
+
+		dispatch(postFetch(newItem))
 	}
 
 	return (

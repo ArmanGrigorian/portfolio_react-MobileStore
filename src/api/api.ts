@@ -26,8 +26,14 @@ export const productsAPI = {
 		);
 	},
 
+	postItem: (data) => {
+		return instance.post("/mobileStore", data, {
+			headers: { "content-type": "application/json" },
+		});
+	},
+
 	putItem: (id, data) => {
-		return instance.put("/mobileStore/" + id, data, config, {
+		return instance.put("/mobileStore/" + id, data, {
 			headers: { "content-type": "application/json" },
 		});
 	},
