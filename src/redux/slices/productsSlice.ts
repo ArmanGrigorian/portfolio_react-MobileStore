@@ -3,6 +3,7 @@ import { productsAPI } from "../../api/api";
 
 const initialState = {
 	categories: ["All", "Apple", "Samsung", "Xiaomi", "Nokia"],
+	activeCategory: "all",
 	params: {
 		param1: "1",
 		param2: "sortBy",
@@ -14,14 +15,12 @@ const initialState = {
 	isLoading: true,
 };
 
-
 export const pageItemsFetch = createAsyncThunk("products/pageItemsFetch", async () => {
 	try {
 		const response = await productsAPI.getPageProducts();
 		return response.data;
 	} catch (err) {
-		const data = [{ brand: err.message, model: err.request.status }];
-		return data;
+		console.log(err);
 	}
 });
 
@@ -30,17 +29,7 @@ export const separateFetch = createAsyncThunk("products/separateFetch", async (p
 		const response = await productsAPI.getProductsBy(params);
 		return response.data;
 	} catch (err) {
-		const data = [{ brand: err.message, model: err.request.status }];
-		return data;
-	}
-});
-
-export const deleteFetch = createAsyncThunk("products/deleteFetch", async (id) => {
-	try {
-		const response = await productsAPI.deleteItem(id);
-		return response.data;
-	} catch (err) {
-		console.log(err)
+		console.log(err);
 	}
 });
 
@@ -85,6 +74,10 @@ const productsSlice = createSlice({
 				return item.id !== action.payload.id;
 			});
 		},
+
+		setActiveCategory: (state, action) => {
+			state.activeCategory = action.payload;
+		},
 	},
 
 	extraReducers: (builder) => {
@@ -96,9 +89,8 @@ const productsSlice = createSlice({
 			state.isLoading = false;
 			state.storeItems = action.payload;
 		});
-		builder.addCase(pageItemsFetch.rejected, (state, action) => {
+		builder.addCase(pageItemsFetch.rejected, (state) => {
 			state.isLoading = false;
-			state.storeItems = action.payload;
 		});
 		// SORT
 		builder.addCase(separateFetch.pending, (state) => {
@@ -108,13 +100,13 @@ const productsSlice = createSlice({
 			state.isLoading = false;
 			state.storeItems = action.payload;
 		});
-		builder.addCase(separateFetch.rejected, (state, action) => {
+		builder.addCase(separateFetch.rejected, (state) => {
 			state.isLoading = false;
-			state.storeItems = action.payload;
 		});
 	},
 });
 
-export const { setParams, addToCart, removeFromCart, deleteFromCart } = productsSlice.actions;
+export const { setParams, addToCart, removeFromCart, deleteFromCart, setActiveCategory } =
+	productsSlice.actions;
 
 export default productsSlice.reducer;

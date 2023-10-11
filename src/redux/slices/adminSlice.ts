@@ -27,8 +27,17 @@ export const certainItemFetch = createAsyncThunk("admin/certainItemFetch", async
 		const response = await productsAPI.getAllProducts();
 		return response.data;
 	} catch (err) {
-		const data = [{ brand: err.message, model: err.request.status }];
-		return data;
+		console.log(err);
+	}
+});
+
+export const deleteFetch = createAsyncThunk("admin/deleteFetch", async (id) => {
+	try {
+		await productsAPI.deleteItem(id);
+		const response = await productsAPI.getAllProducts();
+		return response.data;
+	} catch (err) {
+		console.log(err);
 	}
 });
 
@@ -75,9 +84,8 @@ const adminSlice = createSlice({
 			state.isLoading = false;
 			state.allItems = action.payload;
 		});
-		builder.addCase(allItemsFetch.rejected, (state, action) => {
+		builder.addCase(allItemsFetch.rejected, (state) => {
 			state.isLoading = false;
-			state.allItems = action.payload;
 		});
 		// Certain
 		builder.addCase(certainItemFetch.pending, (state) => {
@@ -95,9 +103,15 @@ const adminSlice = createSlice({
 				}
 			});
 		});
-		builder.addCase(certainItemFetch.rejected, (state, action) => {
+		builder.addCase(certainItemFetch.rejected, (state) => {
 			state.isLoading = false;
+		});
+		// Delete
+		builder.addCase(deleteFetch.fulfilled, (state, action) => {
 			state.allItems = action.payload;
+		});
+		builder.addCase(deleteFetch.rejected, (state) => {
+			state.isLoading = false;
 		});
 	},
 });

@@ -5,6 +5,16 @@ import CartItem from "../cartItem/CartItem";
 const CartPage = () => {
 	const cartItems = useSelector((state) => state.products.cartItems);
 
+	const totalPrice = cartItems.reduce((aggr, val) => {
+		aggr += val.price * val.count;
+		return aggr;
+	}, 0)
+
+	const totalCount = cartItems.reduce((aggr, val) => {
+		aggr += val.count;
+		return aggr;
+	}, 0)
+
 	return (
 		<section className={"CartPage"}>
 			<h2>CartPage</h2>
@@ -17,8 +27,8 @@ const CartPage = () => {
 
 			<div className={"cartBottomDiv"}>
 				<div>
-					<p>total count:</p>
-					<p>total price:</p>
+					<p>total count: {totalCount}</p>
+					<p>total price: {totalPrice}</p>
 				</div>
 
 				<div>

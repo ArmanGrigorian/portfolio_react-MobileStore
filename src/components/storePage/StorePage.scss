@@ -18,8 +18,14 @@
          li {
             list-style-type: none;
             color: var(--my-color-black);
+            font-weight: 500;
             cursor: pointer;
 
+            &.active{
+               color: var(--my-color-green);
+               text-decoration: underline solid 1px var(--my-color-green);
+               text-underline-offset: 1px;
+            }
          }
       }
 

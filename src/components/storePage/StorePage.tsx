@@ -5,6 +5,7 @@ import {
 	setParams,
 	separateFetch,
 	pageItemsFetch,
+	setActiveCategory,
 } from "../../redux/slices/productsSlice.ts";
 import StoreItem from "../storeItem/StoreItem.tsx";
 import ItemSkeleton from "../skeleton/ItemSkeleton.tsx";
@@ -12,7 +13,7 @@ import ItemSkeleton from "../skeleton/ItemSkeleton.tsx";
 import Pagination from "../pagination/Pagination.tsx";
 
 const StorePage = () => {
-	const { categories, params, storeItems, isLoading } = useSelector((state) => state.products);
+	const { categories, activeCategory, params, storeItems, isLoading } = useSelector((state) => state.products);
 	const dispatch = useDispatch();
 
 	useEffect(() => {
@@ -27,6 +28,7 @@ const StorePage = () => {
 		e.target.dataset.name === "all"
 			? dispatch(pageItemsFetch())
 			: dispatch(setParams({ ...params, param5: "filter", param6: e.target.dataset.name }));
+		dispatch(setActiveCategory(e.target.dataset.name));
 	}
 
 	return (
@@ -36,6 +38,7 @@ const StorePage = () => {
 					{categories.map((category) => (
 						<li
 							key={crypto.randomUUID()}
+							className={activeCategory === category.toLocaleLowerCase() ? "active" : ""}
 							data-name={category.toLocaleLowerCase()}
 							onClick={handleClick}>
 							{category}
@@ -76,7 +79,7 @@ const StorePage = () => {
 					: [...new Array(6)].map(() => <ItemSkeleton key={crypto.randomUUID()} />)}
 			</div>
 
-			<Pagination/>
+			<Pagination />
 		</section>
 	);
 };
