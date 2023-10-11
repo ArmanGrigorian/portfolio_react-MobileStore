@@ -1,13 +1,9 @@
-import "./NewItemForm.scss";
+import "./EditItemForm.scss";
 import { Formik } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
 import { dateToNumber, numberToDate } from "../../utilities/dateRevealer";
-import { useDispatch } from "react-redux";
-import { postFetch } from "../../redux/slices/adminSlice";
 
-const NewItemForm = () => {
-	const dispatch = useDispatch();
-
+const EditItemForm = ({ item, setIsEditable }) => {
 	function handleSubmit(e) {
 		e.preventDefault();
 		const newItem = {
@@ -22,31 +18,30 @@ const NewItemForm = () => {
 			src: e.target.src.value,
 			alt: e.target.alt.value,
 		};
-
-		dispatch(postFetch(newItem));
+		setIsEditable(false);
 	}
 
 	return (
 		<Formik
 			initialValues={{
-				brand: "",
-				model: "",
-				price: 0,
-				count: 0,
-				isDiscounted: false,
-				discountPercent: 0,
-				release: 20240101,
-				rating: 0,
-				src: "",
-				alt: "",
+				brand: item.brand,
+				model: item.model,
+				price: item.price,
+				count: item.count,
+				isDiscounted: item.isDiscounted,
+				discountPercent: item.discountPercent,
+				release: item.release,
+				rating: item.rating,
+				src: item.src,
+				alt: item.alt,
 			}}
 			validateOnBlur
 			validationSchema={newItemValidation}>
 			{({ values, errors, touched, isValid, handleChange, handleBlur }) => {
 				return (
-					<form className={"NewItemForm"} onSubmit={handleSubmit}>
+					<form className={"EditItemForm"} onSubmit={(e) => handleSubmit(e)}>
 						<fieldset>
-							<legend>ADD NEW ITEM</legend>
+							<legend>{`${item.brand} ${item.model}`}</legend>
 
 							<div>
 								<div className="left">
@@ -168,7 +163,10 @@ const NewItemForm = () => {
 								</div>
 							</div>
 
-							<input type={"submit"} value={"ADD"} disabled={isValid} />
+							<div className="bottom">
+								<input type={"submit"} value={"SAVE"} />
+								<input type={"button"} value={"CLOSE"} onClick={() => setIsEditable(false)} />
+							</div>
 						</fieldset>
 					</form>
 				);
@@ -177,4 +175,4 @@ const NewItemForm = () => {
 	);
 };
 
-export default NewItemForm;
+export default EditItemForm;

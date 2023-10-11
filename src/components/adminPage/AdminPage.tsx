@@ -21,8 +21,9 @@ const AdminPage = () => {
 				<SearchBar />
 			</div>
 
+			<NewItemForm />
+			
 			<div className={"adminPanel"}>
-				<NewItemForm />
 				{allItems.map((item) => {
 					return <Brief key={item.id} item={item} />;
 				})}

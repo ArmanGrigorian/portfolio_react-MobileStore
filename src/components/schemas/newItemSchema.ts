@@ -29,6 +29,12 @@ export const newItemValidation = yup.object().shape({
 		.min(new Date(1900, 0, 1))
 		.max(new Date(2100, 0, 1))
 		.required("field is not filled"),
+	rating: yup
+		.number()
+		.typeError("wrong type")
+		.positive()
+		.min(0, "too low")
+		.max(10, "to high"),
 	src: yup.string().typeError("wrong type").min(6).required("field is not filled"),
 	alt: yup.string().typeError("wrong type").min(6).required("field is not filled"),
 });

@@ -1,7 +1,11 @@
   @use "../sass/mixins" as mxs;
 
-  .NewItemForm {
-     width: 100%;
+  .EditItemForm {
+     width: 50%;
+     height: fit-content;
+     position: absolute;
+     inset: 0;
+     margin: auto;
      background-color: var(--my-color-grey);
 
      & > fieldset {
@@ -75,10 +79,13 @@
            }
         }
 
-        & > input {
-           @include mxs.button;
-           width: 100%;
-           margin: 10px auto 0px;
+        .bottom {
+            padding-top: 10px;
+
+           input {
+              @include mxs.button;
+              width: 48%;
+           }
         }
      }
   }

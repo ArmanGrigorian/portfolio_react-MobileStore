@@ -4,6 +4,7 @@ import { productsAPI } from "../../api/api";
 const initialState = {
 	isLoading: true,
 	isAdmin: false,
+	isEditable: false,
 	login: "admin",
 	password: "admin",
 	loginValue: "",
@@ -67,6 +68,10 @@ const adminSlice = createSlice({
 	initialState: initialState,
 
 	reducers: {
+		setIsEditable: (state, action) => {
+			state.isEditable = action.payload;
+		},
+
 		setLoginValue: (state, action) => {
 			state.loginValue = action.payload;
 		},
@@ -151,6 +156,7 @@ const adminSlice = createSlice({
 });
 
 export const {
+	setIsEditable,
 	setLoginValue,
 	setPasswordValue,
 	setSearchValue,

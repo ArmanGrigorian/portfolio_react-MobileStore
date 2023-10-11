@@ -2,8 +2,8 @@
 
 .Brief{
    @include mxs.colFlex(center, center);
-   width: max(49%, 200px);
-   min-height: calc((100vh - 248px) / 3.6);
+   width: max(32%, 200px);
+   min-height: calc((100vh - 509px) / 2);
    margin-bottom: 20px;
    background-color: var(--my-color-white);
    border-radius: 8px;

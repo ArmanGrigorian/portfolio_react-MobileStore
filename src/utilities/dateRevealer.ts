@@ -9,7 +9,7 @@ export const numberToDate = (num) => {
    const day = num.toString().slice(6);
 		const month = num.toString().slice(4, 6);
 		const year = num.toString().slice(0, 4);
-		return year + "-" + day + "-" + month;
+		return year + "-" + month + "-" + day;
 }
 
 export const dateToNumber = (str) => {

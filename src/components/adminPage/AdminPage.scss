@@ -1,10 +1,11 @@
 @use "../sass/mixins" as mxs;
 
 .AdminPage {
+   position: relative;
 
    .adminPageTopDiv {
       @include mxs.rowFlex(space-between);
-      padding: 20px;
+      padding: 20px 20px 10px;
 
       h2 {}
    }
@@ -16,7 +17,7 @@
       flex-wrap: wrap;
       scroll-snap-type: y mandatory;
       margin-top: 10px;
-      height: calc(100vh - 248px);
+      height: calc(100vh - 509px);
       padding: 20px;
       overflow-y: auto;
       border: 1px solid var(--my-color-black);
