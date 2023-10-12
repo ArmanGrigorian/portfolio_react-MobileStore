@@ -1,13 +1,13 @@
 import "./SingleItem.scss";
-import { useDispatch, useSelector } from "react-redux";
 import { dataRevealer } from "../../utilities/dateRevealer";
 import { StarIcon } from "../svgs";
 import { addToCart } from "../../redux/slices/productsSlice";
 import Magnifier from "../magnifier/Magnifier";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 const SingleItem = () => {
-	const currentItem = useSelector((state) => state.products.currentItem);
-	const dispatch = useDispatch();
+	const currentItem = useAppSelector((state) => state.products.currentItem);
+	const dispatch = useAppDispatch();
 
 	return (
 		<div className={"SingleItem"}>
@@ -17,7 +17,6 @@ const SingleItem = () => {
 					<tr>
 						<td rowSpan={8} className="imgTd">
 							<Magnifier src={currentItem.src} />
-							{/* <img src={currentItem.src} alt={currentItem.alt} /> */}
 						</td>
 						<th>Brand</th>
 						<td>{currentItem.brand}</td>
@@ -69,16 +68,15 @@ const SingleItem = () => {
 
 					<tr>
 						<td>
-							<button
-								type="button"
-								onClick={()=>dispatch(addToCart(currentItem))}
-							>ADD TO CART</button>
+							<button type="button" onClick={() => dispatch(addToCart(currentItem))}>
+								ADD TO CART
+							</button>
 						</td>
 						<th>Price</th>
 						<td>{currentItem.price}&#36;</td>
 					</tr>
 				</tbody>
-			</table>	
+			</table>
 		</div>
 	);
 };

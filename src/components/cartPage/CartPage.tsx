@@ -1,21 +1,22 @@
 import "./CartPage.scss";
-import { useDispatch, useSelector } from "react-redux";
 import CartItem from "../cartItem/CartItem";
 import { clearCart } from "../../redux/slices/productsSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { RootState } from "../../redux/store";
 
 const CartPage = () => {
-	const cartItems = useSelector((state) => state.products.cartItems);
+	const cartItems = useAppSelector((state: RootState) => state.products.cartItems);
 
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
-	const totalPrice = cartItems.reduce((aggr, val) => {
-		aggr += val.price * val.count;
-		return aggr;
+	const totalPrice = cartItems?.reduce((acc, val) => {
+		acc += val.price * val.count;
+		return acc;
 	}, 0);
 
-	const totalCount = cartItems.reduce((aggr, val) => {
-		aggr += val.count;
-		return aggr;
+	const totalCount = cartItems?.reduce((acc, val) => {
+		acc += val.count;
+		return acc;
 	}, 0);
 
 	return (
@@ -23,7 +24,7 @@ const CartPage = () => {
 			<h2>CartPage</h2>
 
 			<div className={"cartItems"}>
-				{cartItems.map((item) => {
+				{cartItems?.map((item) => {
 					return <CartItem key={item.id} item={item} />;
 				})}
 			</div>

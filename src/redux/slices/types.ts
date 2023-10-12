@@ -28,7 +28,7 @@ export interface I_ProductsSlice {
 	storeItems: [] | T_SingleItem[];
 	cartItems: [] | T_SingleItem[];
 	isLoading: boolean;
-   currentItem: object | T_SingleItem;
+   currentItem: T_SingleItem;
 }
 
 export interface I_AdminSlice {

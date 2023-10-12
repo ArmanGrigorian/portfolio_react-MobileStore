@@ -1,11 +1,11 @@
-import ReactPaginate from "react-paginate";
-import { useDispatch, useSelector } from "react-redux";
 import "./Pagination.scss";
+import ReactPaginate from "react-paginate";
 import { setParams } from "../../redux/slices/productsSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 const Pagination = () => {
-	const params = useSelector((state) => state.products.params);
-	const dispatch = useDispatch();
+	const params = useAppSelector((state) => state.products.params);
+	const dispatch = useAppDispatch();
 
 	return (
 		<ReactPaginate
@@ -16,7 +16,7 @@ const Pagination = () => {
 				dispatch(
 					setParams({
 						...params,
-						param1: e.selected + 1,
+						param1: String(e.selected + 1),
 					}),
 				)
 			}

@@ -1,15 +1,15 @@
 import "./LoginModal.scss";
-import { useDispatch, useSelector } from "react-redux";
 import { checkLogPass, setLoginValue, setPasswordValue } from "../../redux/slices/adminSlice";
 import { useNavigate } from "react-router-dom";
-import { forwardRef } from "react";
+import { forwardRef, FormEvent, ChangeEvent } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 
 const LoginModal = forwardRef((_, dialogRef) => {
-	const { login, password, loginValue, passwordValue } = useSelector((state) => state.admin);
-	const dispatch = useDispatch();
+	const { login, password, loginValue, passwordValue } = useAppSelector((state) => state.admin);
+	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	function handleSubmit(e) {
+	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 
 		dispatch(checkLogPass({ loginValue, passwordValue }));
@@ -41,7 +41,7 @@ const LoginModal = forwardRef((_, dialogRef) => {
 						type={"text"}
 						name={"login"}
 						value={loginValue}
-						onChange={(e) => dispatch(setLoginValue(e.target.value))}
+						onChange={(e: ChangeEvent<HTMLInputElement>) => dispatch(setLoginValue(e.target.value))}
 						placeholder="login..."
 					/>
 
@@ -49,7 +49,9 @@ const LoginModal = forwardRef((_, dialogRef) => {
 						type={"password"}
 						name={"password"}
 						value={passwordValue}
-						onChange={(e) => dispatch(setPasswordValue(e.target.value))}
+						onChange={(e: ChangeEvent<HTMLInputElement>) =>
+							dispatch(setPasswordValue(e.target.value))
+						}
 						placeholder={"password..."}
 					/>
 

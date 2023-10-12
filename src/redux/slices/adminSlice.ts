@@ -2,7 +2,6 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { productsAPI } from "../../api/api";
 import { I_AdminSlice, T_SingleItem } from "./types";
 
-
 const initialState: I_AdminSlice = {
 	isLoading: true,
 	isAdmin: false,
@@ -19,8 +18,7 @@ export const allItemsFetch = createAsyncThunk("admin/allItemsFetch", async () =>
 		const response = await productsAPI.getAllProducts();
 		return response.data;
 	} catch (err) {
-		const data = [{ brand: err.message, model: err.request.status }];
-		return data;
+		console.log(err);
 	}
 });
 
@@ -92,9 +90,12 @@ const adminSlice = createSlice({
 			state.password = action.payload;
 		},
 
-		checkLogPass: (state, action: PayloadAction<{login: string, password: string}>): void => {
+		checkLogPass: (
+			state,
+			action: PayloadAction<{ loginValue: string; passwordValue: string }>,
+		): void => {
 			state.isAdmin =
-				state.login === action.payload.login && state.password === action.payload.password
+				state.login === action.payload.loginValue && state.password === action.payload.passwordValue
 					? true
 					: false;
 		},

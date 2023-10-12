@@ -1,9 +1,14 @@
 import "./CartItem.scss";
-import { useDispatch } from "react-redux";
 import { addToCart, deleteFromCart, removeFromCart } from "../../redux/slices/productsSlice";
+import { useAppDispatch } from "../../redux/hooks";
+import { T_SingleItem } from "../../redux/slices/types";
 
-const CartItem = ({ item }) => {
-	const dispatch = useDispatch();
+type T_CartItemProps = {
+	item: T_SingleItem;
+};
+
+const CartItem = ({ item }: T_CartItemProps) => {
+	const dispatch = useAppDispatch();
 
 	return (
 		<figure className={"CartItem"}>

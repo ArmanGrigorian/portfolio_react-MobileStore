@@ -1,35 +1,35 @@
 import "./EditItemForm.scss";
+import { forwardRef, FormEvent, ChangeEvent } from "react";
 import { Formik } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
 import { dateToNumber, numberToDate } from "../../utilities/dateRevealer";
-import { forwardRef } from "react";
-import { useDispatch,} from "react-redux";
 import { putFetch } from "../../redux/slices/adminSlice";
+import { useAppDispatch } from "../../redux/hooks";
 
 const EditItemForm = forwardRef(({ item }, editDialogRef) => {
+	const dispatch = useAppDispatch();
 
-	const dispatch = useDispatch();
-
-	function handleSubmit(e) {
+	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
 
-		const data = {
-				brand: e.target.brand.value,
-				model: e.target.model.value,
-				price: Number(e.target.price.value),
-				count: 0,
-				isDiscounted: e.target.isDiscounted.checked,
-				discountPercent: Number(e.target.discountPercent.value),
-				release: dateToNumber(e.target.release.value),
-				rating: 0,
-				src: e.target.src.value,
-				alt: e.target.alt.value,
-		}
+		const form = e.target as HTMLFormElement;
 
-		dispatch(putFetch({id: item.id, data: data}));
+		const data = {
+			brand: form.brand.value,
+			model: form.model.value,
+			price: Number(form.price.value),
+			count: 0,
+			isDiscounted: form.isDiscounted.checked,
+			discountPercent: Number(form.discountPercent.value),
+			release: dateToNumber(form.release.value),
+			rating: 0,
+			src: form.src.value,
+			alt: form.alt.value,
+		};
+
+		dispatch(putFetch({ id: item.id, data: data }));
 		editDialogRef.current.close();
 	}
-
 
 	return (
 		<Formik
@@ -50,7 +50,7 @@ const EditItemForm = forwardRef(({ item }, editDialogRef) => {
 			{({ values, errors, touched, handleChange, handleBlur, handleReset }) => {
 				return (
 					<dialog open={false} ref={editDialogRef} className={"EditItemForm"}>
-						<form onSubmit={(e) => handleSubmit(e)}>
+						<form onSubmit={handleSubmit}>
 							<fieldset>
 								<legend>{`${item.brand} ${item.model}`}</legend>
 								<input type="button" value={"X"} onClick={() => editDialogRef.current.close()} />

@@ -1,6 +1,10 @@
-import { useState } from "react";
+import { useState, FC, MouseEvent } from "react";
 
-const Magnifier = ({ src }) => {
+type T_MagnifierProps = {
+	src: string;
+};
+
+const Magnifier: FC<T_MagnifierProps> = ({ src }) => {
 	const [[x, y], setXY] = useState([0, 0]);
 	const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
 	const [showMagnifier, setShowMagnifier] = useState(false);
@@ -21,18 +25,18 @@ const Magnifier = ({ src }) => {
 			<img
 				src={src}
 				style={{ height: height, width: width }}
-				onMouseEnter={(e) => {
+				onMouseEnter={(e: MouseEvent<HTMLImageElement>) => {
 					const elem = e.currentTarget;
 					const { width, height } = elem.getBoundingClientRect();
 					setSize([width, height]);
 					setShowMagnifier(true);
 				}}
-				onMouseMove={(e) => {
+				onMouseMove={(e: MouseEvent<HTMLImageElement>) => {
 					const elem = e.currentTarget;
 					const { top, left } = elem.getBoundingClientRect();
 
-					const x = e.pageX - left - window.pageXOffset;
-					const y = e.pageY - top - window.pageYOffset;
+					const x = e.pageX - left - window.screenX;
+					const y = e.pageY - top - window.scrollY;
 					setXY([x, y]);
 				}}
 				onMouseLeave={() => {
@@ -41,8 +45,8 @@ const Magnifier = ({ src }) => {
 				alt={"img"}
 			/>
 
-         <div
-            className="glass"
+			<div
+				className="glass"
 				style={{
 					display: showMagnifier ? "" : "none",
 					position: "absolute",
@@ -52,8 +56,8 @@ const Magnifier = ({ src }) => {
 					top: `${y - magnifierHeight / 2}px`,
 					left: `${x - magnifierWidth / 2}px`,
 					opacity: "1",
-               border: "1px solid grey",
-               borderRadius: "12px",
+					border: "1px solid grey",
+					borderRadius: "12px",
 					backgroundColor: "white",
 					backgroundImage: `url('${src}')`,
 					backgroundRepeat: "no-repeat",

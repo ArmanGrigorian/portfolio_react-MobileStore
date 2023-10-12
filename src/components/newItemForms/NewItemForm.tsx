@@ -1,26 +1,30 @@
 import "./NewItemForm.scss";
+import { FormEvent } from "react";
 import { Formik } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
 import { dateToNumber, numberToDate } from "../../utilities/dateRevealer";
-import { useDispatch } from "react-redux";
 import { postFetch } from "../../redux/slices/adminSlice";
+import { useAppDispatch } from "../../redux/hooks";
 
 const NewItemForm = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 
-	function handleSubmit(e) {
+	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
+
+		const form = e.target as HTMLFormElement;
+
 		const newItem = {
-			brand: e.target.brand.value,
-			model: e.target.model.value,
-			price: Number(e.target.price.value),
+			brand: form.brand.value,
+			model: form.model.value,
+			price: Number(form.price.value),
 			count: 0,
-			isDiscounted: e.target.isDiscounted.checked,
-			discountPercent: Number(e.target.discountPercent.value),
-			release: dateToNumber(e.target.release.value),
+			isDiscounted: form.isDiscounted.checked,
+			discountPercent: Number(form.discountPercent.value),
+			release: dateToNumber(form.release.value),
 			rating: 0,
-			src: e.target.src.value,
-			alt: e.target.alt.value,
+			src: form.src.value,
+			alt: form.alt.value,
 		};
 
 		dispatch(postFetch(newItem));

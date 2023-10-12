@@ -1,14 +1,18 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import "./StoreItem.scss";
-import { addToCart, setCurrentItem} from "../../redux/slices/productsSlice.ts";
+import { FC } from "react";
+import { addToCart, setCurrentItem } from "../../redux/slices/productsSlice.ts";
 import { DiscountIcon } from "../svgs/DiscountIcon.tsx";
 import { discounter } from "../../utilities/discounter.ts";
 import { Link } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks.ts";
+import { T_SingleItem } from "../../redux/slices/types.ts";
 
+type T_StoreItemProps = {
+	item: T_SingleItem;
+};
 
-const StoreItem = ({ item }) => {
-	const dispatch = useDispatch();
+const StoreItem: FC<T_StoreItemProps> = ({ item }) => {
+	const dispatch = useAppDispatch();
 
 	return (
 		<figure className={"StoreItem"}>

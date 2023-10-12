@@ -1,6 +1,5 @@
 import "./StorePage.scss";
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect, MouseEvent, ChangeEvent } from "react";
 import {
 	setParams,
 	separateFetch,
@@ -9,12 +8,14 @@ import {
 } from "../../redux/slices/productsSlice.ts";
 import StoreItem from "../storeItem/StoreItem.tsx";
 import ItemSkeleton from "../skeleton/ItemSkeleton.tsx";
-
 import Pagination from "../pagination/Pagination.tsx";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
 
 const StorePage = () => {
-	const { categories, activeCategory, params, storeItems, isLoading } = useSelector((state) => state.products);
-	const dispatch = useDispatch();
+	const { categories, activeCategory, params, storeItems, isLoading } = useAppSelector(
+		(state) => state.products,
+	);
+	const dispatch = useAppDispatch();
 
 	useEffect(() => {
 		dispatch(pageItemsFetch());
@@ -24,11 +25,13 @@ const StorePage = () => {
 		dispatch(separateFetch(params));
 	}, [dispatch, params]);
 
-	function handleClick(e) {
-		e.target.dataset.name === "all"
+	function handleClick(e: MouseEvent<HTMLLIElement>) {
+		const li = e.target as HTMLLIElement;
+
+		li.dataset.name === "all"
 			? dispatch(pageItemsFetch())
-			: dispatch(setParams({ ...params, param5: "filter", param6: e.target.dataset.name }));
-		dispatch(setActiveCategory(e.target.dataset.name));
+			: dispatch(setParams({ ...params, param5: "filter", param6: li.dataset.name }));
+		li.dataset.name && dispatch(setActiveCategory(li.dataset.name));
 	}
 
 	return (
@@ -49,7 +52,7 @@ const StorePage = () => {
 				<select
 					name="sort"
 					defaultValue={"release desc"}
-					onChange={(e) => {
+					onChange={(e: ChangeEvent<HTMLSelectElement>) => {
 						const oParams = e.target.value.split(" ");
 						dispatch(
 							setParams({
@@ -75,7 +78,7 @@ const StorePage = () => {
 
 			<div className={"storeItems"}>
 				{!isLoading
-					? storeItems.map((item) => <StoreItem key={item.id} item={item} />)
+					? storeItems?.map((item) => <StoreItem key={item.id} item={item} />)
 					: [...new Array(6)].map(() => <ItemSkeleton key={crypto.randomUUID()} />)}
 			</div>
 
