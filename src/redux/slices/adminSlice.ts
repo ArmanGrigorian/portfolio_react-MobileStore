@@ -1,10 +1,11 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { productsAPI } from "../../api/api";
+import { I_AdminSlice, T_SingleItem } from "./types";
 
-const initialState = {
+
+const initialState: I_AdminSlice = {
 	isLoading: true,
 	isAdmin: false,
-	isEditable: false,
 	login: "admin",
 	password: "admin",
 	loginValue: "",
@@ -32,7 +33,7 @@ export const certainItemFetch = createAsyncThunk("admin/certainItemFetch", async
 	}
 });
 
-export const postFetch = createAsyncThunk("admin/postFetch", async (data) => {
+export const postFetch = createAsyncThunk("admin/postFetch", async (data: T_SingleItem) => {
 	try {
 		await productsAPI.postItem(data);
 		const response = await productsAPI.getAllProducts();
@@ -42,17 +43,20 @@ export const postFetch = createAsyncThunk("admin/postFetch", async (data) => {
 	}
 });
 
-export const putFetch = createAsyncThunk("admin/putFetch", async ({id, data}) => {
-	try {
-		await productsAPI.putItem(id, data);
-		const response = await productsAPI.getAllProducts();
-		return response.data;
-	} catch (err) {
-		console.log(err);
-	}
-});
+export const putFetch = createAsyncThunk(
+	"admin/putFetch",
+	async ({ id, data }: { id: string; data: T_SingleItem }) => {
+		try {
+			await productsAPI.putItem(id, data);
+			const response = await productsAPI.getAllProducts();
+			return response.data;
+		} catch (err) {
+			console.log(err);
+		}
+	},
+);
 
-export const deleteFetch = createAsyncThunk("admin/deleteFetch", async (id) => {
+export const deleteFetch = createAsyncThunk("admin/deleteFetch", async (id: string) => {
 	try {
 		await productsAPI.deleteItem(id);
 		const response = await productsAPI.getAllProducts();
@@ -68,31 +72,27 @@ const adminSlice = createSlice({
 	initialState: initialState,
 
 	reducers: {
-		setIsEditable: (state, action) => {
-			state.isEditable = action.payload;
-		},
-
-		setLoginValue: (state, action) => {
+		setLoginValue: (state, action: PayloadAction<string>): void => {
 			state.loginValue = action.payload;
 		},
 
-		setPasswordValue: (state, action) => {
+		setPasswordValue: (state, action: PayloadAction<string>): void => {
 			state.passwordValue = action.payload;
 		},
 
-		setSearchValue: (state, action) => {
+		setSearchValue: (state, action: PayloadAction<string>): void => {
 			state.searchValue = action.payload;
 		},
 
-		setLogin: (state, action) => {
+		setLogin: (state, action: PayloadAction<string>): void => {
 			state.password = action.payload;
 		},
 
-		setPassword: (state, action) => {
+		setPassword: (state, action: PayloadAction<string>): void => {
 			state.password = action.payload;
 		},
 
-		checkLogPass: (state, action) => {
+		checkLogPass: (state, action: PayloadAction<{login: string, password: string}>): void => {
 			state.isAdmin =
 				state.login === action.payload.login && state.password === action.payload.password
 					? true
@@ -102,23 +102,23 @@ const adminSlice = createSlice({
 
 	extraReducers: (builder) => {
 		// ALL
-		builder.addCase(allItemsFetch.pending, (state) => {
+		builder.addCase(allItemsFetch.pending, (state): void => {
 			state.isLoading = true;
 		});
-		builder.addCase(allItemsFetch.fulfilled, (state, action) => {
+		builder.addCase(allItemsFetch.fulfilled, (state, action): void => {
 			state.isLoading = false;
 			state.allItems = action.payload;
 		});
-		builder.addCase(allItemsFetch.rejected, (state) => {
+		builder.addCase(allItemsFetch.rejected, (state): void => {
 			state.isLoading = false;
 		});
 		// Certain
-		builder.addCase(certainItemFetch.pending, (state) => {
+		builder.addCase(certainItemFetch.pending, (state): void => {
 			state.isLoading = true;
 		});
-		builder.addCase(certainItemFetch.fulfilled, (state, action) => {
+		builder.addCase(certainItemFetch.fulfilled, (state, action): void => {
 			state.isLoading = false;
-			state.allItems = action.payload.filter((item) => {
+			state.allItems = action.payload.filter((item: T_SingleItem) => {
 				if (
 					String(item.id).toLowerCase() === String(state.searchValue).toLowerCase() ||
 					String(item.brand).toLowerCase() === String(state.searchValue).toLowerCase() ||
@@ -128,35 +128,34 @@ const adminSlice = createSlice({
 				}
 			});
 		});
-		builder.addCase(certainItemFetch.rejected, (state) => {
+		builder.addCase(certainItemFetch.rejected, (state): void => {
 			state.isLoading = false;
 		});
 		// POST
-		builder.addCase(postFetch.fulfilled, (state, action) => {
+		builder.addCase(postFetch.fulfilled, (state, action): void => {
 			state.allItems = action.payload;
 		});
-		builder.addCase(postFetch.rejected, (state) => {
+		builder.addCase(postFetch.rejected, (state): void => {
 			state.isLoading = false;
 		});
 		// PUT
-		builder.addCase(putFetch.fulfilled, (state, action) => {
+		builder.addCase(putFetch.fulfilled, (state, action): void => {
 			state.allItems = action.payload;
 		});
-		builder.addCase(putFetch.rejected, (state) => {
+		builder.addCase(putFetch.rejected, (state): void => {
 			state.isLoading = false;
 		});
 		// DELETE
-		builder.addCase(deleteFetch.fulfilled, (state, action) => {
+		builder.addCase(deleteFetch.fulfilled, (state, action): void => {
 			state.allItems = action.payload;
 		});
-		builder.addCase(deleteFetch.rejected, (state) => {
+		builder.addCase(deleteFetch.rejected, (state): void => {
 			state.isLoading = false;
 		});
 	},
 });
 
 export const {
-	setIsEditable,
 	setLoginValue,
 	setPasswordValue,
 	setSearchValue,

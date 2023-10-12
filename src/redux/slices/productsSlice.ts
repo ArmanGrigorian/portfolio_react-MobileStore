@@ -1,7 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { productsAPI } from "../../api/api";
+import { I_ProductsSlice, T_Params, T_SingleItem } from "./types";
 
-const initialState = {
+const initialState: I_ProductsSlice = {
 	categories: ["All", "Apple", "Samsung", "Xiaomi", "Nokia"],
 	activeCategory: "all",
 	params: {
@@ -25,14 +26,17 @@ export const pageItemsFetch = createAsyncThunk("products/pageItemsFetch", async 
 	}
 });
 
-export const separateFetch = createAsyncThunk("products/separateFetch", async (params) => {
-	try {
-		const response = await productsAPI.getProductsBy(params);
-		return response.data;
-	} catch (err) {
-		console.log(err);
-	}
-});
+export const separateFetch = createAsyncThunk(
+	"products/separateFetch",
+	async (params: T_Params) => {
+		try {
+			const response = await productsAPI.getProductsBy(params);
+			return response.data;
+		} catch (err) {
+			console.log(err);
+		}
+	},
+);
 
 const productsSlice = createSlice({
 	name: "products",
@@ -40,15 +44,15 @@ const productsSlice = createSlice({
 	initialState: initialState,
 
 	reducers: {
-		setParams: (state, action) => {
+		setParams: (state, action: PayloadAction<T_Params>): void => {
 			state.params = action.payload;
 		},
 
-		setCurrentItem: (state, action) => {
+		setCurrentItem: (state, action: PayloadAction<T_SingleItem>): void => {
 			state.currentItem = action.payload;
 		},
 
-		addToCart: (state, action) => {
+		addToCart: (state, action: PayloadAction<T_SingleItem>): void => {
 			const currentItem = state.cartItems.find((item) => {
 				return item.id === action.payload.id;
 			});
@@ -60,12 +64,12 @@ const productsSlice = createSlice({
 			}
 		},
 
-		removeFromCart: (state, action) => {
+		removeFromCart: (state, action: PayloadAction<T_SingleItem>): void => {
 			const removeItem = state.cartItems.find((item) => {
 				return item.id === action.payload.id;
 			});
 
-			if (removeItem.count > 0) {
+			if (removeItem && removeItem.count > 0) {
 				removeItem.count -= 1;
 			} else {
 				state.cartItems = state.cartItems.filter((item) => {
@@ -74,42 +78,42 @@ const productsSlice = createSlice({
 			}
 		},
 
-		deleteFromCart: (state, action) => {
+		deleteFromCart: (state, action: PayloadAction<T_SingleItem>): void => {
 			state.cartItems = state.cartItems.filter((item) => {
 				return item.id !== action.payload.id;
 			});
 		},
 
-		clearCart: (state) => {
+		clearCart: (state): void => {
 			state.cartItems = initialState.cartItems;
 		},
 
-		setActiveCategory: (state, action) => {
+		setActiveCategory: (state, action: PayloadAction<string>): void => {
 			state.activeCategory = action.payload;
 		},
 	},
 
 	extraReducers: (builder) => {
 		// PAGE
-		builder.addCase(pageItemsFetch.pending, (state) => {
+		builder.addCase(pageItemsFetch.pending, (state): void => {
 			state.isLoading = true;
 		});
-		builder.addCase(pageItemsFetch.fulfilled, (state, action) => {
+		builder.addCase(pageItemsFetch.fulfilled, (state, action): void => {
 			state.isLoading = false;
 			state.storeItems = action.payload;
 		});
-		builder.addCase(pageItemsFetch.rejected, (state) => {
+		builder.addCase(pageItemsFetch.rejected, (state): void => {
 			state.isLoading = false;
 		});
 		// SORT
-		builder.addCase(separateFetch.pending, (state) => {
+		builder.addCase(separateFetch.pending, (state): void => {
 			state.isLoading = true;
 		});
-		builder.addCase(separateFetch.fulfilled, (state, action) => {
+		builder.addCase(separateFetch.fulfilled, (state, action): void => {
 			state.isLoading = false;
 			state.storeItems = action.payload;
 		});
-		builder.addCase(separateFetch.rejected, (state) => {
+		builder.addCase(separateFetch.rejected, (state): void => {
 			state.isLoading = false;
 		});
 	},

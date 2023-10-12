@@ -9,3 +9,5 @@ export const store = configureStore({
 		admin: adminReducer,
 	},
 });
+
+export type RootState = ReturnType<typeof store.getState>
