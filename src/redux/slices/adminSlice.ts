@@ -42,7 +42,7 @@ export const postFetch = createAsyncThunk("admin/postFetch", async (data) => {
 	}
 });
 
-export const putFetch = createAsyncThunk("admin/putFetch", async (id, data) => {
+export const putFetch = createAsyncThunk("admin/putFetch", async ({id, data}) => {
 	try {
 		await productsAPI.putItem(id, data);
 		const response = await productsAPI.getAllProducts();

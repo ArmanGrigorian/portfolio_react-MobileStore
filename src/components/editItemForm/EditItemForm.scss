@@ -12,8 +12,11 @@
      padding: 10px 20px 20px;
      background-color: var(--my-color-grey-A);
 
+
+
      form {
         background-color: var(--my-color-grey);
+        position: relative;
 
         & > fieldset {
            padding: 6px 12px 12px;
@@ -24,6 +27,15 @@
               color: var(--my-color-green);
               font-weight: 600;
               text-align: center
+           }
+
+           & > input {
+              @include mxs.button;
+              width: 24px;
+              border-radius: 4px;
+              position: absolute;
+              top: 0px;
+              right: -10px;
            }
 
            & > div {

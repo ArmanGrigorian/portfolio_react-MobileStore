@@ -35,12 +35,11 @@ const NewItemForm = () => {
 				count: 0,
 				isDiscounted: false,
 				discountPercent: 0,
-				release: 20240101,
+				release: numberToDate(20240101),
 				rating: 0,
 				src: "",
 				alt: "",
 			}}
-
 			validateOnBlur
 			validationSchema={newItemValidation}>
 			{({ values, errors, touched, isValid, handleChange, handleBlur, handleReset }) => {
@@ -120,7 +119,7 @@ const NewItemForm = () => {
 										<input
 											type={"date"}
 											name={"release"}
-											value={numberToDate(values.release)}
+											value={values.release}
 											onChange={handleChange}
 											onBlur={handleBlur}
 											placeholder={"20230101"}
@@ -171,7 +170,7 @@ const NewItemForm = () => {
 
 							<div className="bottom">
 								<input type={"submit"} value={"ADD"} disabled={isValid} />
-								<input type={"reset"} value={"RESET"} onClick={handleReset}/>
+								<input type={"reset"} value={"RESET"} onClick={handleReset} />
 							</div>
 						</fieldset>
 					</form>

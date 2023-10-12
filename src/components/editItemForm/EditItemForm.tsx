@@ -3,24 +3,33 @@ import { Formik } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
 import { dateToNumber, numberToDate } from "../../utilities/dateRevealer";
 import { forwardRef } from "react";
+import { useDispatch,} from "react-redux";
+import { putFetch } from "../../redux/slices/adminSlice";
 
-const EditItemForm = forwardRef(({ item, setIsEditable }, editDialogRef) => {
+const EditItemForm = forwardRef(({ item }, editDialogRef) => {
+
+	const dispatch = useDispatch();
+
 	function handleSubmit(e) {
 		e.preventDefault();
-		const newItem = {
-			brand: e.target.brand.value,
-			model: e.target.model.value,
-			price: Number(e.target.price.value),
-			count: 0,
-			isDiscounted: e.target.isDiscounted.checked,
-			discountPercent: Number(e.target.discountPercent.value),
-			release: dateToNumber(e.target.release.value),
-			rating: 0,
-			src: e.target.src.value,
-			alt: e.target.alt.value,
-		};
-		setIsEditable(false);
+
+		const data = {
+				brand: e.target.brand.value,
+				model: e.target.model.value,
+				price: Number(e.target.price.value),
+				count: 0,
+				isDiscounted: e.target.isDiscounted.checked,
+				discountPercent: Number(e.target.discountPercent.value),
+				release: dateToNumber(e.target.release.value),
+				rating: 0,
+				src: e.target.src.value,
+				alt: e.target.alt.value,
+		}
+
+		dispatch(putFetch({id: item.id, data: data}));
+		editDialogRef.current.close();
 	}
+
 
 	return (
 		<Formik
@@ -31,19 +40,20 @@ const EditItemForm = forwardRef(({ item, setIsEditable }, editDialogRef) => {
 				count: item.count,
 				isDiscounted: item.isDiscounted,
 				discountPercent: item.discountPercent,
-				release: item.release,
+				release: numberToDate(item.release),
 				rating: item.rating,
 				src: item.src,
 				alt: item.alt,
 			}}
 			validateOnBlur
 			validationSchema={newItemValidation}>
-			{({ values, errors, touched, handleChange, handleBlur }) => {
+			{({ values, errors, touched, handleChange, handleBlur, handleReset }) => {
 				return (
 					<dialog open={false} ref={editDialogRef} className={"EditItemForm"}>
 						<form onSubmit={(e) => handleSubmit(e)}>
 							<fieldset>
 								<legend>{`${item.brand} ${item.model}`}</legend>
+								<input type="button" value={"X"} onClick={() => editDialogRef.current.close()} />
 
 								<div>
 									<div className="left">
@@ -116,7 +126,7 @@ const EditItemForm = forwardRef(({ item, setIsEditable }, editDialogRef) => {
 											<input
 												type={"date"}
 												name={"release"}
-												value={numberToDate(values.release)}
+												value={values.release}
 												onChange={handleChange}
 												onBlur={handleBlur}
 												placeholder={"20230101"}
@@ -167,7 +177,7 @@ const EditItemForm = forwardRef(({ item, setIsEditable }, editDialogRef) => {
 
 								<div className="bottom">
 									<input type={"submit"} value={"SAVE"} />
-									<input type={"button"} value={"CLOSE"} onClick={() => editDialogRef.current.close()} />
+									<input type={"reset"} value={"RESET"} onClick={handleReset} />
 								</div>
 							</fieldset>
 						</form>

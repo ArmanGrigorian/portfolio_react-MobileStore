@@ -1,7 +1,7 @@
 import "./Brief.scss";
-import { useRef, useState } from "react";
+import { useRef  } from "react";
 import { useDispatch } from "react-redux";
-import { deleteFetch, putFetch } from "../../redux/slices/adminSlice";
+import { deleteFetch } from "../../redux/slices/adminSlice";
 import EditItemForm from "../editItemForm/EditItemForm";
 
 const Brief = ({ item }) => {
