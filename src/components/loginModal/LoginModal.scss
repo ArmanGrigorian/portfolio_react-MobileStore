@@ -1,62 +1,71 @@
 @use "../sass/mixins" as mxs;
 
+
 .LoginModal {
-   width: max(28%, 280px);
    position: absolute;
    inset: 0;
    margin: auto;
-   padding: 10px 20px 20px;
+   z-index: 1;
+   width: max(28%, 280px);
+   height: fit-content;
    border: none;
    border-radius: 10px;
-   background-color: var(--my-color-grey);
-
-   fieldset {
-      @include mxs.colFlex(center, center, 10px);
-      padding: 16px;
-      position: relative;
-      border: 1px solid var(--my-color-green);
-      border-radius: 10px;
-
-      legend {
-         color: var(--my-color-green);
-         font-weight: 700;
-         letter-spacing: 1px;
-      }
-
-      button {
-         position: absolute;
-         top: -23px;
-         right: -11px;
-         width: 20px;
-         height: 20px;
-         line-height: 20px;
-         text-align: center;
-         color: var(--my-color-green);
-         background-color: var(--my-color-white);
-         border: 1px solid var(--my-color-green);
-         
-         &:hover {
-            color: var(--my-color-white);
-            background-color: var(--my-color-green);
-         }
-      }
-
-      input {
+   padding: 10px 20px 20px;
+   background-color: var(--my-color-grey-A);
+   
+   form {
+      background-color: var(--my-color-grey);
+      
+      fieldset {
+         @include mxs.colFlex(center, center, 10px);
          width: 100%;
-         padding: 6px 10px;
-         color: var(--my-color-black);
-         outline-color: var(--my-color-green);
+         padding: 16px;
+         position: relative;
+         border: 1px solid var(--my-color-green);
+         border-radius: 10px;
+         background-color: var(--my-color-grey);
 
-         &[type="submit"],
-         &[type="reset"] {
-            @include mxs.button;
-            width: 100%;
+         legend {
+            color: var(--my-color-green);
+            font-weight: 700;
+            letter-spacing: 1px;
          }
-      }
 
-      p {
-         color: var(--my-color-red);
-         font-style: italic;
+         button {
+            position: absolute;
+            top: -23px;
+            right: -11px;
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            text-align: center;
+            color: var(--my-color-green);
+            background-color: var(--my-color-white);
+            border: 1px solid var(--my-color-green);
+
+            &:hover {
+               color: var(--my-color-white);
+               background-color: var(--my-color-green);
+            }
+         }
+
+         input {
+            width: 100%;
+            padding: 6px 10px;
+            color: var(--my-color-black);
+            outline-color: var(--my-color-green);
+
+            &[type="submit"],
+            &[type="reset"] {
+               @include mxs.button;
+               width: 100%;
+            }
+         }
+
+         p {
+            color: var(--my-color-red);
+            font-style: italic;
+         }
       }
    }
 }

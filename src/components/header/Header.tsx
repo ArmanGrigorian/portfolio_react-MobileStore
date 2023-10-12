@@ -1,13 +1,12 @@
 import "./Header.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link} from "react-router-dom";
 import Nav from "../nav/Nav";
-import { useSelector } from "react-redux";
 import LoginModal from "../loginModal/LoginModal";
 import { AdminIcon } from "../svgs";
+import { useRef } from "react";
 
 const Header = () => {
-	const isAdmin = useSelector((state) => state.admin.isAdmin);
-	const navigate = useNavigate();
+	const dialogRef = useRef(null)
 
 	return (
 		<header>
@@ -15,10 +14,12 @@ const Header = () => {
 				<h1>
 					<Link to={"/"}>MobileStore</Link>
 				</h1>
-				<button popovertarget={"loginModal"} onClick={() => isAdmin && navigate("/admin")}>
+				<button onClick={() => {
+					dialogRef.current.showModal();
+				}}>
 					<AdminIcon size={40} />
 				</button>
-				{!isAdmin && <LoginModal />}
+				<LoginModal ref={dialogRef} />
 			</div>
 
 			<Nav />

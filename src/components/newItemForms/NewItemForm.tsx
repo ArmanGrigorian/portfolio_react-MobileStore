@@ -40,9 +40,10 @@ const NewItemForm = () => {
 				src: "",
 				alt: "",
 			}}
+
 			validateOnBlur
 			validationSchema={newItemValidation}>
-			{({ values, errors, touched, isValid, handleChange, handleBlur }) => {
+			{({ values, errors, touched, isValid, handleChange, handleBlur, handleReset }) => {
 				return (
 					<form className={"NewItemForm"} onSubmit={handleSubmit}>
 						<fieldset>
@@ -168,7 +169,10 @@ const NewItemForm = () => {
 								</div>
 							</div>
 
-							<input type={"submit"} value={"ADD"} disabled={isValid} />
+							<div className="bottom">
+								<input type={"submit"} value={"ADD"} disabled={isValid} />
+								<input type={"reset"} value={"RESET"} onClick={handleReset}/>
+							</div>
 						</fieldset>
 					</form>
 				);
