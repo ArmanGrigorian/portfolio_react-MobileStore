@@ -1,91 +1,99 @@
   @use "../sass/mixins" as mxs;
 
   .EditItemForm {
-     width: 50%;
-     height: fit-content;
      position: absolute;
      inset: 0;
      margin: auto;
-     background-color: var(--my-color-grey);
+     z-index: 1;
+     width: 50%;
+     height: fit-content;
+     border: none;
+     border-radius: 10px;
+     padding: 10px 20px 20px;
+     background-color: var(--my-color-grey-A);
 
-     & > fieldset {
-        padding: 6px 12px 12px;
-        border: 1px solid var(--my-color-black);
-        border-radius: 8px;
+     form {
+        background-color: var(--my-color-grey);
 
-        & > legend {
-           color: var(--my-color-green);
-           font-weight: 600;
-           text-align: center
-        }
+        & > fieldset {
+           padding: 6px 12px 12px;
+           border: 1px solid var(--my-color-black);
+           border-radius: 8px;
 
-        & > div {
-           @include mxs.rowFlex(space-between, center, 2%);
+           & > legend {
+              color: var(--my-color-green);
+              font-weight: 600;
+              text-align: center
+           }
 
-           .left,
-           .right {
-              @include mxs.colFlex(space-between, center, 4px);
-              width: 48%;
+           & > div {
+              @include mxs.rowFlex(space-between, center, 2%);
 
-              & > fieldset {
-                 @include mxs.rowFlex(start, center, 10px);
-                 width: 100%;
-                 padding: 2px 0px;
-                 border: none;
+              .left,
+              .right {
+                 @include mxs.colFlex(space-between, center, 4px);
+                 width: 48%;
 
-                 legend {
-                    margin-left: 10px;
-                    color: var(--my-color-green);
-                    font-weight: 600;
-                    text-align: left;
-
-                    span {
-                       color: var(--my-color-red);
-                    }
-                 }
-
-                 input {
+                 & > fieldset {
+                    @include mxs.rowFlex(start, center, 10px);
                     width: 100%;
-                    padding: 2px 10px;
-                    color: var(--my-color-black);
+                    padding: 2px 0px;
+                    border: none;
 
-                    &:placeholder-shown {
-                       font-style: italic;
-                       letter-spacing: 2px;
-                    }
+                    legend {
+                       margin-left: 10px;
+                       color: var(--my-color-green);
+                       font-weight: 600;
+                       text-align: left;
 
-                    &.discountPercent.discountPercent {
-                       width: calc(100% - 23px);
-                       visibility: hidden;
-                    }
-
-                    &[type="checkbox"] {
-                       width: fit-content;
-
-                       &:checked {
-                          accent-color: var(--my-color-green);
-                          background-color: red;
-                       }
-
-                       &:checked + input {
-                          visibility: visible;
+                       span {
+                          color: var(--my-color-red);
                        }
                     }
-                 }
 
-                 label {
-                    user-select: none;
+                    input {
+                       width: 100%;
+                       padding: 2px 10px;
+                       color: var(--my-color-black);
+
+                       &:placeholder-shown {
+                          font-style: italic;
+                          letter-spacing: 2px;
+                       }
+
+                       &.discountPercent.discountPercent {
+                          width: calc(100% - 23px);
+                          visibility: hidden;
+                       }
+
+                       &[type="checkbox"] {
+                          width: fit-content;
+
+                          &:checked {
+                             accent-color: var(--my-color-green);
+                             background-color: red;
+                          }
+
+                          &:checked + input {
+                             visibility: visible;
+                          }
+                       }
+                    }
+
+                    label {
+                       user-select: none;
+                    }
                  }
               }
            }
-        }
 
-        .bottom {
-            padding-top: 10px;
+           .bottom {
+              padding-top: 10px;
 
-           input {
-              @include mxs.button;
-              width: 48%;
+              input {
+                 @include mxs.button;
+                 width: 48%;
+              }
            }
         }
      }
