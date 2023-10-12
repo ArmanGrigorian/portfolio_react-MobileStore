@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { dataRevealer } from "../../utilities/dateRevealer";
 import { StarIcon } from "../svgs";
 import { addToCart } from "../../redux/slices/productsSlice";
-import Magnifier from "../imageMagnifier/Magnifier";
+import Magnifier from "../magnifier/Magnifier";
 
 const SingleItem = () => {
 	const currentItem = useSelector((state) => state.products.currentItem);
