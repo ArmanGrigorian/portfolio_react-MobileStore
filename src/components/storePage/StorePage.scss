@@ -3,7 +3,7 @@
 .StorePage {
 
    h2 {
-      padding: 8px 20px 24px;
+      padding: 8px 20px 4px;
    }
 
    .auxNav {
@@ -42,5 +42,8 @@
    .storeItems{
       @include mxs.rowFlex(space-evenly, center, 30px);
       flex-wrap: wrap;
+      height: calc(100vh - 282px);
+      padding: 20px;
+      overflow-y: auto;
    }
 }
