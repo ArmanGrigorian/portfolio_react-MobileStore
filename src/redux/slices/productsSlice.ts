@@ -75,6 +75,10 @@ const productsSlice = createSlice({
 			});
 		},
 
+		clearCart: (state) => {
+			state.cartItems = initialState.cartItems;
+		},
+
 		setActiveCategory: (state, action) => {
 			state.activeCategory = action.payload;
 		},
@@ -106,7 +110,13 @@ const productsSlice = createSlice({
 	},
 });
 
-export const { setParams, addToCart, removeFromCart, deleteFromCart, setActiveCategory } =
-	productsSlice.actions;
+export const {
+	setParams,
+	addToCart,
+	removeFromCart,
+	deleteFromCart,
+	clearCart,
+	setActiveCategory,
+} = productsSlice.actions;
 
 export default productsSlice.reducer;

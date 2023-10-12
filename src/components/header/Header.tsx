@@ -1,5 +1,5 @@
 import "./Header.scss";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Nav from "../nav/Nav";
 import { useSelector } from "react-redux";
 import LoginModal from "../loginModal/LoginModal";
@@ -12,11 +12,13 @@ const Header = () => {
 	return (
 		<header>
 			<div className={"headerTop"}>
-				<h1>MobileStore</h1>
+				<h1>
+					<Link to={"/"}>MobileStore</Link>
+				</h1>
 				<button popovertarget={"loginModal"} onClick={() => isAdmin && navigate("/admin")}>
-					<AdminIcon size={40}/>
+					<AdminIcon size={40} />
 				</button>
-				{!isAdmin && <LoginModal/>}
+				{!isAdmin && <LoginModal />}
 			</div>
 
 			<Nav />

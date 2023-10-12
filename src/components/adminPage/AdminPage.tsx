@@ -17,12 +17,14 @@ const AdminPage = () => {
 	return (
 		<section className={"AdminPage"}>
 			<div className="adminPageTopDiv">
-				<h2>Hello {login}</h2>
+				<h2>
+					Hello <span>{login}</span>
+				</h2>
 				<SearchBar />
 			</div>
 
 			<NewItemForm />
-			
+
 			<div className={"adminPanel"}>
 				{allItems.map((item) => {
 					return <Brief key={item.id} item={item} />;

@@ -3,7 +3,7 @@
 .StorePage {
 
    h2 {
-      padding: 20px;
+      padding: 8px 20px 24px;
    }
 
    .auxNav {
@@ -25,6 +25,10 @@
                color: var(--my-color-green);
                text-decoration: underline solid 1px var(--my-color-green);
                text-underline-offset: 1px;
+            }
+
+            &:hover{
+               color: var(--my-color-green);
             }
          }
       }

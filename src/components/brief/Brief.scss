@@ -1,29 +1,42 @@
 @use "../sass/mixins" as mxs;
 
-.Brief{
+.Brief {
    @include mxs.colFlex(center, center);
    width: max(32%, 200px);
-   min-height: calc((100vh - 509px) / 2);
+   min-height: calc((100vh - 521px) / 1.5);
    margin-bottom: 20px;
    background-color: var(--my-color-white);
    border-radius: 8px;
-   box-shadow: 0px 0px 2px 0px var(--my-color-black);
+   border: 2px solid var(--my-color-black);
    scroll-snap-align: center;
+   transition:
+      border 150ms linear,
+      box-shadow 150ms linear;
 
-   &:hover{
-      box-shadow: 0px 0px 2px 1px var(--my-color-black);
+   &:hover {
+      border: 2px solid var(--my-color-green);
+      box-shadow: 0px 0px 4px 2px var(--my-color-grey);
    }
 
-
-   h4, p{
+   h1,
+   p {
       text-align: center;
+      color: var(--my-color-black);
    }
 
-   div{
+   h4 {
+      font-weight: 700;
+   }
+
+   p {
+      font-weight: 500;
+   }
+
+   div {
       @include mxs.rowFlex(center, center, 10px);
       padding: 10px;
 
-      button{
+      button {
          @include mxs.button;
       }
    }

@@ -7,23 +7,29 @@ const CartItem = ({ item }) => {
 
 	return (
 		<figure className={"CartItem"}>
-			<figcaption>{item.model}</figcaption>
-			<img src={item.src} alt={item.alt} />
-
-			<div>
-				<button type={"button"} onClick={() => dispatch(removeFromCart(item))}>
-					&#45;
-				</button>
-				<p>{item.count}</p>
-				<button type={"button"} onClick={() => dispatch(addToCart(item))}>
-					&#43;
-				</button>
+			<div className="left">
+				<figcaption>{item.model}</figcaption>
+				<img src={item.src} alt={item.alt} />
 			</div>
 
-			<p>{item.price * item.count} &#36;</p>
-			<button type={"button"} onClick={() => dispatch(deleteFromCart(item))}>
-				&#88;
-			</button>
+			<div className="mid">
+				<p>{item.price * item.count} &#36;</p>
+				<div>
+					<button type={"button"} onClick={() => dispatch(removeFromCart(item))}>
+						&#45;
+					</button>
+					<p>{item.count}</p>
+					<button type={"button"} onClick={() => dispatch(addToCart(item))}>
+						&#43;
+					</button>
+				</div>
+			</div>
+
+			<div className="right">
+				<button type={"button"} onClick={() => dispatch(deleteFromCart(item))}>
+					&#88;
+				</button>
+			</div>
 		</figure>
 	);
 };

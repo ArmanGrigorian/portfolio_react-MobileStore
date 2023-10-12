@@ -1,7 +1,7 @@
 @use "../sass/mixins" as mxs;
 
 header {
-   background-color: var(--my-color-red);
+   background-color: var(--my-color-green);
 
    .headerTop {
       padding: 10px 20px;
@@ -9,7 +9,12 @@ header {
 
       h1 {
          text-align: center;
-         color: var(--my-color-black);
+         text-shadow: 1px 1px 2px var(--my-color-black);
+
+         a {
+            color: var(--my-color-white);
+            text-decoration: none;
+         }
       }
 
       button {
@@ -17,7 +22,7 @@ header {
          cursor: pointer;
          transition: scale 150ms linear;
 
-         &:active{
+         &:active {
             scale: 0.9;
          }
 

@@ -15,9 +15,9 @@
 
 @mixin button {
    width: 70px;
-   color: var(--my-color-black);
+   color: var(--my-color-green);
    background-color: var(--my-color-white);
-   border: 1px solid var(--my-color-black);
+   border: 1px solid var(--my-color-green);
    border-radius: 8px;
    padding: 4px;
    font-weight: 500;
@@ -30,8 +30,8 @@
 
    &:hover {
       color: var(--my-color-white);
-      background-color: var(--my-color-red);
-      border-color: var(--my-color-red);
+      background-color: var(--my-color-green);
+      border-color: var(--my-color-green);
    }
 
    &:active {

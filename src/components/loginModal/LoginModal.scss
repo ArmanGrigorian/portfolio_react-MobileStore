@@ -14,11 +14,11 @@
       @include mxs.colFlex(center, center, 10px);
       padding: 16px;
       position: relative;
-      border: 2px solid var(--my-color-red);
+      border: 1px solid var(--my-color-green);
       border-radius: 10px;
 
       legend {
-         color: var(--my-color-red);
+         color: var(--my-color-green);
          font-weight: 700;
          letter-spacing: 1px;
       }
@@ -26,13 +26,14 @@
       button {
          position: absolute;
          top: -23px;
-         right: -6px;
+         right: -11px;
          width: 20px;
          height: 20px;
          line-height: 20px;
-         color: var(--my-color-white);
-         background-color: var(--my-color-red);
          text-align: center;
+         color: var(--my-color-green);
+         background-color: var(--my-color-white);
+         border: 1px solid var(--my-color-green);
          
          &:hover {
             color: var(--my-color-white);
@@ -43,17 +44,13 @@
       input {
          width: 100%;
          padding: 6px 10px;
-         color: var(--my-color-red);
-         outline-color: var(--my-color-red);
+         color: var(--my-color-black);
+         outline-color: var(--my-color-green);
 
          &[type="submit"],
          &[type="reset"] {
-            color: var(--my-color-black);
-            transition: scale 150ms linear;
-
-            &:active {
-               scale: 0.9;
-            }
+            @include mxs.button;
+            width: 100%;
          }
       }
 

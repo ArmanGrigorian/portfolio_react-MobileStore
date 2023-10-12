@@ -5,26 +5,28 @@
 
    .adminPageTopDiv {
       @include mxs.rowFlex(space-between);
-      padding: 20px 20px 10px;
+      padding: 20px 20px 8px;
 
-      h2 {}
+      h2 {
+         color: var(--my-color-black);
+
+         span {
+            font-style: italic;
+            font-weight: 400;
+         }
+      }
    }
 
 
    .adminPanel {
-      padding: 0px 20px 20px;
       @include mxs.rowFlex(space-evenly, center, 2%);
       flex-wrap: wrap;
       scroll-snap-type: y mandatory;
-      margin-top: 10px;
-      height: calc(100vh - 509px);
+      margin-top: 20px;
+      height: calc(100vh - 521px);
       padding: 20px;
       overflow-y: auto;
-      border: 1px solid var(--my-color-black);
-      border-top-left-radius: 10px;
-      border-bottom-left-radius: 10px;
-      
-
-
+      border: 2px solid var(--my-color-black);
+      background-color: var(--my-color-green);
    }
 }
