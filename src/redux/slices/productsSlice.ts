@@ -13,6 +13,7 @@ const initialState = {
 	storeItems: [],
 	cartItems: [],
 	isLoading: true,
+	currentItem: {},
 };
 
 export const pageItemsFetch = createAsyncThunk("products/pageItemsFetch", async () => {
@@ -43,6 +44,10 @@ const productsSlice = createSlice({
 			state.params = action.payload;
 		},
 
+		setCurrentItem: (state, action) => {
+			state.currentItem = action.payload;
+		},
+
 		addToCart: (state, action) => {
 			const currentItem = state.cartItems.find((item) => {
 				return item.id === action.payload.id;
@@ -56,12 +61,12 @@ const productsSlice = createSlice({
 		},
 
 		removeFromCart: (state, action) => {
-			const currentItem = state.cartItems.find((item) => {
+			const removeItem = state.cartItems.find((item) => {
 				return item.id === action.payload.id;
 			});
 
-			if (currentItem.count > 0) {
-				currentItem.count -= 1;
+			if (removeItem.count > 0) {
+				removeItem.count -= 1;
 			} else {
 				state.cartItems = state.cartItems.filter((item) => {
 					return item.id !== action.payload.id;
@@ -112,6 +117,7 @@ const productsSlice = createSlice({
 
 export const {
 	setParams,
+	setCurrentItem,
 	addToCart,
 	removeFromCart,
 	deleteFromCart,

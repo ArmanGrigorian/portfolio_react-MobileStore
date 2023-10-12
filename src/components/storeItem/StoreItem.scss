@@ -3,7 +3,7 @@
 .StoreItem {
    @include mxs.colFlex(space-between, space-between, );
    width: max(240px, 20%);
-   min-height: 360px;
+   min-height: 350px;
    padding: 20px;
    background-color: var(--my-color-white);
    border-radius: 24px;
