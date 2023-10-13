@@ -1,0 +1,9 @@
+@use "../sass/mixins" as mxs;
+
+.AuxNav {
+   @include mxs.rowFlex(space-between, center);
+   height: 50px;
+   line-height: 50px;
+   padding-inline: 20px;
+   background-color: var(--my-color-grey);
+}

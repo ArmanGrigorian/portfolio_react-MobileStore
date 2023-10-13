@@ -3,47 +3,14 @@
 .StorePage {
 
    h2 {
-      padding: 8px 20px 4px;
+      padding: 0px 0px 10px 20px;
    }
 
-   .auxNav {
-      @include mxs.rowFlex(space-between, center);
-      padding-inline: 20px;
-      background-color: var(--my-color-grey);
-
-      ul {
-         padding-block: 10px;
-         @include mxs.rowFlex(start, center, 5%);
-
-         li {
-            list-style-type: none;
-            color: var(--my-color-black);
-            font-weight: 500;
-            cursor: pointer;
-
-            &.active{
-               color: var(--my-color-green);
-               text-decoration: underline solid 1px var(--my-color-green);
-               text-underline-offset: 1px;
-            }
-
-            &:hover{
-               color: var(--my-color-green);
-            }
-         }
-      }
-
-      select{
-         padding: 2px 20px;
-         border: none
-      }
-   }
-
-   .storeItems{
-      @include mxs.rowFlex(space-evenly, center, 30px);
+   .storeItems {
+      @include mxs.rowFlex(space-evenly, center, 30px 3%);
       flex-wrap: wrap;
-      height: calc(100vh - 282px);
-      padding: 20px;
+      height: calc(100vh - 289px);
+      padding: 10px 20px;
       overflow-y: auto;
    }
 }

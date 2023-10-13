@@ -20,9 +20,9 @@ const Pagination = () => {
 					}),
 				)
 			}
-			pageRangeDisplayed={8}
+			pageRangeDisplayed={2}
 			pageCount={5}
-			previousLabel={"< previous page"}
+			previousLabel={"< prev page"}
 			renderOnZeroPageCount={null}
 		/>
 	);
