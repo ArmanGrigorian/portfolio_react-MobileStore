@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import MainLayout from "./components/layouts/MainLayout.tsx";
-import ErrorLayout from "./components/layouts/ErrorLayout.tsx";
+import ErrorLayout from "./components/layouts/errorLayout/ErrorLayout.tsx";
 import StorePage from "./components/storePage/StorePage.tsx";
 import CartPage from "./components/cartPage/CartPage.tsx";
 import AdminPage from "./components/adminPage/AdminPage.tsx";
@@ -14,7 +14,7 @@ const App = () => {
 					<Route index element={<StorePage />} />
 					<Route path="/admin" element={<AdminPage />} />
 					<Route path="/cart" element={<CartPage />} />
-					<Route path="/:id" element={<SingleItem/>} />
+					<Route path="/products/:id" element={<SingleItem />} />
 				</Route>
 				<Route path="*" element={<ErrorLayout />} />
 			</Routes>

@@ -9,7 +9,7 @@ const Header = () => {
 	const dialogRef = useRef(null)
 
 	return (
-		<header>
+		<header className={"Header"}>
 			<div className={"headerTop"}>
 				<h1>
 					<Link to={"/"}>MobileStore</Link>

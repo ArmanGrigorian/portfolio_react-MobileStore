@@ -20,7 +20,7 @@ const StoreItem: FC<T_StoreItemProps> = ({ item }) => {
 			<figcaption>{item.brand}</figcaption>
 			<p>{item.model}</p>
 
-			<Link to={"/" + item.id} onClick={() => dispatch(setCurrentItem(item))}>
+			<Link to={"/products/" + item.id} onClick={() => dispatch(setCurrentItem(item))}>
 				<img src={item.src} alt={item.alt} />
 			</Link>
 
