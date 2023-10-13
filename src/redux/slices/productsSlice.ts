@@ -14,7 +14,19 @@ const initialState: I_ProductsSlice = {
 	storeItems: [],
 	cartItems: [],
 	isLoading: true,
-	currentItem: {},
+	currentItem: {
+		id: "",
+		brand: "",
+		model: "",
+		price: 0,
+		count: 0,
+		discountPercent: 0,
+		isDiscounted: false,
+		release: 0,
+		rating: 0,
+		src: "",
+		alt: "",
+	},
 };
 
 export const pageItemsFetch = createAsyncThunk("products/pageItemsFetch", async () => {
@@ -38,6 +50,15 @@ export const separateFetch = createAsyncThunk(
 	},
 );
 
+export const singleItemFetch = createAsyncThunk("products/singleItemFetch", async (id: string) => {
+	try {
+		const response = await productsAPI.getSingleItem(id);
+		return response.data;
+	} catch (err) {
+		console.log(err);
+	}
+});
+
 const productsSlice = createSlice({
 	name: "products",
 
@@ -46,10 +67,6 @@ const productsSlice = createSlice({
 	reducers: {
 		setParams: (state, action: PayloadAction<T_Params>): void => {
 			state.params = action.payload;
-		},
-
-		setCurrentItem: (state, action: PayloadAction<T_SingleItem>): void => {
-			state.currentItem = action.payload;
 		},
 
 		addToCart: (state, action: PayloadAction<T_SingleItem>): void => {
@@ -105,12 +122,24 @@ const productsSlice = createSlice({
 		builder.addCase(pageItemsFetch.rejected, (state): void => {
 			state.isLoading = false;
 		});
+		// SINGLE_ITEM
+		builder.addCase(singleItemFetch.pending, (state) => {
+			state.isLoading = true;
+		});
+		builder.addCase(singleItemFetch.fulfilled, (state, action) => {
+			state.isLoading = false;
+			state.currentItem = action.payload;
+		});
+		builder.addCase(singleItemFetch.rejected, (state) => {
+			state.isLoading = false;
+		});
 		// SORT
 		builder.addCase(separateFetch.pending, (state): void => {
 			state.isLoading = true;
 		});
 		builder.addCase(separateFetch.fulfilled, (state, action): void => {
 			state.isLoading = false;
+			localStorage.setItem("singleItem", JSON.stringify(state.currentItem));
 			state.storeItems = action.payload;
 		});
 		builder.addCase(separateFetch.rejected, (state): void => {
@@ -121,7 +150,6 @@ const productsSlice = createSlice({
 
 export const {
 	setParams,
-	setCurrentItem,
 	addToCart,
 	removeFromCart,
 	deleteFromCart,

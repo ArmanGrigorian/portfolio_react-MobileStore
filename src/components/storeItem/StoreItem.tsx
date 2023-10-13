@@ -1,6 +1,6 @@
 import "./StoreItem.scss";
 import { FC } from "react";
-import { addToCart, setCurrentItem } from "../../redux/slices/productsSlice.ts";
+import { addToCart } from "../../redux/slices/productsSlice.ts";
 import { DiscountIcon } from "../svgs/DiscountIcon.tsx";
 import { discounter } from "../../utilities/discounter.ts";
 import { Link } from "react-router-dom";
@@ -20,7 +20,7 @@ const StoreItem: FC<T_StoreItemProps> = ({ item }) => {
 			<figcaption>{item.brand}</figcaption>
 			<p>{item.model}</p>
 
-			<Link to={"/products/" + item.id} onClick={() => dispatch(setCurrentItem(item))}>
+			<Link to={"/products/" + item.id}>
 				<img src={item.src} alt={item.alt} />
 			</Link>
 
