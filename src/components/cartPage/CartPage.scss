@@ -23,15 +23,20 @@
       p {
          color: var(--my-color-green);
          font-weight: 500;
+         font-size: clamp(14px, 2vw, 16px);
 
-         span{
+         span {
             color: var(--my-color-red);
          }
       }
 
       button {
          @include mxs.button;
-         margin-left: 12px;
+         margin-left: 10px;
+         
+         @media only screen and (max-width: 549px) {
+            width: 50px;
+         }
       }
    }
 }

@@ -14,6 +14,16 @@
       box-shadow: 0px 0px 2px 1px var(--my-color-green);
    }
 
+   @media only screen and (max-width: 549px) {
+      flex-direction: column;
+      justify-content: start;
+      align-items: center;
+      gap: 10px;
+      background-color: var(--my-color-white);
+      height: fit-content;
+      padding: 20px;
+   }
+
    figcaption,
    p {
       color: var(--my-color-green);
@@ -26,19 +36,42 @@
    }
 
    .left {
-      @include mxs.rowFlex(start, center, 10px);
+      @include mxs.rowFlex(start, center);
       height: 100%;
 
+      @media only screen and (max-width: 549px) {
+         flex-direction: column-reverse;
+      }
+
+      figcaption {
+         width: 160px;
+
+         @media only screen and (max-width: 549px) {
+            text-align: center;
+         }
+      }
+
       img {
+         width: 70px;
          height: 100%;
+
+         @media only screen and (max-width: 549px) {
+            width: 120px;
+            height: 140px;
+         }
       }
    }
 
    .mid {
       @include mxs.colFlex(space-between, center, 10px);
 
+      p {
+         color: var(--my-color-black);
+      }
+
       div {
          @include mxs.rowFlex(start, center, 10px);
+
 
          button {
             width: 30px;
@@ -47,11 +80,14 @@
    }
 
    .right {
+
+      @media only screen and (max-width: 549px) {
+         padding-top: 10px;
+      }
+
       button {
          width: 32px;
          height: 32px;
       }
    }
-
-
 }

@@ -13,8 +13,8 @@ const CartItem = ({ item }: T_CartItemProps) => {
 	return (
 		<figure className={"CartItem"}>
 			<div className="left">
-				<figcaption>{item.model}</figcaption>
 				<img src={item.src} alt={item.alt} />
+				<figcaption>{item.model}</figcaption>
 			</div>
 
 			<div className="mid">

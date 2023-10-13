@@ -9,6 +9,11 @@
         border: 2px solid var(--my-color-black);
         border-radius: 8px;
 
+        @media only screen and (max-width: 549px) {
+           overflow-y: auto;
+           height: 292px;
+        }
+
         & > legend {
            color: var(--my-color-green);
            font-weight: 600;
@@ -18,16 +23,25 @@
         & > div {
            @include mxs.rowFlex(space-between, center, 2%);
 
+           @media only screen and (max-width: 549px) {
+              flex-direction: column;
+           }
+
            .left,
            .right {
               @include mxs.colFlex(space-between, center, 4px);
               width: 48%;
+
+              @media only screen and (max-width: 549px) {
+                 width: 100%;
+              }
 
               & > fieldset {
                  @include mxs.rowFlex(start, center, 10px);
                  width: 100%;
                  padding: 2px 0px;
                  border: none;
+
 
                  legend {
                     margin-left: 10px;
