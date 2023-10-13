@@ -31,8 +31,8 @@ const initialState: I_ProductsSlice = {
 
 export const pageItemsFetch = createAsyncThunk("products/pageItemsFetch", async () => {
 	try {
-		const response = await productsAPI.getPageProducts();
-		return response.data;
+		const { data } = await productsAPI.getPageProducts();
+		return data;
 	} catch (err) {
 		console.log(err);
 	}
@@ -42,8 +42,8 @@ export const separateFetch = createAsyncThunk(
 	"products/separateFetch",
 	async (params: T_Params) => {
 		try {
-			const response = await productsAPI.getProductsBy(params);
-			return response.data;
+			const { data } = await productsAPI.getProductsBy(params);
+			return data;
 		} catch (err) {
 			console.log(err);
 		}
@@ -52,8 +52,8 @@ export const separateFetch = createAsyncThunk(
 
 export const singleItemFetch = createAsyncThunk("products/singleItemFetch", async (id: string) => {
 	try {
-		const response = await productsAPI.getSingleItem(id);
-		return response.data;
+		const { data } = await productsAPI.getSingleItem(id);
+		return data;
 	} catch (err) {
 		console.log(err);
 	}

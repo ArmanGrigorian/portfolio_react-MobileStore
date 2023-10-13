@@ -15,8 +15,9 @@ const initialState: I_AdminSlice = {
 
 export const allItemsFetch = createAsyncThunk("admin/allItemsFetch", async () => {
 	try {
-		const response = await productsAPI.getAllProducts();
-		return response.data;
+		const { data } = await productsAPI.getAllProducts();
+		localStorage.setItem("AllItems", JSON.stringify(data));
+		return data;
 	} catch (err) {
 		console.log(err);
 	}
@@ -24,8 +25,8 @@ export const allItemsFetch = createAsyncThunk("admin/allItemsFetch", async () =>
 
 export const certainItemFetch = createAsyncThunk("admin/certainItemFetch", async () => {
 	try {
-		const response = await productsAPI.getAllProducts();
-		return response.data;
+		const { data } = await productsAPI.getAllProducts();
+		return data;
 	} catch (err) {
 		console.log(err);
 	}
@@ -57,8 +58,8 @@ export const putFetch = createAsyncThunk(
 export const deleteFetch = createAsyncThunk("admin/deleteFetch", async (id: string) => {
 	try {
 		await productsAPI.deleteItem(id);
-		const response = await productsAPI.getAllProducts();
-		return response.data;
+		const { data } = await productsAPI.getAllProducts();
+		return data;
 	} catch (err) {
 		console.log(err);
 	}

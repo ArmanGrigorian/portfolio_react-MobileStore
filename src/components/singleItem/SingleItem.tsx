@@ -10,16 +10,13 @@ import { allItemsFetch } from "../../redux/slices/adminSlice";
 
 const SingleItem = () => {
 	const currentItem = useAppSelector((state) => state.products.currentItem);
-	const allItems = useAppSelector((state) => state.admin.allItems);
+	const allItems = JSON.parse(localStorage.getItem("AllItems")!);
 	const dispatch = useAppDispatch();
 	const { id } = useParams();
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		dispatch(allItemsFetch());
-	}, [dispatch]);
-
-	useEffect(() => {
 		if (id && Number(id) <= allItems.length) {
 			dispatch(singleItemFetch(id));
 		} else navigate("*");
