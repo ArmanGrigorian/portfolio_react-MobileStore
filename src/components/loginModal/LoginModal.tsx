@@ -43,7 +43,7 @@ const LoginModal = forwardRef((_, dialogRef) => {
 						name={"login"}
 						value={loginValue}
 						onChange={(e: ChangeEvent<HTMLInputElement>) => dispatch(setLoginValue(e.target.value))}
-						placeholder="login..."
+						placeholder="ENTER admin . . ."
 					/>
 
 					<input
@@ -53,7 +53,7 @@ const LoginModal = forwardRef((_, dialogRef) => {
 						onChange={(e: ChangeEvent<HTMLInputElement>) =>
 							dispatch(setPasswordValue(e.target.value))
 						}
-						placeholder={"password..."}
+						placeholder={"ENTER admin . . ."}
 					/>
 
 					<input type={"submit"} value={"Log In"} />
