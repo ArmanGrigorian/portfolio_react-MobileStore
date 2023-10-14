@@ -10,17 +10,17 @@ import { allItemsFetch } from "../../redux/slices/adminSlice";
 
 const SingleItem = () => {
 	const currentItem = useAppSelector((state) => state.products.currentItem);
-	const allItems = JSON.parse(localStorage.getItem("AllItems")!);
+	const maxLength = JSON.parse(localStorage.getItem("maxLength")!);
 	const dispatch = useAppDispatch();
 	const { id } = useParams();
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		dispatch(allItemsFetch());
-		if (id && Number(id) <= allItems.length) {
+		if (id && Number(id) <= maxLength) {
 			dispatch(singleItemFetch(id));
 		} else navigate("*");
-	}, [allItems.length, dispatch, id, navigate]);
+	}, [maxLength, dispatch, id, navigate]);
 
 	return (
 		<div className={"SingleItem"}>

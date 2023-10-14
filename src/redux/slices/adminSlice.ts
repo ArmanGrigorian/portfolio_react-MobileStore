@@ -16,7 +16,6 @@ const initialState: I_AdminSlice = {
 export const allItemsFetch = createAsyncThunk("admin/allItemsFetch", async () => {
 	try {
 		const { data } = await productsAPI.getAllProducts();
-		localStorage.setItem("AllItems", JSON.stringify(data));
 		return data;
 	} catch (err) {
 		console.log(err);
@@ -109,6 +108,8 @@ const adminSlice = createSlice({
 		});
 		builder.addCase(allItemsFetch.fulfilled, (state, action): void => {
 			state.isLoading = false;
+			localStorage.setItem("maxLength", JSON.stringify(action.payload.length));
+			localStorage.setItem("allItems", JSON.stringify(action.payload));
 			state.allItems = action.payload;
 		});
 		builder.addCase(allItemsFetch.rejected, (state): void => {

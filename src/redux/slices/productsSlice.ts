@@ -42,6 +42,10 @@ export const separateFetch = createAsyncThunk(
 	"products/separateFetch",
 	async (params: T_Params) => {
 		try {
+			const all = await productsAPI.getAllProducts()
+			const maxLength = all.data.length
+			localStorage.setItem("maxLength", JSON.stringify(maxLength));
+
 			const { data } = await productsAPI.getProductsBy(params);
 			return data;
 		} catch (err) {
@@ -128,6 +132,7 @@ const productsSlice = createSlice({
 		});
 		builder.addCase(singleItemFetch.fulfilled, (state, action) => {
 			state.isLoading = false;
+			localStorage.setItem("singleItem", JSON.stringify(action.payload));
 			state.currentItem = action.payload;
 		});
 		builder.addCase(singleItemFetch.rejected, (state) => {
