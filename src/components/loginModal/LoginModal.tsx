@@ -30,6 +30,7 @@ const LoginModal = forwardRef((_, dialogRef) => {
 					<legend>Hello</legend>
 
 					<button
+						className={"closeDialogBtn"}
 						onClick={() => {
 							dialogRef.current.close();
 						}}
