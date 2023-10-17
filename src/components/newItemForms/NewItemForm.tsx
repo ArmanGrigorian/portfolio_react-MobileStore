@@ -53,7 +53,7 @@ const NewItemForm = () => {
 							<legend>ADD NEW ITEM</legend>
 
 							<div>
-								<div className="left">
+								<div className="NewItemForm__left">
 									<fieldset>
 										<legend>
 											Brand {touched.brand && errors.brand && <span>{errors.brand}</span>}
@@ -107,7 +107,7 @@ const NewItemForm = () => {
 
 										<input
 											type={"number"}
-											className={"discountPercent"}
+											className={"NewItemForm__discountPercent"}
 											defaultValue={0}
 											name={"discountPercent"}
 											placeholder={"percent..."}
@@ -115,7 +115,7 @@ const NewItemForm = () => {
 									</fieldset>
 								</div>
 
-								<div className="right">
+								<div className={"NewItemForm__right"}>
 									<fieldset>
 										<legend>
 											Release {touched.release && errors.release && <span>{errors.release}</span>}
@@ -172,7 +172,7 @@ const NewItemForm = () => {
 								</div>
 							</div>
 
-							<div className="bottom">
+							<div className={"NewItemForm__bottomDiv"}>
 								<input type={"submit"} value={"ADD"} disabled={isValid} />
 								<input type={"reset"} value={"RESET"} onClick={handleReset} />
 							</div>

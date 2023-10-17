@@ -10,7 +10,7 @@ const Header = () => {
 
 	return (
 		<header className={"Header"}>
-			<div className={"headerTop"}>
+			<div className={"Header__topDiv"}>
 				<h1>
 					<Link to={"/"}>MobileStore</Link>
 				</h1>

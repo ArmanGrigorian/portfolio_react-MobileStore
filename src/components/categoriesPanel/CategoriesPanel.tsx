@@ -27,7 +27,7 @@ const CategoriesPanel = () => {
 	}
 	return (
 		<>
-			<ul className="CategoriesUl">
+			<ul className="Categories__ul">
 				{categories.map((category) => (
 					<li
 						key={crypto.randomUUID()}
@@ -39,11 +39,11 @@ const CategoriesPanel = () => {
 				))}
 			</ul>
 
-			<details className="CategoriesDetails">
+			<details className="Categories__details">
 				<summary>
 					<MenuIcon size={24}/>
 					</summary>
-				<ul className="CategoriesPanel">
+				<ul>
 					{categories.map((category) => (
 						<li
 						key={crypto.randomUUID()}

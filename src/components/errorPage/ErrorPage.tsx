@@ -11,12 +11,12 @@ const ErrorPage = () => {
 				RABBIT HALL GOES.
 			</p>
 			<div>
-				<img src="/img/pills.png" alt="" />
-				<Link to={"https://www.youtube.com/watch?v=r_O3k-RpV2c"} target="_blank">
-					<button className="redPill"></button>
+				<img src={"/img/pills.png"} alt={"pills"} />
+				<Link to={"https://www.youtube.com/watch?v=r_O3k-RpV2c"} target={"_blank"}>
+					<button className={"ErrorPage__redPill"}></button>
 				</Link>
 				<Link to={"/"}>
-					<button className="bluePill"></button>
+					<button className={"ErrorPage__bluePill"}></button>
 				</Link>
 			</div>
 		</section>

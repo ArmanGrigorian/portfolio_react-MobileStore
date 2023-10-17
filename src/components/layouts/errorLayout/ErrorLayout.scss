@@ -82,8 +82,8 @@
          text-decoration: none;
       }
 
-      .redPill,
-      .bluePill {
+      .ErrorPage__redPill,
+      .ErrorPage__bluePill {
          all: unset;
          border-radius: 12px;
          width: 17px;
@@ -97,7 +97,7 @@
          }
       }
 
-      .redPill {
+      .ErrorPage__redPill {
          rotate: 130deg;
          top: 189px;
          left: 59px;
@@ -109,7 +109,7 @@
             );
       }
 
-      .bluePill {
+      .ErrorPage__bluePill {
          rotate: 230deg;
          top: 191px;
          right: 58px;

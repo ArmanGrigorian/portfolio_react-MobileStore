@@ -26,7 +26,7 @@ const StoreItem: FC<T_StoreItemProps> = ({ item }) => {
 
 			<div>
 				{item.isDiscounted ? (
-					<div className="discountDiv">
+					<div className="StoreItem__discountDiv">
 						<p>SAVE {item.discountPercent}&#37;</p>
 						<div>
 							<p>{item.price}&#36;</p>

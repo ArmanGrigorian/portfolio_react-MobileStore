@@ -28,7 +28,7 @@ const SingleItem = () => {
 				<caption>Specifications</caption>
 				<tbody>
 					<tr>
-						<td rowSpan={8} className="imgTd">
+						<td rowSpan={8} className={"SingleItem__imgTd"}>
 							<Magnifier src={currentItem.src} />
 						</td>
 						<th>Brand</th>

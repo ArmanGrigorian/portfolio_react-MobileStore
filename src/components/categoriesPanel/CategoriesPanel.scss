@@ -1,6 +1,6 @@
 @use "../sass/mixins" as mxs;
 
-.CategoriesUl {
+.Categories__ul {
    @include mxs.rowFlex(start, center, 5%);
 
    li {
@@ -25,7 +25,7 @@
    }
 }
 
-.CategoriesDetails {
+.Categories__details {
    position: relative;
 
    z-index: 1;

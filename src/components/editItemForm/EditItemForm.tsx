@@ -56,7 +56,7 @@ const EditItemForm = forwardRef(({ item }, editDialogRef) => {
 								<input type="button" value={"X"} onClick={() => editDialogRef.current.close()} />
 
 								<div>
-									<div className="left">
+									<div className={"EditItemForm__left"}>
 										<fieldset>
 											<legend>
 												Brand {touched.brand && errors.brand && <span>{errors.brand}</span>}
@@ -110,7 +110,7 @@ const EditItemForm = forwardRef(({ item }, editDialogRef) => {
 
 											<input
 												type={"number"}
-												className={"discountPercent"}
+												className={"EditItemForm__discountPercent"}
 												defaultValue={0}
 												name={"discountPercent"}
 												placeholder={"percent..."}
@@ -118,7 +118,7 @@ const EditItemForm = forwardRef(({ item }, editDialogRef) => {
 										</fieldset>
 									</div>
 
-									<div className="right">
+									<div className={"EditItemForm__right"}>
 										<fieldset>
 											<legend>
 												Release {touched.release && errors.release && <span>{errors.release}</span>}
@@ -175,7 +175,7 @@ const EditItemForm = forwardRef(({ item }, editDialogRef) => {
 									</div>
 								</div>
 
-								<div className="bottom">
+								<div className={"EditItemForm__bottomDiv"}>
 									<input type={"submit"} value={"SAVE"} />
 									<input type={"reset"} value={"RESET"} onClick={handleReset} />
 								</div>

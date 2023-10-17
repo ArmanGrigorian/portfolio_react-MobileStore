@@ -12,12 +12,12 @@ const CartItem = ({ item }: T_CartItemProps) => {
 
 	return (
 		<figure className={"CartItem"}>
-			<div className="left">
+			<div className={"CartItem__left"}>
 				<img src={item.src} alt={item.alt} />
 				<figcaption>{item.model}</figcaption>
 			</div>
 
-			<div className="mid">
+			<div className={"CartItem__mid"}>
 				<p>{item.price * item.count} &#36;</p>
 				<div>
 					<button type={"button"} onClick={() => dispatch(removeFromCart(item))}>
@@ -30,7 +30,7 @@ const CartItem = ({ item }: T_CartItemProps) => {
 				</div>
 			</div>
 
-			<div className="right">
+			<div className={"CartItem__right"}>
 				<button type={"button"} onClick={() => dispatch(deleteFromCart(item))}>
 					&#88;
 				</button>

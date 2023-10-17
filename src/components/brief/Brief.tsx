@@ -16,7 +16,7 @@ const Brief = ({ item }: T_BriefProps) => {
 	return (
 		<>
 			<EditItemForm item={item} ref={editDialogRef} />
-			<div className="Brief">
+			<div className={"Brief"}>
 				<h4>{item.brand}</h4>
 				<p>{item.model}</p>
 				<div>

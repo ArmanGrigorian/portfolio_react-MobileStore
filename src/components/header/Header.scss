@@ -3,7 +3,7 @@
 .Header {
    background-color: var(--my-color-green);
 
-   .headerTop {
+   .Header__topDiv {
       padding: 10px 20px;
       @include mxs.rowFlex(space-between, center);
       

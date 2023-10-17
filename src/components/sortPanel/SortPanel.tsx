@@ -14,7 +14,7 @@ const SortPanel = () => {
 	return (
 		<select
 			name="sort"
-			className="SortPanel"
+			className={"SortPanel"}
 			defaultValue={"release desc"}
 			onChange={(e: ChangeEvent<HTMLSelectElement>) => {
 				const oParams = e.target.value.split(" ");

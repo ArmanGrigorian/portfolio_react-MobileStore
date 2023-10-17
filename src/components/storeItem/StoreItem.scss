@@ -58,7 +58,7 @@
       padding-top: 10px;
       @include mxs.rowFlex(space-between, center);
 
-      .discountDiv {
+      .StoreItem__discountDiv {
 
          p {
             color: var(--my-color-red);

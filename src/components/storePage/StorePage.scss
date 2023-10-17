@@ -6,7 +6,7 @@
       padding: 0px 0px 10px 20px;
    }
 
-   .storeItems {
+   .StorePage__items {
       @include mxs.rowFlex(space-evenly, center, 30px 3%);
       flex-wrap: wrap;
       height: calc(100vh - 289px);

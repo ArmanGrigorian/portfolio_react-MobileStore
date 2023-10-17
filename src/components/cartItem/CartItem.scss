@@ -35,7 +35,7 @@
       border-radius: 4px;
    }
 
-   .left {
+   .CartItem__left {
       @include mxs.rowFlex(start, center);
       height: 100%;
 
@@ -62,7 +62,7 @@
       }
    }
 
-   .mid {
+   .CartItem__mid {
       @include mxs.colFlex(space-between, center, 10px);
 
       p {
@@ -79,7 +79,7 @@
       }
    }
 
-   .right {
+   .CartItem__right {
 
       @media only screen and (max-width: 549px) {
          padding-top: 10px;

@@ -16,7 +16,7 @@ const AdminPage = () => {
 
 	return (
 		<section className={"AdminPage"}>
-			<div className="adminPageTopDiv">
+			<div className={"AdminPage__topDiv"}>
 				<h2>
 					Hello <span>{login}</span>
 				</h2>
@@ -25,7 +25,7 @@ const AdminPage = () => {
 
 			<NewItemForm />
 
-			<div className={"adminPanel"}>
+			<div className={"AdminPage__panel"}>
 				{allItems?.map((item) => {
 					return <Brief key={item.id} item={item} />;
 				})}

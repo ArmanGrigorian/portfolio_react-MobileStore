@@ -16,7 +16,7 @@ const StorePage = () => {
 
 			<h2>Store</h2>
 
-			<div className={"storeItems"}>
+			<div className={"StorePage__items"}>
 				{!isLoading
 					? storeItems?.map((item) => <StoreItem key={item.id} item={item} />)
 					: [...new Array(6)].map(() => <ItemSkeleton key={crypto.randomUUID()} />)}

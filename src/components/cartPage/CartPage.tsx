@@ -23,13 +23,13 @@ const CartPage = () => {
 		<section className={"CartPage"}>
 			<h2>CartPage</h2>
 
-			<div className={"cartItems"}>
+			<div className={"CartPage__items"}>
 				{cartItems?.map((item) => {
 					return <CartItem key={item.id} item={item} />;
 				})}
 			</div>
 
-			<div className={"cartBottomDiv"}>
+			<div className={"CartPage__bottomDiv"}>
 				<div>
 					<p>
 						total count: <span>{totalCount}</span>{" "}

@@ -41,8 +41,8 @@
            & > div {
               @include mxs.rowFlex(space-between, center, 2%);
 
-              .left,
-              .right {
+              .EditItemForm__left,
+              .EditItemForm__right {
                  @include mxs.colFlex(space-between, center, 4px);
                  width: 48%;
 
@@ -73,7 +73,7 @@
                           letter-spacing: 2px;
                        }
 
-                       &.discountPercent.discountPercent {
+                       &.EditItemForm__discountPercent {
                           width: calc(100% - 23px);
                           visibility: hidden;
                        }
@@ -99,7 +99,7 @@
               }
            }
 
-           .bottom {
+           .EditItemForm__bottomDiv {
               padding-top: 10px;
 
               input {

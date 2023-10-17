@@ -3,7 +3,7 @@
 .AdminPage {
    position: relative;
 
-   .adminPageTopDiv {
+   .AdminPage__topDiv {
       @include mxs.rowFlex(space-between);
       padding: 20px 20px 8px;
 
@@ -18,7 +18,7 @@
    }
 
 
-   .adminPanel {
+   .AdminPage__panel {
       @include mxs.rowFlex(space-evenly, center, 2%);
       flex-wrap: wrap;
       scroll-snap-type: y mandatory;
