@@ -1,12 +1,13 @@
 import "./SingleItem.scss";
 import { useEffect } from "react";
 import { dataRevealer } from "../../utilities/dateRevealer";
-import { StarIcon } from "../svgs";
+import { DownloadIcon, StarIcon } from "../svgs";
 import { addToCart, singleItemFetch } from "../../redux/slices/productsSlice";
 import Magnifier from "../magnifier/Magnifier";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useNavigate, useParams } from "react-router-dom";
 import { allItemsFetch } from "../../redux/slices/adminSlice";
+import { productsAPI } from "../../api/api";
 
 const SingleItem = () => {
 	const currentItem = useAppSelector((state) => state.products.currentItem);
@@ -81,8 +82,13 @@ const SingleItem = () => {
 
 					<tr>
 						<td>
-							<button type="button" onClick={() => dispatch(addToCart(currentItem))}>
+							<button type={"button"} onClick={() => dispatch(addToCart(currentItem))}>
 								ADD TO CART
+							</button>
+							<button type={"button"} className="SingleItem__downloadButton" title={`download image of ${currentItem.model}`}>
+								<a href={currentItem.src} download={`${currentItem.model}`}>
+									<DownloadIcon size={18} />
+								</a>
 							</button>
 						</td>
 						<th>Price</th>

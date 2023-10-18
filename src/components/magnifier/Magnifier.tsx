@@ -53,8 +53,8 @@ const Magnifier: FC<T_MagnifierProps> = ({ src }) => {
 					pointerEvents: "none",
 					height: `${magnifierHeight}px`,
 					width: `${magnifierWidth}px`,
-					top: `${y - magnifierHeight / 2}px`,
-					left: `${x - magnifierWidth / 2}px`,
+					top: `${y - magnifierHeight / 2.5}px`,
+					left: `${x - magnifierWidth / 3.5}px`,
 					opacity: "1",
 					border: "1px solid grey",
 					borderRadius: "12px",
@@ -62,8 +62,8 @@ const Magnifier: FC<T_MagnifierProps> = ({ src }) => {
 					backgroundImage: `url('${src}')`,
 					backgroundRepeat: "no-repeat",
 					backgroundSize: `${imgWidth * zoomLevel}px ${imgHeight * zoomLevel}px`,
-					backgroundPositionX: `${-x * zoomLevel + magnifierWidth / 2}px`,
-					backgroundPositionY: `${-y * zoomLevel + magnifierHeight / 2}px`,
+					backgroundPositionX: `${-x * zoomLevel + magnifierWidth / 2.5}px`,
+					backgroundPositionY: `${-y * zoomLevel + magnifierHeight / 3.5}px`,
 				}}></div>
 		</div>
 	);
