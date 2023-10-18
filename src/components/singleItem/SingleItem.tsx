@@ -7,21 +7,20 @@ import Magnifier from "../magnifier/Magnifier";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useNavigate, useParams } from "react-router-dom";
 import { allItemsFetch } from "../../redux/slices/adminSlice";
-import { productsAPI } from "../../api/api";
+
 
 const SingleItem = () => {
 	const currentItem = useAppSelector((state) => state.products.currentItem);
-	const maxLength = JSON.parse(localStorage.getItem("maxLength")!);
 	const dispatch = useAppDispatch();
 	const { id } = useParams();
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		dispatch(allItemsFetch());
-		if (id && Number(id) <= maxLength) {
+		if (id && Number(id) <= JSON.parse(localStorage.getItem("maxLength")!)) {
 			dispatch(singleItemFetch(id));
 		} else navigate("*");
-	}, [maxLength, dispatch, id, navigate]);
+	}, [dispatch, id, navigate]);
 
 	return (
 		<div className={"SingleItem"}>
