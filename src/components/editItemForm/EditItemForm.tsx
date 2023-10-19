@@ -1,15 +1,15 @@
 import "./EditItemForm.scss";
 import { forwardRef, FormEvent, FC } from "react";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
 import { dateToNumber, numberToDate } from "../../utilities/dateRevealer";
 import { putFetch } from "../../redux/slices/adminSlice";
 import { useAppDispatch } from "../../redux/hooks";
-import { T_initialValues } from "../../types/types"; 
+import { T_initialValues } from "../../types/types";
 
 type T_EditItemFormProps = {
-	item : T_initialValues
-}
+	item: T_initialValues;
+};
 
 const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRef) => {
 	const dispatch = useAppDispatch();
@@ -50,8 +50,12 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 	}
 
 	return (
-		<Formik initialValues={initialValues} validateOnBlur validationSchema={newItemValidation}>
-			{({ errors, touched, handleReset }) => {
+		<Formik
+			initialValues={initialValues}
+			validateOnChange={false}
+			validateOnBlur={true}
+			validationSchema={newItemValidation}>
+			{({ handleReset }) => {
 				return (
 					<dialog open={false} ref={editDialogRef} className={"EditItemForm"}>
 						<Form onSubmit={handleSubmit}>
@@ -63,45 +67,36 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 									<div className={"EditItemForm__left"}>
 										<fieldset>
 											<legend>
-												Brand {touched.brand && errors.brand && <span>{errors.brand}</span>}
+												Brand <ErrorMessage name={"brand"} component={"span"} />
 											</legend>
-											<Field
-												type={"text"}
-												name={"brand"}
-												placeholder={"brand..."} />
+											<Field type={"text"} name={"brand"} placeholder={"brand..."} />
 										</fieldset>
 
 										<fieldset>
 											<legend>
-												Model {touched.model && errors.model && <span>{errors.model}</span>}
+												Model <ErrorMessage name={"model"} component={"span"} />
 											</legend>
 
-											<Field
-												type={"text"}
-												name={"model"}
-												placeholder={"model..."} />
+											<Field type={"text"} name={"model"} placeholder={"model..."} />
 										</fieldset>
 
 										<fieldset>
 											<legend>
-												Price {touched.price && errors.price && <span>{errors.price}</span>}
+												Price <ErrorMessage name={"price"} component={"span"} />
 											</legend>
 
-											<Field
-												type={"number"}
-												name={"price"}
-												placeholder={"price..."} />
+											<Field type={"number"} name={"price"} placeholder={"price..."} />
 										</fieldset>
 
 										<fieldset>
 											<legend>
-												<label htmlFor={"isDiscounted"}>Discount</label>
+												<label htmlFor={"isDiscounted"}>
+													Discount
+													<ErrorMessage name={"discountPercent"} component={"span"} />
+												</label>
 											</legend>
 
-											<Field
-												type={"checkbox"}
-												name={"isDiscounted"}
-												id={"isDiscounted"} />
+											<Field type={"checkbox"} name={"isDiscounted"} id={"isDiscounted"} />
 
 											<Field
 												type={"number"}
@@ -116,27 +111,31 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 									<div className={"EditItemForm__right"}>
 										<fieldset>
 											<legend>
-												Release {touched.release && errors.release && <span>{errors.release}</span>}
+												Release <ErrorMessage name="date" component={"span"} />
 											</legend>
 											<Field type={"date"} name={"release"} placeholder={"20240101"} />
 										</fieldset>
 
 										<fieldset>
 											<legend>
-												Rating {touched.rating && errors.rating && <span>{errors.rating}</span>}
+												Rating <ErrorMessage name={"rating"} component={"span"} />
 											</legend>
 
 											<Field type={"number"} name={"rating"} placeholder={"rating..."} />
 										</fieldset>
 
 										<fieldset>
-											<legend>Src {touched.src && errors.src && <span>{errors.src}</span>}</legend>
+											<legend>
+												Src <ErrorMessage name={"src"} component={"span"} />
+											</legend>
 
 											<Field type={"text"} name={"src"} placeholder={"src..."} />
 										</fieldset>
 
 										<fieldset>
-											<legend>Alt {touched.alt && errors.alt && <span>{errors.alt}</span>}</legend>
+											<legend>
+												Alt <ErrorMessage name={"alt"} component={"span"} />
+											</legend>
 											<Field type={"text"} name={"alt"} placeholder={"alt..."} />
 										</fieldset>
 									</div>

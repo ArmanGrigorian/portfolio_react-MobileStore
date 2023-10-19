@@ -23,8 +23,7 @@ export const newItemValidation = yup.object().shape({
 		.number()
 		.typeError("wrong type")
 		.positive("must be positive number")
-		.integer("must be integer")
-		.required("field is not filled"),
+		.integer("must be integer"),
 	isDiscounted: yup.boolean().typeError("wrong type").required("field is not filled"),
 	release: yup
 		.date()
