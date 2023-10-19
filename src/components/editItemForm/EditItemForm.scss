@@ -54,9 +54,14 @@
 
                     legend {
                        margin-left: 10px;
-                       color: var(--my-color-green);
+                       color: var(--my-color-black);
                        font-weight: 600;
                        text-align: left;
+
+                       &::first-letter {
+                          text-transform: uppercase;
+                          color: var(--my-color-green);
+                       }
 
                        span {
                           color: var(--my-color-red);

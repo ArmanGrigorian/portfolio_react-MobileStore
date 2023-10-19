@@ -17,7 +17,7 @@
         & > legend {
            color: var(--my-color-green);
            font-weight: 600;
-           text-align: center
+           text-align: center;
         }
 
         & > div {
@@ -45,9 +45,14 @@
 
                  legend {
                     margin-left: 10px;
-                    color: var(--my-color-green);
+                    color: var(--my-color-black);
                     font-weight: 600;
                     text-align: left;
+
+                    &::first-letter {
+                       color: var(--my-color-green);
+                       text-transform: uppercase;
+                    }
 
                     span {
                        color: var(--my-color-red);

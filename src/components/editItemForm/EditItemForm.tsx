@@ -69,7 +69,7 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 											return (
 												<fieldset>
 													<legend>
-														Brand <ErrorMessage name={category} component={"span"} />
+														{category} <ErrorMessage name={category} component={"span"} />
 													</legend>
 													<Field type={"text"} name={category} placeholder={`${category}...`} />
 												</fieldset>
@@ -122,7 +122,7 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 											return (
 												<fieldset>
 													<legend>
-														Brand <ErrorMessage name={category} component={"span"} />
+														{category} <ErrorMessage name={category} component={"span"} />
 													</legend>
 													<Field type={"text"} name={category} placeholder={`${category}...`} />
 												</fieldset>

@@ -1,16 +1,19 @@
 @use "../sass/mixins" as mxs;
 
 .Header {
-   background-color: var(--my-color-green);
+   background-image: linear-gradient(120deg,
+         var(--my-color-green) calc(100% - 112px),
+         var(--my-color-black) calc(100% - 112px),
+      );
 
    .Header__topDiv {
       padding: 10px 20px;
       @include mxs.rowFlex(space-between, center);
-      
+
       h1 {
          text-align: left;
          text-shadow: 1px 1px 2px var(--my-color-black);
-   
+
          a {
             color: var(--my-color-white);
             text-decoration: none;

@@ -73,7 +73,7 @@ const NewItemForm = () => {
 										return (
 											<fieldset>
 												<legend>
-													Brand <ErrorMessage name={category} component={"span"} />
+													{category} <ErrorMessage name={category} component={"span"} />
 												</legend>
 												<Field type={"text"} name={category} placeholder={`${category}...`} />
 											</fieldset>
@@ -126,7 +126,7 @@ const NewItemForm = () => {
 										return (
 											<fieldset>
 												<legend>
-													Src <ErrorMessage name={category} component={"span"} />
+													{category} <ErrorMessage name={category} component={"span"} />
 												</legend>
 
 												<Field type={"text"} name={category} placeholder={`${category}...`} />
