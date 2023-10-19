@@ -6,6 +6,7 @@ import { discounter } from "../../utilities/discounter.ts";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks.ts";
 import { T_SingleItem } from "../../types/types.ts";
+import { colorizer } from "../../utilities/colorizer.ts";
 
 type T_StoreItemProps = {
 	item: T_SingleItem;
