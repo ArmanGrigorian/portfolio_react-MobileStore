@@ -1,0 +1,80 @@
+.LoginModal {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  z-index: 1;
+  width: max(30%, 280px);
+  height: -moz-fit-content;
+  height: fit-content;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px 20px;
+  background-color: var(--my-color-grey-A);
+}
+.LoginModal form {
+  background-color: var(--my-color-grey);
+}
+.LoginModal form fieldset {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px;
+  position: relative;
+  border: 1px solid var(--my-color-green);
+  border-radius: 10px;
+  background-color: var(--my-color-grey);
+}
+.LoginModal form fieldset legend {
+  color: var(--my-color-green);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.LoginModal form fieldset .LoginModal__closeButton {
+  position: absolute;
+  top: -23px;
+  right: -11px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  color: var(--my-color-green);
+  background-color: var(--my-color-white);
+  border: 1px solid var(--my-color-green);
+}
+.LoginModal form fieldset .LoginModal__closeButton:hover {
+  color: var(--my-color-white);
+  background-color: var(--my-color-green);
+}
+.LoginModal form fieldset input {
+  width: 100%;
+  padding: 6px 10px;
+  color: var(--my-color-black);
+  outline-color: var(--my-color-green);
+}
+.LoginModal form fieldset input[type=submit], .LoginModal form fieldset input[type=reset] {
+  width: 70px;
+  color: var(--my-color-green);
+  background-color: var(--my-color-white);
+  border: 1px solid var(--my-color-green);
+  border-radius: 8px;
+  padding: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 150ms, linear, background-color 150ms linear, border-color 150ms linear, scale 150ms linear;
+  width: 100%;
+}
+.LoginModal form fieldset input[type=submit]:hover, .LoginModal form fieldset input[type=reset]:hover {
+  color: var(--my-color-white);
+  background-color: var(--my-color-green);
+  border-color: var(--my-color-green);
+}
+.LoginModal form fieldset input[type=submit]:active, .LoginModal form fieldset input[type=reset]:active {
+  scale: 0.9;
+}
+.LoginModal form fieldset p {
+  color: var(--my-color-red);
+  font-style: italic;
+}/*# sourceMappingURL=LoginModal.css.map */

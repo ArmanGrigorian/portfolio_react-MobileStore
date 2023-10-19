@@ -67,7 +67,7 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 									<div className={"EditItemForm__left"}>
 										{["brand", "model"].map((category) => {
 											return (
-												<fieldset>
+												<fieldset key={crypto.randomUUID()}>
 													<legend>
 														{category} <ErrorMessage name={category} component={"span"} />
 													</legend>
@@ -120,7 +120,7 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 
 										{["src", "alt"].map((category) => {
 											return (
-												<fieldset>
+												<fieldset key={crypto.randomUUID()}>
 													<legend>
 														{category} <ErrorMessage name={category} component={"span"} />
 													</legend>

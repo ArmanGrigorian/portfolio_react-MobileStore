@@ -1,0 +1,56 @@
+.Brief {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0px;
+  width: max(32%, 200px);
+  min-height: calc((100vh - 521px) / 1.5);
+  margin-bottom: 20px;
+  background-color: var(--my-color-white);
+  border-radius: 8px;
+  border: 2px solid var(--my-color-black);
+  scroll-snap-align: center;
+  transition: border 150ms linear, box-shadow 150ms linear;
+}
+.Brief:hover {
+  border: 2px solid var(--my-color-green);
+  box-shadow: 0px 0px 4px 2px var(--my-color-grey);
+}
+.Brief h1,
+.Brief p {
+  text-align: center;
+  color: var(--my-color-black);
+}
+.Brief h4 {
+  font-weight: 700;
+}
+.Brief p {
+  font-weight: 500;
+}
+.Brief div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+}
+.Brief div button {
+  width: 70px;
+  color: var(--my-color-green);
+  background-color: var(--my-color-white);
+  border: 1px solid var(--my-color-green);
+  border-radius: 8px;
+  padding: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 150ms, linear, background-color 150ms linear, border-color 150ms linear, scale 150ms linear;
+}
+.Brief div button:hover {
+  color: var(--my-color-white);
+  background-color: var(--my-color-green);
+  border-color: var(--my-color-green);
+}
+.Brief div button:active {
+  scale: 0.9;
+}/*# sourceMappingURL=Brief.css.map */

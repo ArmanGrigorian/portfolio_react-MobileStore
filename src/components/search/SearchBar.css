@@ -1,0 +1,26 @@
+.SearchBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px;
+  width: 24%;
+  border: 1px solid var(--my-color-black);
+  background-color: var(--my-color-white);
+}
+.SearchBar input {
+  width: calc(100% - 31px);
+  height: 30px;
+  padding-inline: 10px;
+  border: none;
+  background-color: var(--my-color-white);
+}
+.SearchBar input:focus {
+  outline: 1px solid var(--my-color-black);
+}
+.SearchBar button {
+  width: 30px;
+  height: 30px;
+  background-color: var(--my-color-white);
+  border: none;
+  cursor: pointer;
+}/*# sourceMappingURL=SearchBar.css.map */

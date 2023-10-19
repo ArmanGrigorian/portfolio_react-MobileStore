@@ -10,10 +10,6 @@ export const productsAPI = {
 		return instance.get("/mobileStore");
 	},
 
-	getPageProducts: () => {
-		return instance.get("/mobileStore?page=1&limit=8&sortBy=release&order=desc");
-	},
-
 	getSingleItem: (id: string) => {
 		return instance.get("/mobileStore/" + id);
 	},

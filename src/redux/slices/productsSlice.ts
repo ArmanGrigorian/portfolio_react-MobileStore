@@ -39,14 +39,6 @@ const initialState: I_ProductsSlice = {
 	},
 };
 
-export const pageItemsFetch = createAsyncThunk("products/pageItemsFetch", async () => {
-	try {
-		const { data } = await productsAPI.getPageProducts();
-		return data;
-	} catch (err) {
-		console.log(err);
-	}
-});
 
 export const separateFetch = createAsyncThunk(
 	"products/separateFetch",
@@ -125,17 +117,6 @@ const productsSlice = createSlice({
 	},
 
 	extraReducers: (builder) => {
-		// PAGE
-		builder.addCase(pageItemsFetch.pending, (state): void => {
-			state.isLoading = true;
-		});
-		builder.addCase(pageItemsFetch.fulfilled, (state, action): void => {
-			state.isLoading = false;
-			state.storeItems = action.payload;
-		});
-		builder.addCase(pageItemsFetch.rejected, (state): void => {
-			state.isLoading = false;
-		});
 		// SINGLE_ITEM
 		builder.addCase(singleItemFetch.pending, (state) => {
 			state.isLoading = true;

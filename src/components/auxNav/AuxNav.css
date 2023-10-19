@@ -1,0 +1,10 @@
+.AuxNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px;
+  height: 50px;
+  line-height: 50px;
+  padding-inline: 20px;
+  background-color: var(--my-color-grey);
+}/*# sourceMappingURL=AuxNav.css.map */

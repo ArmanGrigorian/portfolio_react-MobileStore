@@ -71,7 +71,7 @@ const NewItemForm = () => {
 								<div className={"NewItemForm__left"}>
 									{["brand", "model"].map((category) => {
 										return (
-											<fieldset>
+											<fieldset key={crypto.randomUUID()}>
 												<legend>
 													{category} <ErrorMessage name={category} component={"span"} />
 												</legend>
@@ -124,7 +124,7 @@ const NewItemForm = () => {
 
 									{["src", "alt"].map((category) => {
 										return (
-											<fieldset>
+											<fieldset key={crypto.randomUUID()}>
 												<legend>
 													{category} <ErrorMessage name={category} component={"span"} />
 												</legend>

@@ -1,0 +1,139 @@
+.NewItemForm {
+  width: 100%;
+  background-color: var(--my-color-grey);
+}
+.NewItemForm > fieldset {
+  padding: 6px 12px 12px;
+  border: 2px solid var(--my-color-black);
+  border-radius: 8px;
+}
+@media only screen and (max-width: 549px) {
+  .NewItemForm > fieldset {
+    overflow-y: auto;
+    height: 292px;
+  }
+}
+.NewItemForm > fieldset > legend {
+  color: var(--my-color-green);
+  font-weight: 600;
+  text-align: center;
+}
+.NewItemForm > fieldset > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2%;
+}
+@media only screen and (max-width: 549px) {
+  .NewItemForm > fieldset > div {
+    flex-direction: column;
+  }
+}
+.NewItemForm > fieldset > div .NewItemForm__left,
+.NewItemForm > fieldset > div .NewItemForm__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+  width: 48%;
+}
+@media only screen and (max-width: 549px) {
+  .NewItemForm > fieldset > div .NewItemForm__left,
+  .NewItemForm > fieldset > div .NewItemForm__right {
+    width: 100%;
+  }
+}
+.NewItemForm > fieldset > div .NewItemForm__left > fieldset,
+.NewItemForm > fieldset > div .NewItemForm__right > fieldset {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 2px 0px;
+  border: none;
+}
+.NewItemForm > fieldset > div .NewItemForm__left > fieldset legend,
+.NewItemForm > fieldset > div .NewItemForm__right > fieldset legend {
+  margin-left: 10px;
+  color: var(--my-color-black);
+  font-weight: 600;
+  text-align: left;
+}
+.NewItemForm > fieldset > div .NewItemForm__left > fieldset legend::first-letter,
+.NewItemForm > fieldset > div .NewItemForm__right > fieldset legend::first-letter {
+  color: var(--my-color-green);
+  text-transform: uppercase;
+}
+.NewItemForm > fieldset > div .NewItemForm__left > fieldset legend span,
+.NewItemForm > fieldset > div .NewItemForm__right > fieldset legend span {
+  color: var(--my-color-red);
+}
+.NewItemForm > fieldset > div .NewItemForm__left > fieldset input,
+.NewItemForm > fieldset > div .NewItemForm__right > fieldset input {
+  width: 100%;
+  padding: 2px 10px;
+  color: var(--my-color-black);
+}
+.NewItemForm > fieldset > div .NewItemForm__left > fieldset input:-moz-placeholder-shown, .NewItemForm > fieldset > div .NewItemForm__right > fieldset input:-moz-placeholder-shown {
+  font-style: italic;
+  letter-spacing: 2px;
+}
+.NewItemForm > fieldset > div .NewItemForm__left > fieldset input:placeholder-shown,
+.NewItemForm > fieldset > div .NewItemForm__right > fieldset input:placeholder-shown {
+  font-style: italic;
+  letter-spacing: 2px;
+}
+.NewItemForm > fieldset > div .NewItemForm__left > fieldset input.NewItemForm__discountPercent,
+.NewItemForm > fieldset > div .NewItemForm__right > fieldset input.NewItemForm__discountPercent {
+  width: calc(100% - 23px);
+  visibility: hidden;
+}
+.NewItemForm > fieldset > div .NewItemForm__left > fieldset input[type=checkbox],
+.NewItemForm > fieldset > div .NewItemForm__right > fieldset input[type=checkbox] {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.NewItemForm > fieldset > div .NewItemForm__left > fieldset input[type=checkbox]:checked,
+.NewItemForm > fieldset > div .NewItemForm__right > fieldset input[type=checkbox]:checked {
+  accent-color: var(--my-color-green);
+  background-color: red;
+}
+.NewItemForm > fieldset > div .NewItemForm__left > fieldset input[type=checkbox]:checked + input,
+.NewItemForm > fieldset > div .NewItemForm__right > fieldset input[type=checkbox]:checked + input {
+  visibility: visible;
+}
+.NewItemForm > fieldset > div .NewItemForm__left > fieldset label,
+.NewItemForm > fieldset > div .NewItemForm__right > fieldset label {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.NewItemForm > fieldset .NewItemForm__bottomDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0px;
+}
+.NewItemForm > fieldset .NewItemForm__bottomDiv input {
+  width: 70px;
+  color: var(--my-color-green);
+  background-color: var(--my-color-white);
+  border: 1px solid var(--my-color-green);
+  border-radius: 8px;
+  padding: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 150ms, linear, background-color 150ms linear, border-color 150ms linear, scale 150ms linear;
+  margin-top: 10px;
+  width: 48%;
+}
+.NewItemForm > fieldset .NewItemForm__bottomDiv input:hover {
+  color: var(--my-color-white);
+  background-color: var(--my-color-green);
+  border-color: var(--my-color-green);
+}
+.NewItemForm > fieldset .NewItemForm__bottomDiv input:active {
+  scale: 0.9;
+}/*# sourceMappingURL=NewItemForm.css.map */

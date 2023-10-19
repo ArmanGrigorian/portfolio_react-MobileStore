@@ -4,7 +4,7 @@ import { setParams, separateFetch } from "../../redux/slices/productsSlice.ts";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
 
 const SortPanel = () => {
-	const {params, sortOptions} = useAppSelector((state) => state.products);
+	const { params, sortOptions } = useAppSelector((state) => state.products);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
@@ -27,11 +27,9 @@ const SortPanel = () => {
 					}),
 				);
 			}}>
-			{
-				sortOptions.map((option) => {
-					return <option value={option[0]}>{option[1]}</option>
-				})
-			}
+			{sortOptions.map((option) => {
+				return <option key={option[0]} value={option[0]}>{option[1]}</option>;
+			})}
 		</select>
 	);
 };
