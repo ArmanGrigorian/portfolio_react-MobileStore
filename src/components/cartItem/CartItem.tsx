@@ -1,7 +1,7 @@
 import "./CartItem.scss";
 import { addToCart, deleteFromCart, removeFromCart } from "../../redux/slices/productsSlice";
 import { useAppDispatch } from "../../redux/hooks";
-import { T_SingleItem } from "../../redux/slices/types";
+import { T_SingleItem } from "../../types/types";
 
 type T_CartItemProps = {
 	item: T_SingleItem;

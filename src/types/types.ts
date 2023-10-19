@@ -2,9 +2,9 @@ export type T_Params = {
 	param1: string;
 	param2: string;
 	param3: string;
-   param4: string;
-   param5?: string;
-   param6?: string;
+	param4: string;
+	param5?: string;
+	param6?: string;
 };
 
 export type T_SingleItem = {
@@ -16,6 +16,19 @@ export type T_SingleItem = {
 	discountPercent: number;
 	isDiscounted: boolean;
 	release: number;
+	rating: number;
+	src: string;
+	alt: string;
+};
+
+export type T_initialValues = {
+	brand: string;
+	model: string;
+	price: number;
+	count: number;
+	isDiscounted: boolean;
+	discountPercent: number;
+	release: string | number;
 	rating: number;
 	src: string;
 	alt: string;

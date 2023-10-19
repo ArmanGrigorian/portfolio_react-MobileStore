@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { productsAPI } from "../../api/api";
-import { I_ProductsSlice, T_Params, T_SingleItem } from "./types";
+import { I_ProductsSlice, T_Params, T_SingleItem } from "../../types/types";
 
 const initialState: I_ProductsSlice = {
 	categories: ["All", "Apple", "Samsung", "Xiaomi", "Nokia"],
@@ -42,8 +42,8 @@ export const separateFetch = createAsyncThunk(
 	"products/separateFetch",
 	async (params: T_Params) => {
 		try {
-			const all = await productsAPI.getAllProducts()
-			const maxLength = all.data.length
+			const all = await productsAPI.getAllProducts();
+			const maxLength = all.data.length;
 			localStorage.setItem("maxLength", JSON.stringify(maxLength));
 
 			const { data } = await productsAPI.getProductsBy(params);

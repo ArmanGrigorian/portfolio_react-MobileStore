@@ -1,5 +1,5 @@
 import axios from "axios";
-import { T_Params, T_SingleItem } from "../redux/slices/types";
+import { T_Params, T_initialValues } from "../types/types";
 
 const instance = axios.create({
 	baseURL: "https://64d772272a017531bc134033.mockapi.io",
@@ -31,13 +31,13 @@ export const productsAPI = {
 		);
 	},
 
-	postItem: (data: T_SingleItem) => {
+	postItem: (data: T_initialValues) => {
 		return instance.post("/mobileStore", data, {
 			headers: { "content-type": "application/json" },
 		});
 	},
 
-	putItem: (id: string, data: T_SingleItem) => {
+	putItem: (id: string, data: T_initialValues) => {
 		return instance.put("/mobileStore/" + id, data, {
 			headers: { "content-type": "application/json" },
 		});

@@ -8,8 +8,6 @@ import AuxNav from "../auxNav/AuxNav.tsx";
 const StorePage = () => {
 	const { isLoading, storeItems } = useAppSelector((state) => state.products);
 
-	
-
 	return (
 		<section className={"StorePage"}>
 			<AuxNav />

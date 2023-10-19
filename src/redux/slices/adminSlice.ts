@@ -1,6 +1,6 @@
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { productsAPI } from "../../api/api";
-import { I_AdminSlice, T_SingleItem } from "./types";
+import { I_AdminSlice, T_SingleItem , T_initialValues} from "../../types/types";
 
 const initialState: I_AdminSlice = {
 	isLoading: true,
@@ -31,7 +31,7 @@ export const certainItemFetch = createAsyncThunk("admin/certainItemFetch", async
 	}
 });
 
-export const postFetch = createAsyncThunk("admin/postFetch", async (data: T_SingleItem) => {
+export const postFetch = createAsyncThunk("admin/postFetch", async (data: T_initialValues) => {
 	try {
 		await productsAPI.postItem(data);
 		const response = await productsAPI.getAllProducts();
@@ -43,7 +43,7 @@ export const postFetch = createAsyncThunk("admin/postFetch", async (data: T_Sing
 
 export const putFetch = createAsyncThunk(
 	"admin/putFetch",
-	async ({ id, data }: { id: string; data: T_SingleItem }) => {
+	async ({ id, data }: { id: string; data: T_initialValues }) => {
 		try {
 			await productsAPI.putItem(id, data);
 			const response = await productsAPI.getAllProducts();

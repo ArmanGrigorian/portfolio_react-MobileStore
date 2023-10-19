@@ -1,10 +1,25 @@
 import "./NewItemForm.scss";
 import { FormEvent } from "react";
-import { Formik } from "formik";
+import { Formik, Form, Field, FormikHelpers } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
 import { dateToNumber, numberToDate } from "../../utilities/dateRevealer";
 import { postFetch } from "../../redux/slices/adminSlice";
 import { useAppDispatch } from "../../redux/hooks";
+import { T_initialValues } from "../../types/types";
+
+
+const initialValues: T_initialValues = {
+	brand: "",
+	model: "",
+	price: 0,
+	count: 0,
+	isDiscounted: false,
+	discountPercent: 0,
+	release: numberToDate(20240101),
+	rating: 0,
+	src: "",
+	alt: "",
+};
 
 const NewItemForm = () => {
 	const dispatch = useAppDispatch();
@@ -14,7 +29,7 @@ const NewItemForm = () => {
 
 		const form = e.target as HTMLFormElement;
 
-		const newItem = {
+		const newItem: T_initialValues = {
 			brand: form.brand.value,
 			model: form.model.value,
 			price: Number(form.price.value),
@@ -28,27 +43,17 @@ const NewItemForm = () => {
 		};
 
 		dispatch(postFetch(newItem));
+		form.reset();
 	}
 
 	return (
 		<Formik
-			initialValues={{
-				brand: "",
-				model: "",
-				price: 0,
-				count: 0,
-				isDiscounted: false,
-				discountPercent: 0,
-				release: numberToDate(20240101),
-				rating: 0,
-				src: "",
-				alt: "",
-			}}
+			initialValues={initialValues}
 			validateOnBlur
 			validationSchema={newItemValidation}>
-			{({ values, errors, touched, isValid, handleChange, handleBlur, handleReset }) => {
+			{({ errors, touched, isValid, handleReset }) => {
 				return (
-					<form className={"NewItemForm"} onSubmit={handleSubmit}>
+					<Form className={"NewItemForm"} onSubmit={handleSubmit}>
 						<fieldset>
 							<legend>ADD NEW ITEM</legend>
 
@@ -58,12 +63,9 @@ const NewItemForm = () => {
 										<legend>
 											Brand {touched.brand && errors.brand && <span>{errors.brand}</span>}
 										</legend>
-										<input
+										<Field
 											type={"text"}
 											name={"brand"}
-											value={values.brand}
-											onChange={handleChange}
-											onBlur={handleBlur}
 											placeholder={"brand..."}
 										/>
 									</fieldset>
@@ -73,12 +75,9 @@ const NewItemForm = () => {
 											Model {touched.model && errors.model && <span>{errors.model}</span>}
 										</legend>
 
-										<input
+										<Field
 											type={"text"}
 											name={"model"}
-											value={values.model}
-											onChange={handleChange}
-											onBlur={handleBlur}
 											placeholder={"model..."}
 										/>
 									</fieldset>
@@ -88,12 +87,9 @@ const NewItemForm = () => {
 											Price {touched.price && errors.price && <span>{errors.price}</span>}
 										</legend>
 
-										<input
+										<Field
 											type={"number"}
 											name={"price"}
-											value={values.price}
-											onChange={handleChange}
-											onBlur={handleBlur}
 											placeholder={"price..."}
 										/>
 									</fieldset>
@@ -103,9 +99,9 @@ const NewItemForm = () => {
 											<label htmlFor={"isDiscounted"}>Discount</label>
 										</legend>
 
-										<input type={"checkbox"} name={"isDiscounted"} id={"isDiscounted"} />
+										<Field type={"checkbox"} name={"isDiscounted"} id={"isDiscounted"} />
 
-										<input
+										<Field
 											type={"number"}
 											className={"NewItemForm__discountPercent"}
 											defaultValue={0}
@@ -120,13 +116,11 @@ const NewItemForm = () => {
 										<legend>
 											Release {touched.release && errors.release && <span>{errors.release}</span>}
 										</legend>
-										<input
+										<Field
 											type={"date"}
 											name={"release"}
-											value={values.release}
-											onChange={handleChange}
-											onBlur={handleBlur}
-											placeholder={"20230101"}
+											defaultValue={20240101}
+											placeholder={"20240101"}
 										/>
 									</fieldset>
 
@@ -135,12 +129,9 @@ const NewItemForm = () => {
 											Rating {touched.rating && errors.rating && <span>{errors.rating}</span>}
 										</legend>
 
-										<input
+										<Field
 											type={"number"}
 											name={"rating"}
-											value={values.rating}
-											onChange={handleChange}
-											onBlur={handleBlur}
 											placeholder={"rating..."}
 										/>
 									</fieldset>
@@ -148,26 +139,18 @@ const NewItemForm = () => {
 									<fieldset>
 										<legend>Src {touched.src && errors.src && <span>{errors.src}</span>}</legend>
 
-										<input
+										<Field
 											type={"text"}
 											name={"src"}
-											value={values.src}
-											onChange={handleChange}
-											onBlur={handleBlur}
-											placeholder={"src..."}
-										/>
+											placeholder={"src..."} />
 									</fieldset>
 
 									<fieldset>
 										<legend>Alt {touched.alt && errors.alt && <span>{errors.alt}</span>}</legend>
-										<input
+										<Field
 											type={"text"}
 											name={"alt"}
-											value={values.alt}
-											onChange={handleChange}
-											onBlur={handleBlur}
-											placeholder={"alt..."}
-										/>
+											placeholder={"alt..."} />
 									</fieldset>
 								</div>
 							</div>
@@ -177,7 +160,7 @@ const NewItemForm = () => {
 								<input type={"reset"} value={"RESET"} onClick={handleReset} />
 							</div>
 						</fieldset>
-					</form>
+					</Form>
 				);
 			}}
 		</Formik>

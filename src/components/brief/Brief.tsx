@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { deleteFetch } from "../../redux/slices/adminSlice";
 import EditItemForm from "../editItemForm/EditItemForm";
 import { useAppDispatch } from "../../redux/hooks";
-import { T_SingleItem } from "../../redux/slices/types";
+import { T_SingleItem } from "../../types/types";
 
 type T_BriefProps = {
 	item: T_SingleItem;

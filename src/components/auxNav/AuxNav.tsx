@@ -4,7 +4,6 @@ import CategoriesPanel from "../categoriesPanel/CategoriesPanel.tsx";
 
 const AuxNav = () => {
 
-
 	return (
 		<nav className={"AuxNav"}>
 			<CategoriesPanel />

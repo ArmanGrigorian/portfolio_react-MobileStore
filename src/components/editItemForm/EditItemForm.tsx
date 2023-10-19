@@ -1,13 +1,31 @@
 import "./EditItemForm.scss";
-import { forwardRef, FormEvent, ChangeEvent } from "react";
-import { Formik } from "formik";
+import { forwardRef, FormEvent, FC } from "react";
+import { Formik, Form, Field } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
 import { dateToNumber, numberToDate } from "../../utilities/dateRevealer";
 import { putFetch } from "../../redux/slices/adminSlice";
 import { useAppDispatch } from "../../redux/hooks";
+import { T_initialValues } from "../../types/types"; 
 
-const EditItemForm = forwardRef(({ item }, editDialogRef) => {
+type T_EditItemFormProps = {
+	item : T_initialValues
+}
+
+const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRef) => {
 	const dispatch = useAppDispatch();
+
+	const initialValues: T_initialValues = {
+		brand: item.brand,
+		model: item.model,
+		price: item.price,
+		count: item.count,
+		isDiscounted: item.isDiscounted,
+		discountPercent: item.discountPercent,
+		release: numberToDate(item.release),
+		rating: item.rating,
+		src: item.src,
+		alt: item.alt,
+	};
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -32,25 +50,11 @@ const EditItemForm = forwardRef(({ item }, editDialogRef) => {
 	}
 
 	return (
-		<Formik
-			initialValues={{
-				brand: item.brand,
-				model: item.model,
-				price: item.price,
-				count: item.count,
-				isDiscounted: item.isDiscounted,
-				discountPercent: item.discountPercent,
-				release: numberToDate(item.release),
-				rating: item.rating,
-				src: item.src,
-				alt: item.alt,
-			}}
-			validateOnBlur
-			validationSchema={newItemValidation}>
-			{({ values, errors, touched, handleChange, handleBlur, handleReset }) => {
+		<Formik initialValues={initialValues} validateOnBlur validationSchema={newItemValidation}>
+			{({ errors, touched, handleReset }) => {
 				return (
 					<dialog open={false} ref={editDialogRef} className={"EditItemForm"}>
-						<form onSubmit={handleSubmit}>
+						<Form onSubmit={handleSubmit}>
 							<fieldset>
 								<legend>{`${item.brand} ${item.model}`}</legend>
 								<input type="button" value={"X"} onClick={() => editDialogRef.current.close()} />
@@ -61,14 +65,10 @@ const EditItemForm = forwardRef(({ item }, editDialogRef) => {
 											<legend>
 												Brand {touched.brand && errors.brand && <span>{errors.brand}</span>}
 											</legend>
-											<input
+											<Field
 												type={"text"}
 												name={"brand"}
-												value={values.brand}
-												onChange={handleChange}
-												onBlur={handleBlur}
-												placeholder={"brand..."}
-											/>
+												placeholder={"brand..."} />
 										</fieldset>
 
 										<fieldset>
@@ -76,14 +76,10 @@ const EditItemForm = forwardRef(({ item }, editDialogRef) => {
 												Model {touched.model && errors.model && <span>{errors.model}</span>}
 											</legend>
 
-											<input
+											<Field
 												type={"text"}
 												name={"model"}
-												value={values.model}
-												onChange={handleChange}
-												onBlur={handleBlur}
-												placeholder={"model..."}
-											/>
+												placeholder={"model..."} />
 										</fieldset>
 
 										<fieldset>
@@ -91,14 +87,10 @@ const EditItemForm = forwardRef(({ item }, editDialogRef) => {
 												Price {touched.price && errors.price && <span>{errors.price}</span>}
 											</legend>
 
-											<input
+											<Field
 												type={"number"}
 												name={"price"}
-												value={values.price}
-												onChange={handleChange}
-												onBlur={handleBlur}
-												placeholder={"price..."}
-											/>
+												placeholder={"price..."} />
 										</fieldset>
 
 										<fieldset>
@@ -106,13 +98,16 @@ const EditItemForm = forwardRef(({ item }, editDialogRef) => {
 												<label htmlFor={"isDiscounted"}>Discount</label>
 											</legend>
 
-											<input type={"checkbox"} name={"isDiscounted"} id={"isDiscounted"} />
+											<Field
+												type={"checkbox"}
+												name={"isDiscounted"}
+												id={"isDiscounted"} />
 
-											<input
+											<Field
 												type={"number"}
+												name={"discountPercent"}
 												className={"EditItemForm__discountPercent"}
 												defaultValue={0}
-												name={"discountPercent"}
 												placeholder={"percent..."}
 											/>
 										</fieldset>
@@ -123,14 +118,7 @@ const EditItemForm = forwardRef(({ item }, editDialogRef) => {
 											<legend>
 												Release {touched.release && errors.release && <span>{errors.release}</span>}
 											</legend>
-											<input
-												type={"date"}
-												name={"release"}
-												value={values.release}
-												onChange={handleChange}
-												onBlur={handleBlur}
-												placeholder={"20230101"}
-											/>
+											<Field type={"date"} name={"release"} placeholder={"20240101"} />
 										</fieldset>
 
 										<fieldset>
@@ -138,39 +126,18 @@ const EditItemForm = forwardRef(({ item }, editDialogRef) => {
 												Rating {touched.rating && errors.rating && <span>{errors.rating}</span>}
 											</legend>
 
-											<input
-												type={"number"}
-												name={"rating"}
-												value={values.rating}
-												onChange={handleChange}
-												onBlur={handleBlur}
-												placeholder={"rating..."}
-											/>
+											<Field type={"number"} name={"rating"} placeholder={"rating..."} />
 										</fieldset>
 
 										<fieldset>
 											<legend>Src {touched.src && errors.src && <span>{errors.src}</span>}</legend>
 
-											<input
-												type={"text"}
-												name={"src"}
-												value={values.src}
-												onChange={handleChange}
-												onBlur={handleBlur}
-												placeholder={"src..."}
-											/>
+											<Field type={"text"} name={"src"} placeholder={"src..."} />
 										</fieldset>
 
 										<fieldset>
 											<legend>Alt {touched.alt && errors.alt && <span>{errors.alt}</span>}</legend>
-											<input
-												type={"text"}
-												name={"alt"}
-												value={values.alt}
-												onChange={handleChange}
-												onBlur={handleBlur}
-												placeholder={"alt..."}
-											/>
+											<Field type={"text"} name={"alt"} placeholder={"alt..."} />
 										</fieldset>
 									</div>
 								</div>
@@ -180,7 +147,7 @@ const EditItemForm = forwardRef(({ item }, editDialogRef) => {
 									<input type={"reset"} value={"RESET"} onClick={handleReset} />
 								</div>
 							</fieldset>
-						</form>
+						</Form>
 					</dialog>
 				);
 			}}
