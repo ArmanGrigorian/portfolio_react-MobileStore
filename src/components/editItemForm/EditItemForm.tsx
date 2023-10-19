@@ -65,21 +65,16 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 
 								<div>
 									<div className={"EditItemForm__left"}>
-										<fieldset>
-											<legend>
-												Brand <ErrorMessage name={"brand"} component={"span"} />
-											</legend>
-											<Field type={"text"} name={"brand"} placeholder={"brand..."} />
-										</fieldset>
-
-										<fieldset>
-											<legend>
-												Model <ErrorMessage name={"model"} component={"span"} />
-											</legend>
-
-											<Field type={"text"} name={"model"} placeholder={"model..."} />
-										</fieldset>
-
+										{["brand", "model"].map((category) => {
+											return (
+												<fieldset>
+													<legend>
+														Brand <ErrorMessage name={category} component={"span"} />
+													</legend>
+													<Field type={"text"} name={category} placeholder={`${category}...`} />
+												</fieldset>
+											);
+										})}
 										<fieldset>
 											<legend>
 												Price <ErrorMessage name={"price"} component={"span"} />
@@ -123,20 +118,16 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 											<Field type={"number"} name={"rating"} placeholder={"rating..."} />
 										</fieldset>
 
-										<fieldset>
-											<legend>
-												Src <ErrorMessage name={"src"} component={"span"} />
-											</legend>
-
-											<Field type={"text"} name={"src"} placeholder={"src..."} />
-										</fieldset>
-
-										<fieldset>
-											<legend>
-												Alt <ErrorMessage name={"alt"} component={"span"} />
-											</legend>
-											<Field type={"text"} name={"alt"} placeholder={"alt..."} />
-										</fieldset>
+										{["src", "alt"].map((category) => {
+											return (
+												<fieldset>
+													<legend>
+														Brand <ErrorMessage name={category} component={"span"} />
+													</legend>
+													<Field type={"text"} name={category} placeholder={`${category}...`} />
+												</fieldset>
+											);
+										})}
 									</div>
 								</div>
 

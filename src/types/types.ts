@@ -37,6 +37,7 @@ export type T_initialValues = {
 export interface I_ProductsSlice {
 	categories: string[];
 	activeCategory: string;
+	sortOptions: [string, string][],
 	params: T_Params;
 	storeItems: [] | T_SingleItem[];
 	cartItems: [] | T_SingleItem[];

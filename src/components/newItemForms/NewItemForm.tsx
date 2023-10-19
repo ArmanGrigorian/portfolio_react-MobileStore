@@ -25,7 +25,6 @@ const NewItemForm = () => {
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
-
 		const form = e.target as HTMLFormElement;
 
 		const newItem: T_initialValues = {
@@ -70,20 +69,16 @@ const NewItemForm = () => {
 
 							<div>
 								<div className={"NewItemForm__left"}>
-									<fieldset>
-										<legend>
-											Brand <ErrorMessage name={"brand"} component={"span"} />
-										</legend>
-										<Field type={"text"} name={"brand"} placeholder={"brand..."} />
-									</fieldset>
-
-									<fieldset>
-										<legend>
-											Model <ErrorMessage name={"model"} component={"span"} />
-										</legend>
-
-										<Field type={"text"} name={"model"} placeholder={"model..."} />
-									</fieldset>
+									{["brand", "model"].map((category) => {
+										return (
+											<fieldset>
+												<legend>
+													Brand <ErrorMessage name={category} component={"span"} />
+												</legend>
+												<Field type={"text"} name={category} placeholder={`${category}...`} />
+											</fieldset>
+										);
+									})}
 
 									<fieldset>
 										<legend>
@@ -127,21 +122,17 @@ const NewItemForm = () => {
 										<Field type={"number"} name={"rating"} placeholder={"rating..."} />
 									</fieldset>
 
-									<fieldset>
-										<legend>
-											Src <ErrorMessage name={"src"} component={"span"} />
-										</legend>
+									{["src", "alt"].map((category) => {
+										return (
+											<fieldset>
+												<legend>
+													Src <ErrorMessage name={category} component={"span"} />
+												</legend>
 
-										<Field type={"text"} name={"src"} placeholder={"src..."} />
-									</fieldset>
-
-									<fieldset>
-										<legend>
-											Alt
-											<ErrorMessage name={"alt"} component={"span"} />
-										</legend>
-										<Field type={"text"} name={"alt"} placeholder={"alt..."} />
-									</fieldset>
+												<Field type={"text"} name={category} placeholder={`${category}...`} />
+											</fieldset>
+										);
+									})}
 								</div>
 							</div>
 

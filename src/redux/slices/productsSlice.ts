@@ -5,6 +5,16 @@ import { I_ProductsSlice, T_Params, T_SingleItem } from "../../types/types";
 const initialState: I_ProductsSlice = {
 	categories: ["All", "Apple", "Samsung", "Xiaomi", "Nokia"],
 	activeCategory: "all",
+	sortOptions: [
+		["price asc", "Price ( Low - High )"],
+		["price desc", "Price ( High - Low )"],
+		["model desc", "Name ( A - Z )"],
+		["model asc", "Name ( Z - A )"],
+		["release asc", "Release ( old first )"],
+		["release desc", "Release ( new first )"],
+		["rating asc", "Rating ( from lowest )"],
+		["rating desc", "Rating ( from highest )"],
+	],
 	params: {
 		param1: "1",
 		param2: "sortBy",

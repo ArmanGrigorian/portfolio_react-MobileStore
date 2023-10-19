@@ -4,7 +4,7 @@ import { setParams, separateFetch } from "../../redux/slices/productsSlice.ts";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
 
 const SortPanel = () => {
-	const params = useAppSelector((state) => state.products.params);
+	const {params, sortOptions} = useAppSelector((state) => state.products);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
@@ -27,14 +27,11 @@ const SortPanel = () => {
 					}),
 				);
 			}}>
-			<option value={"price asc"}>Price &#40; Low - High &#41;</option>
-			<option value={"price desc"}>Price &#40; High - Low &#41;</option>
-			<option value={"model desc"}>Name &#40; A - Z &#41;</option>
-			<option value={"model asc"}>Name &#40; Z - A &#41;</option>
-			<option value={"release asc"}>Release &#40; old first &#41;</option>
-			<option value={"release desc"}>Release &#40; new first &#41;</option>
-			<option value={"rating asc"}>Rating &#40; from lowest &#41;</option>
-			<option value={"rating desc"}>Rating &#40; from highest &#41;</option>
+			{
+				sortOptions.map((option) => {
+					return <option value={option[0]}>{option[1]}</option>
+				})
+			}
 		</select>
 	);
 };
