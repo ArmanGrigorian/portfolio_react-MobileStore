@@ -5,7 +5,7 @@ import { newItemValidation } from "../schemas/newItemSchema";
 import { dateToNumber, numberToDate } from "../../utilities/dateRevealer";
 import { postFetch } from "../../redux/slices/adminSlice";
 import { useAppDispatch } from "../../redux/hooks";
-import { T_initialValues } from "../../types/types";
+import { T_SingleItem, T_initialValues } from "../../types/types";
 
 const initialValues: T_initialValues = {
 	brand: "",
@@ -41,8 +41,19 @@ const NewItemForm = () => {
 			alt: form.alt.value,
 		};
 
-		dispatch(postFetch(newItem));
-		form.reset();
+		const allItems = JSON.parse(localStorage.getItem("allItems"));
+
+		const addRequirement = allItems.some((item: T_SingleItem) => {
+			return (
+				item.brand.toLowerCase() === newItem.brand.toLowerCase() &&
+				item.model.toLowerCase() === newItem.model.toLowerCase()
+			);
+		});
+
+		if (!addRequirement) {
+			dispatch(postFetch(newItem));
+			form.reset();
+		}
 	}
 
 	return (
@@ -94,7 +105,6 @@ const NewItemForm = () => {
 										<Field
 											type={"number"}
 											className={"NewItemForm__discountPercent"}
-											defaultValue={0}
 											name={"discountPercent"}
 											placeholder={"percent..."}
 										/>
@@ -106,12 +116,7 @@ const NewItemForm = () => {
 										<legend>
 											Release <ErrorMessage name={"release"} component={"span"} />
 										</legend>
-										<Field
-											type={"date"}
-											name={"release"}
-											defaultValue={20240101}
-											placeholder={"20240101"}
-										/>
+										<Field type={"date"} name={"release"} placeholder={"20240101"} />
 									</fieldset>
 
 									<fieldset>

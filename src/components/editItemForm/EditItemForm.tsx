@@ -102,7 +102,6 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 												type={"number"}
 												name={"discountPercent"}
 												className={"EditItemForm__discountPercent"}
-												defaultValue={0}
 												placeholder={"percent..."}
 											/>
 										</fieldset>
