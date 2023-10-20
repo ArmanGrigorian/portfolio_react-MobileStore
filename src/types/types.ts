@@ -2,7 +2,6 @@ export enum PATH {
 	HOME = "/",
 	ADMIN = "/admin",
 	CART = "/cart",
-	SINGLE_ITEM = "/products/",
 	MATRIX = "https://www.youtube.com/watch?v=r_O3k-RpV2c",
 }
 

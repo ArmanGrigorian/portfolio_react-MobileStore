@@ -5,7 +5,7 @@ import { DiscountIcon } from "../svgs/DiscountIcon.tsx";
 import { discounter } from "../../utilities/discounter.ts";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks.ts";
-import { PATH, T_SingleItem } from "../../types/types.ts";
+import { T_SingleItem } from "../../types/types.ts";
 
 type T_StoreItemProps = {
 	item: T_SingleItem;
@@ -20,7 +20,7 @@ const StoreItem: FC<T_StoreItemProps> = ({ item }) => {
 			<figcaption>{item.brand}</figcaption>
 			<p>{item.model}</p>
 
-			<Link to={PATH.SINGLE_ITEM + item.id}>
+			<Link to={"/products/" + item.id}>
 				<img src={item.src} alt={item.alt} />
 			</Link>
 
