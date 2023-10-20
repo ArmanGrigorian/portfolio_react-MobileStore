@@ -1,6 +1,6 @@
 import "./NewItemForm.scss";
 import { FormEvent } from "react";
-import { Formik, Form, Field, FormikHelpers, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
 import { dateToNumber, numberToDate } from "../../utilities/dateRevealer";
 import { postFetch } from "../../redux/slices/adminSlice";

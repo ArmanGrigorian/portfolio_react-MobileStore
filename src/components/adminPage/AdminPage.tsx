@@ -1,10 +1,8 @@
 import "./AdminPage.scss";
 import { useEffect } from "react";
 import { allItemsFetch } from "../../redux/slices/adminSlice.ts";
-import Brief from "../brief/Brief";
-import SearchBar from "../search/SearchBar";
-import NewItemForm from "../newItemForms/NewItemForm.tsx";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
+import {Brief, SearchBar, NewItemForm} from "../index.ts";
 
 const AdminPage = () => {
 	const { login, allItems } = useAppSelector((state) => state.admin);

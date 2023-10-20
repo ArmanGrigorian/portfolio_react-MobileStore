@@ -1,9 +1,6 @@
 import "./StorePage.scss";
-import StoreItem from "../storeItem/StoreItem.tsx";
-import ItemSkeleton from "../skeleton/ItemSkeleton.tsx";
-import Pagination from "../pagination/Pagination.tsx";
 import { useAppSelector } from "../../redux/hooks.ts";
-import AuxNav from "../auxNav/AuxNav.tsx";
+import { StoreItem, ItemSkeleton, Pagination, AuxNav } from "../index.ts";
 
 const StorePage = () => {
 	const { isLoading, storeItems } = useAppSelector((state) => state.products);

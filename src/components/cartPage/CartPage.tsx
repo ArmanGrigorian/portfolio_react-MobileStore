@@ -2,11 +2,9 @@ import "./CartPage.scss";
 import CartItem from "../cartItem/CartItem";
 import { clearCart } from "../../redux/slices/productsSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { RootState } from "../../redux/store";
 
 const CartPage = () => {
-	const cartItems = useAppSelector((state: RootState) => state.products.cartItems);
-
+	const cartItems = useAppSelector((state) => state.products.cartItems);
 	const dispatch = useAppDispatch();
 
 	const totalPrice = cartItems?.reduce((acc, val) => {

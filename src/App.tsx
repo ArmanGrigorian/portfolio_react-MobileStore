@@ -1,10 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import MainLayout from "./components/layouts/MainLayout.tsx";
-import ErrorLayout from "./components/layouts/errorLayout/ErrorLayout.tsx";
-import StorePage from "./components/storePage/StorePage.tsx";
-import CartPage from "./components/cartPage/CartPage.tsx";
-import AdminPage from "./components/adminPage/AdminPage.tsx";
-import SingleItem from "./components/singleItem/SingleItem.tsx";
+import { MainLayout, ErrorLayout } from "./components/layouts/index.ts";
+import { StorePage, CartPage, AdminPage, SingleItem } from "./components/index.ts";
 import { PATH } from "./types/types.ts";
 
 const App = () => {

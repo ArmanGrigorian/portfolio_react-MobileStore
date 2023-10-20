@@ -1,7 +1,5 @@
 import "./ErrorLayout.scss";
-import ErrorHeader from "../../errorPage/ErrorHeader.tsx";
-import ErrorPage from "../../errorPage/ErrorPage.tsx";
-import ErrorFooter from "../../errorPage/ErrorFooter.tsx";
+import { ErrorHeader, ErrorPage, ErrorFooter } from "../../errorPage/index.ts";
 
 const ErrorLayout = () => {
 	return (
