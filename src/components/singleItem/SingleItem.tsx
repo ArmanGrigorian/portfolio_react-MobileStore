@@ -1,14 +1,13 @@
 import "./SingleItem.scss";
 import { useEffect } from "react";
-import { dataRevealer } from "../../utilities/dateRevealer";
-import { DownloadIcon, StarIcon } from "../svgs";
-import { addToCart, singleItemFetch } from "../../redux/slices/productsSlice";
-import Magnifier from "../magnifier/Magnifier";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { useNavigate, useParams } from "react-router-dom";
-import { allItemsFetch } from "../../redux/slices/adminSlice";
 import { PATH } from "../../types/types";
-
+import Magnifier from "../magnifier/Magnifier";
+import { DownloadIcon, StarIcon } from "../svgs";
+import { useNavigate, useParams } from "react-router-dom";
+import { dataRevealer } from "../../utilities/dateRevealer";
+import { allItemsFetch } from "../../redux/slices/adminSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { addToCart, singleItemFetch } from "../../redux/slices/productsSlice";
 
 const SingleItem = () => {
 	const currentItem = useAppSelector((state) => state.products.currentItem);
@@ -20,7 +19,7 @@ const SingleItem = () => {
 		dispatch(allItemsFetch());
 		if (id && Number(id) <= JSON.parse(localStorage.getItem("maxLength")!)) {
 			dispatch(singleItemFetch(id));
-		} else navigate({pathname: PATH.ERROR});
+		} else navigate({ pathname: PATH.ERROR });
 	}, [dispatch, id, navigate]);
 
 	return (
@@ -85,7 +84,10 @@ const SingleItem = () => {
 							<button type={"button"} onClick={() => dispatch(addToCart(currentItem))}>
 								ADD TO CART
 							</button>
-							<button type={"button"} className="SingleItem__downloadButton" title={`download image of ${currentItem.model}`}>
+							<button
+								type={"button"}
+								className="SingleItem__downloadButton"
+								title={`download image of ${currentItem.model}`}>
 								<a href={currentItem.src} download={`${currentItem.model}`}>
 									<DownloadIcon size={18} />
 								</a>

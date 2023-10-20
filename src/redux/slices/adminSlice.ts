@@ -1,5 +1,5 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { productsAPI } from "../../api/api";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { I_AdminSlice, T_SingleItem , T_initialValues} from "../../types/types";
 
 const initialState: I_AdminSlice = {

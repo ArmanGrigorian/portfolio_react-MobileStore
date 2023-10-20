@@ -1,8 +1,8 @@
 import "./SearchBar.scss";
 import { ChangeEvent } from "react";
 import { SearchIcon } from "../svgs";
-import { certainItemFetch, setSearchValue } from "../../redux/slices/adminSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { certainItemFetch, setSearchValue } from "../../redux/slices/adminSlice";
 
 const SearchBar = () => {
 	const searchValue = useAppSelector((state) => state.admin.searchValue);

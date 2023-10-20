@@ -1,7 +1,7 @@
 import "./SortPanel.scss";
 import { useEffect, ChangeEvent } from "react";
-import { setParams, separateFetch } from "../../redux/slices/productsSlice.ts";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
+import { setParams, separateFetch } from "../../redux/slices/productsSlice.ts";
 
 const SortPanel = () => {
 	const { params, sortOptions } = useAppSelector((state) => state.products);

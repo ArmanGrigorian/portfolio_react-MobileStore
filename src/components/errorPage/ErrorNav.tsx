@@ -1,5 +1,5 @@
-import { PATH } from "../../types/types";
 import "../layouts/errorLayout/ErrorLayout.scss";
+import { PATH } from "../../types/types";
 import { NavLink } from "react-router-dom";
 
 const ErrorNav = () => {

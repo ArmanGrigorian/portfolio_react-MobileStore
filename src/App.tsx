@@ -1,12 +1,17 @@
-import { Routes, Route } from "react-router-dom";
+import {
+	Route,
+	RouterProvider,
+	createBrowserRouter,
+	createRoutesFromElements,
+} from "react-router-dom";
 import { MainLayout, ErrorLayout } from "./components/layouts/index.ts";
 import { StorePage, CartPage, AdminPage, SingleItem } from "./components/index.ts";
 import { PATH } from "./types/types.ts";
 
 const App = () => {
-	return (
-		<>
-			<Routes>
+	const router = createBrowserRouter(
+		createRoutesFromElements(
+			<>
 				<Route path={PATH.HOME} element={<MainLayout />}>
 					<Route index element={<StorePage />} />
 					<Route path={PATH.ADMIN} element={<AdminPage />} />
@@ -14,7 +19,13 @@ const App = () => {
 					<Route path={PATH.SINGLE_ITEM} element={<SingleItem />} />
 				</Route>
 				<Route path={PATH.ERROR} element={<ErrorLayout />} />
-			</Routes>
+			</>,
+		),
+	);
+
+	return (
+		<>
+			<RouterProvider router={router} />
 		</>
 	);
 };

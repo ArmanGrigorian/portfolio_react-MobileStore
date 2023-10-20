@@ -1,9 +1,9 @@
 import "./LoginModal.scss";
-import { checkLogPass, setLoginValue, setPasswordValue } from "../../redux/slices/adminSlice";
-import { useNavigate } from "react-router-dom";
-import { forwardRef, FormEvent, ChangeEvent } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { PATH } from "../../types/types";
+import { useNavigate } from "react-router-dom";
+import { FormEvent, forwardRef, ChangeEvent } from "react";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { checkLogPass, setLoginValue, setPasswordValue } from "../../redux/slices/adminSlice";
 
 const LoginModal = forwardRef((_, dialogRef) => {
 	const { login, password, loginValue, passwordValue } = useAppSelector((state) => state.admin);

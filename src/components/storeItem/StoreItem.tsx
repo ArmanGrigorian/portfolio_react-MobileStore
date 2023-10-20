@@ -1,11 +1,11 @@
 import "./StoreItem.scss";
 import { FC } from "react";
-import { addToCart } from "../../redux/slices/productsSlice.ts";
-import { DiscountIcon } from "../svgs/DiscountIcon.tsx";
-import { discounter } from "../../utilities/discounter.ts";
 import { Link } from "react-router-dom";
 import { useAppDispatch } from "../../redux/hooks.ts";
+import { DiscountIcon } from "../svgs/DiscountIcon.tsx";
 import { PATH, T_SingleItem } from "../../types/types.ts";
+import { discounter } from "../../utilities/discounter.ts";
+import { addToCart } from "../../redux/slices/productsSlice.ts";
 
 type T_StoreItemProps = {
 	item: T_SingleItem;
@@ -20,9 +20,11 @@ const StoreItem: FC<T_StoreItemProps> = ({ item }) => {
 			<figcaption>{item.brand}</figcaption>
 			<p>{item.model}</p>
 
-			<Link to={PATH.PRODUCTS + item.id} onClick={() => {
-				localStorage.setItem("singleItem", JSON.stringify(item))
-			}}>
+			<Link
+				to={PATH.PRODUCTS + item.id}
+				onClick={() => {
+					localStorage.setItem("singleItem", JSON.stringify(item));
+				}}>
 				<img src={item.src} alt={item.alt} />
 			</Link>
 

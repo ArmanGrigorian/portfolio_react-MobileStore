@@ -1,12 +1,8 @@
 import "./CategoriesPanel.scss";
 import { useEffect, MouseEvent } from "react";
-import {
-	setParams,
-	separateFetch,
-	setActiveCategory,
-} from "../../redux/slices/productsSlice.ts";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
 import { MenuIcon } from "../svgs/MenuIcon.tsx";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
+import { setParams, separateFetch, setActiveCategory } from "../../redux/slices/productsSlice.ts";
 
 const CategoriesPanel = () => {
 	const { categories, activeCategory, params } = useAppSelector((state) => state.products);
@@ -21,15 +17,15 @@ const CategoriesPanel = () => {
 
 		li.dataset.name === "all"
 			? dispatch(
-				setParams({
-					param1: "1",
-					param2: "sortBy",
-					param3: "release",
-					param4: "desc",
-					param5: "",
-					param6: "",
-				}),
-			)
+					setParams({
+						param1: "1",
+						param2: "sortBy",
+						param3: "release",
+						param4: "desc",
+						param5: "",
+						param6: "",
+					}),
+			  )
 			: dispatch(setParams({ ...params, param5: "filter", param6: li.dataset.name }));
 		li.dataset.name && dispatch(setActiveCategory(li.dataset.name));
 	}

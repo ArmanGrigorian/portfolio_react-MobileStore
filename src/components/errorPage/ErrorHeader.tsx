@@ -1,6 +1,6 @@
 import "../layouts/errorLayout/ErrorLayout.scss";
-import { Link } from "react-router-dom";
 import ErrorNav from "./ErrorNav.tsx";
+import { Link } from "react-router-dom";
 import { PATH } from "../../types/types";
 
 const ErrorHeader = () => {

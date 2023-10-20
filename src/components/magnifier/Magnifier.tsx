@@ -1,4 +1,4 @@
-import { useState, FC, MouseEvent } from "react";
+import { FC, useState, MouseEvent } from "react";
 
 type T_MagnifierProps = {
 	src: string;

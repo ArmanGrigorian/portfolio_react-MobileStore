@@ -1,6 +1,6 @@
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { productsAPI } from "../../api/api";
 import { I_ProductsSlice, T_Params, T_SingleItem } from "../../types/types";
+import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState: I_ProductsSlice = {
 	categories: ["All", "Apple", "Samsung", "Xiaomi", "Nokia"],
