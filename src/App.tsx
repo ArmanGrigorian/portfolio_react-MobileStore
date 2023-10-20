@@ -15,9 +15,9 @@ const App = () => {
 					<Route index element={<StorePage />} />
 					<Route path={PATH.ADMIN} element={<AdminPage />} />
 					<Route path={PATH.CART} element={<CartPage />} />
-					<Route path={"/products/:id"} element={<SingleItem />} />
+					<Route path={PATH.SINGLE_ITEM} element={<SingleItem />} />
 				</Route>
-				<Route path="*" element={<ErrorLayout />} />
+				<Route path={PATH.ERROR} element={<ErrorLayout />} />
 			</Routes>
 		</>
 	);
