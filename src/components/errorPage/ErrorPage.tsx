@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
 import "../layouts/errorLayout/ErrorLayout.scss";
+import { Link } from "react-router-dom";
+import { PATH } from "../../types/types";
 
 const ErrorPage = () => {
 	return (
@@ -12,10 +13,10 @@ const ErrorPage = () => {
 			</p>
 			<div>
 				<img src={"/img/pills.png"} alt={"pills"} />
-				<Link to={"https://www.youtube.com/watch?v=r_O3k-RpV2c"} target={"_blank"}>
+				<Link to={PATH.MATRIX} target={"_blank"}>
 					<button className={"ErrorPage__redPill"}></button>
 				</Link>
-				<Link to={"/"}>
+				<Link to={PATH.HOME}>
 					<button className={"ErrorPage__bluePill"}></button>
 				</Link>
 			</div>

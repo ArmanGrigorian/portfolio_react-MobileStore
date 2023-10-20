@@ -3,6 +3,7 @@ import { checkLogPass, setLoginValue, setPasswordValue } from "../../redux/slice
 import { useNavigate } from "react-router-dom";
 import { forwardRef, FormEvent, ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { PATH } from "../../types/types";
 
 const LoginModal = forwardRef((_, dialogRef) => {
 	const { login, password, loginValue, passwordValue } = useAppSelector((state) => state.admin);
@@ -15,7 +16,7 @@ const LoginModal = forwardRef((_, dialogRef) => {
 		dispatch(checkLogPass({ loginValue, passwordValue }));
 
 		if (loginValue === login && passwordValue === password) {
-			navigate("/admin");
+			navigate(PATH.ADMIN);
 			dialogRef.current.close();
 		}
 

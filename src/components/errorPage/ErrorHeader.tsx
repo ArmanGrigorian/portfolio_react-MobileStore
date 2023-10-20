@@ -1,12 +1,13 @@
 import "../layouts/errorLayout/ErrorLayout.scss";
 import { Link } from "react-router-dom";
 import ErrorNav from "./ErrorNav";
+import { PATH } from "../../types/types";
 
 const ErrorHeader = () => {
 	return (
 		<header className={"ErrorHeader"}>
 			<h1>
-				<Link to={"/"}>MobileStore</Link>
+				<Link to={PATH.HOME}>MobileStore</Link>
 			</h1>
 			<ErrorNav />
 		</header>

@@ -5,16 +5,17 @@ import StorePage from "./components/storePage/StorePage.tsx";
 import CartPage from "./components/cartPage/CartPage.tsx";
 import AdminPage from "./components/adminPage/AdminPage.tsx";
 import SingleItem from "./components/singleItem/SingleItem.tsx";
+import { PATH } from "./types/types.ts";
 
 const App = () => {
 	return (
 		<>
 			<Routes>
-				<Route path="/" element={<MainLayout />}>
+				<Route path={PATH.HOME} element={<MainLayout />}>
 					<Route index element={<StorePage />} />
-					<Route path="/admin" element={<AdminPage />} />
-					<Route path="/cart" element={<CartPage />} />
-					<Route path="/products/:id" element={<SingleItem />} />
+					<Route path={PATH.ADMIN} element={<AdminPage />} />
+					<Route path={PATH.CART} element={<CartPage />} />
+					<Route path={PATH.SINGLE_ITEM + ":id"} element={<SingleItem />} />
 				</Route>
 				<Route path="*" element={<ErrorLayout />} />
 			</Routes>
