@@ -6,7 +6,7 @@ import { PATH } from "../../types/types";
 import { Nav, LoginModal } from "../index.ts";
 
 const Header = () => {
-	const dialogRef = useRef(null)
+	const dialogRef = useRef<HTMLDialogElement | null>(null)
 
 	return (
 		<header className={"Header"}>
@@ -15,7 +15,7 @@ const Header = () => {
 					<Link to={PATH.HOME}>MobileStore</Link>
 				</h1>
 				<button onClick={() => {
-					dialogRef.current.showModal();
+					dialogRef.current && dialogRef.current.showModal();
 				}}>
 					<AdminIcon size={40} />
 				</button>

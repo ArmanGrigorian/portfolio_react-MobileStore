@@ -1,14 +1,15 @@
 import "./EditItemForm.scss";
-import { FC, FormEvent, forwardRef } from "react";
 import { useAppDispatch } from "../../redux/hooks";
-import { T_initialValues } from "../../types/types";
 import { putFetch } from "../../redux/slices/adminSlice";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
+import { FC, FormEvent, forwardRef, ForwardedRef } from "react";
+import { T_SingleItem, T_initialValues } from "../../types/types";
 import { dateToNumber, numberToDate } from "../../utilities/dateRevealer";
 
 type T_EditItemFormProps = {
-	item: T_initialValues;
+	item: T_SingleItem;
+	ref: ForwardedRef<HTMLDialogElement>;
 };
 
 const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRef) => {
@@ -46,7 +47,9 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 		};
 
 		dispatch(putFetch({ id: item.id, data: data }));
-		editDialogRef.current.close();
+		if (editDialogRef && "current" in editDialogRef && editDialogRef.current) {
+			editDialogRef.current.close();
+		}
 	}
 
 	return (
@@ -54,14 +57,23 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 			initialValues={initialValues}
 			validateOnChange={false}
 			validateOnBlur={true}
-			validationSchema={newItemValidation}>
+			validationSchema={newItemValidation}
+			onSubmit={handleSubmit}>
 			{({ handleReset }) => {
 				return (
 					<dialog open={false} ref={editDialogRef} className={"EditItemForm"}>
 						<Form onSubmit={handleSubmit}>
 							<fieldset>
 								<legend>{`${item.brand} ${item.model}`}</legend>
-								<input type="button" value={"X"} onClick={() => editDialogRef.current.close()} />
+								<input
+									type="button"
+									value={"X"}
+									onClick={() => {
+										if (editDialogRef && "current" in editDialogRef && editDialogRef.current) {
+											editDialogRef.current.close();
+										}
+									}}
+								/>
 
 								<div>
 									<div className={"EditItemForm__left"}>

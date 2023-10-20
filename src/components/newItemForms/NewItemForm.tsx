@@ -40,7 +40,7 @@ const NewItemForm = () => {
 			alt: form.alt.value,
 		};
 
-		const allItems = JSON.parse(localStorage.getItem("allItems"));
+		const allItems = JSON.parse(localStorage.getItem("allItems")!);
 
 		const addRequirement = allItems.some((item: T_SingleItem) => {
 			return (
@@ -60,7 +60,9 @@ const NewItemForm = () => {
 			initialValues={initialValues}
 			validateOnChange={false}
 			validateOnBlur={true}
-			validationSchema={newItemValidation}>
+			validationSchema={newItemValidation}
+			onSubmit={handleSubmit}
+		>
 			{({ isValid, handleReset }) => {
 				return (
 					<Form className={"NewItemForm"} onSubmit={handleSubmit}>

@@ -1,6 +1,7 @@
 import { productsAPI } from "../../api/api";
+import { allTrim } from "../../utilities/allTrim";
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { I_AdminSlice, T_SingleItem , T_initialValues} from "../../types/types";
+import { I_AdminSlice, T_SingleItem, T_initialValues } from "../../types/types";
 
 const initialState: I_AdminSlice = {
 	isLoading: true,
@@ -14,15 +15,6 @@ const initialState: I_AdminSlice = {
 };
 
 export const allItemsFetch = createAsyncThunk("admin/allItemsFetch", async () => {
-	try {
-		const { data } = await productsAPI.getAllProducts();
-		return data;
-	} catch (err) {
-		console.log(err);
-	}
-});
-
-export const certainItemFetch = createAsyncThunk("admin/certainItemFetch", async () => {
 	try {
 		const { data } = await productsAPI.getAllProducts();
 		return data;
@@ -90,6 +82,22 @@ const adminSlice = createSlice({
 			state.password = action.payload;
 		},
 
+		searchItem: (state) => {
+			if (state.searchValue === "all") {
+				state.allItems = JSON.parse(localStorage.getItem("allItems")!);
+			} else {
+				state.allItems = state.allItems.filter((item: T_SingleItem) => {
+					if (
+						String(item.id) === String(state.searchValue) ||
+						String(allTrim(item.brand)) === String(allTrim(state.searchValue)) ||
+						String(allTrim(item.model)) === String(allTrim(state.searchValue))
+					) {
+						return item;
+					}
+				});
+			}
+		},
+
 		checkLogPass: (
 			state,
 			action: PayloadAction<{ loginValue: string; passwordValue: string }>,
@@ -113,25 +121,6 @@ const adminSlice = createSlice({
 			state.allItems = action.payload;
 		});
 		builder.addCase(allItemsFetch.rejected, (state): void => {
-			state.isLoading = false;
-		});
-		// Certain
-		builder.addCase(certainItemFetch.pending, (state): void => {
-			state.isLoading = true;
-		});
-		builder.addCase(certainItemFetch.fulfilled, (state, action): void => {
-			state.isLoading = false;
-			state.allItems = action.payload.filter((item: T_SingleItem) => {
-				if (
-					String(item.id).toLowerCase() === String(state.searchValue).toLowerCase() ||
-					String(item.brand).toLowerCase() === String(state.searchValue).toLowerCase() ||
-					String(item.model).toLowerCase() === String(state.searchValue).toLowerCase()
-				) {
-					return item;
-				}
-			});
-		});
-		builder.addCase(certainItemFetch.rejected, (state): void => {
 			state.isLoading = false;
 		});
 		// POST
@@ -165,6 +154,7 @@ export const {
 	setLogin,
 	setPassword,
 	checkLogPass,
+	searchItem,
 } = adminSlice.actions;
 
 export default adminSlice.reducer;

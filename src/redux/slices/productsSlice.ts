@@ -47,6 +47,7 @@ export const separateFetch = createAsyncThunk(
 			const all = await productsAPI.getAllProducts();
 			const maxLength = all.data.length;
 			localStorage.setItem("maxLength", JSON.stringify(maxLength));
+			localStorage.setItem("allItems", JSON.stringify(all.data));
 
 			const { data } = await productsAPI.getProductsBy(params);
 			return data;

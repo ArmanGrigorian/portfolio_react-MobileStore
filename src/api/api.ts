@@ -1,6 +1,7 @@
 import axios from "axios";
 import { T_Params, T_initialValues } from "../types/types";
 
+
 const instance = axios.create({
 	baseURL: "https://64d772272a017531bc134033.mockapi.io",
 });

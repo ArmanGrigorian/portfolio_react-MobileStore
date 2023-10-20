@@ -17,15 +17,15 @@ const CategoriesPanel = () => {
 
 		li.dataset.name === "all"
 			? dispatch(
-					setParams({
-						param1: "1",
-						param2: "sortBy",
-						param3: "release",
-						param4: "desc",
-						param5: "",
-						param6: "",
-					}),
-			  )
+				setParams({
+					param1: "1",
+					param2: "sortBy",
+					param3: "release",
+					param4: "desc",
+					param5: "",
+					param6: "",
+				}),
+			)
 			: dispatch(setParams({ ...params, param5: "filter", param6: li.dataset.name }));
 		li.dataset.name && dispatch(setActiveCategory(li.dataset.name));
 	}

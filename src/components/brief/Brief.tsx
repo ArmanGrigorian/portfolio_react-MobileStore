@@ -11,7 +11,7 @@ type T_BriefProps = {
 
 const Brief = ({ item }: T_BriefProps) => {
 	const dispatch = useAppDispatch();
-	const editDialogRef = useRef(null);
+	const editDialogRef = useRef<HTMLDialogElement | null>(null);
 
 	return (
 		<>
@@ -20,7 +20,9 @@ const Brief = ({ item }: T_BriefProps) => {
 				<h4>{item.brand}</h4>
 				<p>{item.model}</p>
 				<div>
-					<button onClick={() => editDialogRef.current.showModal()}>EDIT</button>
+					<button onClick={() => editDialogRef.current && editDialogRef.current.showModal()}>
+						EDIT
+					</button>
 					<button onClick={() => dispatch(deleteFetch(item.id))}>DELETE</button>
 				</div>
 			</div>

@@ -1,11 +1,11 @@
 import "./LoginModal.scss";
 import { PATH } from "../../types/types";
 import { useNavigate } from "react-router-dom";
-import { FormEvent, forwardRef, ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { FormEvent, forwardRef, ChangeEvent, ForwardedRef } from "react";
 import { checkLogPass, setLoginValue, setPasswordValue } from "../../redux/slices/adminSlice";
 
-const LoginModal = forwardRef((_, dialogRef) => {
+const LoginModal = forwardRef((_, dialogRef: ForwardedRef<HTMLDialogElement>) => {
 	const { login, password, loginValue, passwordValue } = useAppSelector((state) => state.admin);
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
@@ -17,7 +17,9 @@ const LoginModal = forwardRef((_, dialogRef) => {
 
 		if (loginValue === login && passwordValue === password) {
 			navigate({ pathname: PATH.ADMIN });
-			dialogRef.current.close();
+			if (dialogRef && "current" in dialogRef && dialogRef.current) {
+				dialogRef.current.close();
+			}
 		}
 
 		dispatch(setLoginValue(""));
@@ -33,7 +35,9 @@ const LoginModal = forwardRef((_, dialogRef) => {
 					<button
 						className={"LoginModal__closeButton"}
 						onClick={() => {
-							dialogRef.current.close();
+							if (dialogRef && "current" in dialogRef && dialogRef.current) {
+								dialogRef.current.close();
+							}
 						}}
 						type={"button"}>
 						&#88;
