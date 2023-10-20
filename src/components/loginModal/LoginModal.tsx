@@ -16,7 +16,7 @@ const LoginModal = forwardRef((_, dialogRef) => {
 		dispatch(checkLogPass({ loginValue, passwordValue }));
 
 		if (loginValue === login && passwordValue === password) {
-			navigate(PATH.ADMIN);
+			navigate({ pathname: PATH.ADMIN });
 			dialogRef.current.close();
 		}
 

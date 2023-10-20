@@ -7,6 +7,7 @@ import Magnifier from "../magnifier/Magnifier";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useNavigate, useParams } from "react-router-dom";
 import { allItemsFetch } from "../../redux/slices/adminSlice";
+import { PATH } from "../../types/types";
 
 
 const SingleItem = () => {
@@ -19,7 +20,7 @@ const SingleItem = () => {
 		dispatch(allItemsFetch());
 		if (id && Number(id) <= JSON.parse(localStorage.getItem("maxLength")!)) {
 			dispatch(singleItemFetch(id));
-		} else navigate("*");
+		} else navigate({pathname: PATH.ERROR});
 	}, [dispatch, id, navigate]);
 
 	return (
