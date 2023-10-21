@@ -3,7 +3,7 @@ import Nav from "../nav/Nav";
 const Footer = () => {
 	return (
 		<footer>
-			<Nav />
+			<Nav showClock={false} />
 		</footer>
 	);
 };

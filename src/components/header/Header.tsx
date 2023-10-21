@@ -22,7 +22,7 @@ const Header = () => {
 				<LoginModal ref={dialogRef} />
 			</div>
 
-			<Nav />
+			<Nav showClock={true} />
 		</header>
 	);
 };
