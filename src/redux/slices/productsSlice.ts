@@ -73,6 +73,13 @@ const productsSlice = createSlice({
 
 	reducers: {
 		setParams: (state, action: PayloadAction<T_Params>): void => {
+			if (state.activeCategory === "all") {
+				const pagLength = JSON.parse(localStorage.getItem("allItems")!).length;
+				localStorage.setItem("pagLength", JSON.stringify(pagLength));
+			} else {
+				const pagLength = JSON.parse(localStorage.getItem("storeItems")!).length;
+				localStorage.setItem("pagLength", JSON.stringify(pagLength));
+			}
 			state.params = action.payload;
 		},
 
@@ -137,6 +144,7 @@ const productsSlice = createSlice({
 		builder.addCase(separateFetch.fulfilled, (state, action): void => {
 			state.isLoading = false;
 			localStorage.setItem("singleItem", JSON.stringify(state.currentItem));
+			localStorage.setItem("storeItems", JSON.stringify(action.payload))
 			state.storeItems = action.payload;
 		});
 		builder.addCase(separateFetch.rejected, (state): void => {

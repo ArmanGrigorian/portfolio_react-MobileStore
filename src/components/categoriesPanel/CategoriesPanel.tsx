@@ -14,9 +14,10 @@ const CategoriesPanel = () => {
 
 	function handleClick(e: MouseEvent<HTMLLIElement>) {
 		const li = e.target as HTMLLIElement;
+		li.dataset.name && dispatch(setActiveCategory(li.dataset.name));
 
-		li.dataset.name === "all"
-			? dispatch(
+		if (li.dataset.name === "all") {
+			dispatch(
 				setParams({
 					param1: "1",
 					param2: "sortBy",
@@ -25,9 +26,11 @@ const CategoriesPanel = () => {
 					param5: "",
 					param6: "",
 				}),
-			)
-			: dispatch(setParams({ ...params, param5: "filter", param6: li.dataset.name }));
-		li.dataset.name && dispatch(setActiveCategory(li.dataset.name));
+			);
+		} else {
+			dispatch(setParams({ ...params, param5: "filter", param6: li.dataset.name }));
+		}
+
 	}
 
 	return (
