@@ -10,8 +10,6 @@ const Pagination = () => {
 	const pagPageCount =
 		JSON.parse(localStorage.getItem("pagLength")!) / 8 ||
 		JSON.parse(localStorage.getItem("allItems")!).length / 8;
-	
-	console.log(pagPageCount)
 
 	return (
 		<ReactPaginate
@@ -27,7 +25,7 @@ const Pagination = () => {
 				)
 			}
 			pageRangeDisplayed={2}
-			pageCount={pagPageCount}
+			pageCount={Math.ceil(pagPageCount)}
 			previousLabel={"< prev page"}
 			renderOnZeroPageCount={null}
 		/>
