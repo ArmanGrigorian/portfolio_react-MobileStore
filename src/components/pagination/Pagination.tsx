@@ -7,9 +7,14 @@ const Pagination = () => {
 	const params = useAppSelector((state) => state.products.params);
 	const dispatch = useAppDispatch();
 
-	const pagPageCount =
-		JSON.parse(localStorage.getItem("pagLength")!) / 8 ||
-		JSON.parse(localStorage.getItem("allItems")!).length / 8;
+	let pagPageCount = null;
+	if (localStorage.getItem("pagLength")) {
+		pagPageCount = Math.ceil(JSON.parse(localStorage.getItem("pagLength")!) / 8);
+	} else if (localStorage.getItem("allItems")) {
+		pagPageCount = Math.ceil(JSON.parse(localStorage.getItem("allItems")!).length / 8);
+	} else {
+		pagPageCount = 40;
+	}
 
 	return (
 		<ReactPaginate
@@ -25,7 +30,7 @@ const Pagination = () => {
 				)
 			}
 			pageRangeDisplayed={2}
-			pageCount={Math.ceil(pagPageCount)}
+			pageCount={pagPageCount}
 			previousLabel={"< prev page"}
 			renderOnZeroPageCount={null}
 		/>

@@ -49,8 +49,8 @@ export const separateFetch = createAsyncThunk(
 			localStorage.setItem("maxLength", JSON.stringify(maxLength));
 			localStorage.setItem("allItems", JSON.stringify(all.data));
 
-			const { data } = await productsAPI.getProductsBy(params);
-			return data;
+			const response = await productsAPI.getProductsBy(params);
+			return response.data;
 		} catch (err) {
 			console.log(err);
 		}
