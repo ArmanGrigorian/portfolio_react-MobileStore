@@ -1,10 +1,10 @@
 import "./NewItemForm.scss";
 import { FormEvent } from "react";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { postFetch } from "../../redux/slices/adminSlice";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
 import { T_SingleItem, T_initialValues } from "../../types/types";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { postFetch, selectAllItems } from "../../redux/slices/adminSlice";
 import { dateToNumber, numberToDate } from "../../utilities/dateRevealer";
 
 const initialValues: T_initialValues = {
@@ -22,7 +22,7 @@ const initialValues: T_initialValues = {
 
 const NewItemForm = () => {
 	const dispatch = useAppDispatch();
-	const allItems = useAppSelector((state) => state.admin.allItems)
+	const allItems = useAppSelector(selectAllItems)
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();

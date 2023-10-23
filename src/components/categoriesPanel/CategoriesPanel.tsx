@@ -1,11 +1,16 @@
 import "./CategoriesPanel.scss";
+import {
+	setParams,
+	separateFetch,
+	setActiveCategory,
+	selectProducts,
+} from "../../redux/slices/productsSlice.ts";
 import { useEffect, MouseEvent } from "react";
 import { MenuIcon } from "../svgs/MenuIcon.tsx";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
-import { setParams, separateFetch, setActiveCategory } from "../../redux/slices/productsSlice.ts";
 
 const CategoriesPanel = () => {
-	const { categories, activeCategory, params } = useAppSelector((state) => state.products);
+	const { categories, activeCategory, params } = useAppSelector(selectProducts);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
@@ -30,7 +35,6 @@ const CategoriesPanel = () => {
 		} else {
 			dispatch(setParams({ ...params, param5: "filter", param6: li.dataset.name }));
 		}
-
 	}
 
 	return (

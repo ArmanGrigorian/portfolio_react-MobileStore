@@ -1,10 +1,10 @@
 import "./Clock.scss";
 import { useEffect } from "react";
-import { setTime } from "../../redux/slices/clockSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { selectTime, setTime } from "../../redux/slices/clockSlice";
 
 const Clock = () => {
-	const time = useAppSelector((state) => state.clock.time);
+	const time = useAppSelector(selectTime);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {

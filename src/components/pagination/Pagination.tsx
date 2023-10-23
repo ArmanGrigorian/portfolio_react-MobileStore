@@ -1,13 +1,14 @@
 import "./Pagination.scss";
 import ReactPaginate from "react-paginate";
-import { setParams } from "../../redux/slices/productsSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { selectParams, setParams } from "../../redux/slices/productsSlice";
 
 const Pagination = () => {
-	const params = useAppSelector((state) => state.products.params);
+	const params = useAppSelector(selectParams);
 	const dispatch = useAppDispatch();
 
-	let pagPageCount = null;
+	let pagPageCount = 40;
+	
 	if (localStorage.getItem("length")) {
 		pagPageCount = Math.ceil(JSON.parse(localStorage.getItem("length")!) / 8);
 	}

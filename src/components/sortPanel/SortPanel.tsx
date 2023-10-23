@@ -1,10 +1,10 @@
 import "./SortPanel.scss";
 import { useEffect, ChangeEvent } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
-import { setParams, separateFetch } from "../../redux/slices/productsSlice.ts";
+import { setParams, separateFetch, selectProducts } from "../../redux/slices/productsSlice.ts";
 
 const SortPanel = () => {
-	const { params, sortOptions } = useAppSelector((state) => state.products);
+	const { params, sortOptions } = useAppSelector(selectProducts);
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
@@ -28,7 +28,11 @@ const SortPanel = () => {
 				);
 			}}>
 			{sortOptions.map((option) => {
-				return <option key={option[0]} value={option[0]}>{option[1]}</option>;
+				return (
+					<option key={option[0]} value={option[0]}>
+						{option[1]}
+					</option>
+				);
 			})}
 		</select>
 	);

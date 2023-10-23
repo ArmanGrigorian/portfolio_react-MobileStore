@@ -1,3 +1,4 @@
+import { RootState } from "../store";
 import { productsAPI } from "../../api/api";
 import { I_ProductsSlice, T_Params, T_SingleItem } from "../../types/types";
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -39,14 +40,13 @@ const initialState: I_ProductsSlice = {
 	},
 };
 
-
 export const separateFetch = createAsyncThunk(
 	"products/separateFetch",
 	async (params: T_Params) => {
 		try {
 			const all = await productsAPI.getAllProducts();
 			const brand = await productsAPI.getProductsByCategory(params.param6);
-			localStorage.setItem("length", JSON.stringify(brand.data.length))
+			localStorage.setItem("length", JSON.stringify(brand.data.length));
 			localStorage.setItem("allItems", JSON.stringify(all.data));
 
 			const response = await productsAPI.getProductsBy(params);
@@ -145,10 +145,15 @@ const productsSlice = createSlice({
 		builder.addCase(separateFetch.rejected, (state, action): void => {
 			state.isPending = false;
 			state.storeItems = initialState.storeItems;
-			console.log(action.payload)
+			console.log(action.payload);
 		});
 	},
 });
+
+export const selectProducts = (state: RootState) => state.products;
+export const selectParams = (state: RootState) => state.products.params;
+export const selectCurrentItem = (state: RootState) => state.products.currentItem;
+export const selectCartItems = (state: RootState) => state.products.cartItems;
 
 export const {
 	setParams,

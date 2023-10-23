@@ -7,10 +7,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import { dataRevealer } from "../../utilities/dateRevealer";
 import { allItemsFetch } from "../../redux/slices/adminSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { addToCart, singleItemFetch } from "../../redux/slices/productsSlice";
+import { addToCart, selectCurrentItem, singleItemFetch } from "../../redux/slices/productsSlice";
 
 const SingleItem = () => {
-	const currentItem = useAppSelector((state) => state.products.currentItem);
+	const currentItem = useAppSelector(selectCurrentItem);
 	const dispatch = useAppDispatch();
 	const { id } = useParams();
 	const navigate = useNavigate();

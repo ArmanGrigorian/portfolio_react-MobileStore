@@ -1,3 +1,4 @@
+import { RootState } from "../store";
 import { productsAPI } from "../../api/api";
 import { allTrim } from "../../utilities/allTrim";
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -162,6 +163,10 @@ const adminSlice = createSlice({
 		});
 	},
 });
+
+export const selectAdmin = (state: RootState) => state.admin;
+export const selectAllItems = (state: RootState) => state.admin.allItems;
+export const selectSearchValue = (state: RootState) => state.admin.searchValue;
 
 export const {
 	setLoginValue,

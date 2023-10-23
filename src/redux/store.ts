@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
+import clockReducer from "./slices/clockSlice.ts"
 import adminReducer from "./slices/adminSlice.ts";
 import productsReducer from "./slices/productsSlice.ts";
-import clockReducer from "./slices/clockSlice.ts"
 
 export const store = configureStore({
 	reducer: {
@@ -11,5 +11,5 @@ export const store = configureStore({
 	},
 });
 
-export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export type RootState = ReturnType<typeof store.getState>;

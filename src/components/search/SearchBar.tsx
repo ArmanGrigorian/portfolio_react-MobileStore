@@ -2,10 +2,10 @@ import "./SearchBar.scss";
 import { ChangeEvent } from "react";
 import { SearchIcon } from "../svgs";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { searchItem, setSearchValue } from "../../redux/slices/adminSlice";
+import { searchItem, selectSearchValue, setSearchValue } from "../../redux/slices/adminSlice";
 
 const SearchBar = () => {
-	const searchValue = useAppSelector((state) => state.admin.searchValue);
+	const searchValue = useAppSelector(selectSearchValue);
 	const dispatch = useAppDispatch();
 
 	return (
