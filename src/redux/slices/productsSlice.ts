@@ -45,8 +45,8 @@ export const separateFetch = createAsyncThunk(
 	async (params: T_Params) => {
 		try {
 			const all = await productsAPI.getAllProducts();
-			const maxLength = all.data.length;
-			localStorage.setItem("maxLength", JSON.stringify(maxLength));
+			const brand = await productsAPI.getProductsByCategory(params.param6);
+			localStorage.setItem("length", JSON.stringify(brand.data.length))
 			localStorage.setItem("allItems", JSON.stringify(all.data));
 
 			const response = await productsAPI.getProductsBy(params);
@@ -73,13 +73,6 @@ const productsSlice = createSlice({
 
 	reducers: {
 		setParams: (state, action: PayloadAction<T_Params>): void => {
-			if (state.activeCategory === "all") {
-				const pagLength = JSON.parse(localStorage.getItem("allItems")!).length;
-				localStorage.setItem("pagLength", JSON.stringify(pagLength));
-			} else {
-				const pagLength = JSON.parse(localStorage.getItem("storeItems")!).length;
-				localStorage.setItem("pagLength", JSON.stringify(pagLength));
-			}
 			state.params = action.payload;
 		},
 
@@ -144,7 +137,6 @@ const productsSlice = createSlice({
 		builder.addCase(separateFetch.fulfilled, (state, action): void => {
 			state.isLoading = false;
 			localStorage.setItem("singleItem", JSON.stringify(state.currentItem));
-			localStorage.setItem("storeItems", JSON.stringify(action.payload))
 			state.storeItems = action.payload;
 		});
 		builder.addCase(separateFetch.rejected, (state): void => {

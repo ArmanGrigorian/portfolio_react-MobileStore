@@ -1,6 +1,6 @@
 import "./NewItemForm.scss";
 import { FormEvent } from "react";
-import { useAppDispatch } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { postFetch } from "../../redux/slices/adminSlice";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
@@ -22,6 +22,7 @@ const initialValues: T_initialValues = {
 
 const NewItemForm = () => {
 	const dispatch = useAppDispatch();
+	const allItems = useAppSelector((state) => state.admin.allItems)
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -39,8 +40,6 @@ const NewItemForm = () => {
 			src: form.src.value,
 			alt: form.alt.value,
 		};
-
-		const allItems = JSON.parse(localStorage.getItem("allItems")!);
 
 		const addRequirement = allItems.some((item: T_SingleItem) => {
 			return (

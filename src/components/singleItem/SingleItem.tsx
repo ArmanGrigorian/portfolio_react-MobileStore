@@ -17,7 +17,7 @@ const SingleItem = () => {
 
 	useEffect(() => {
 		dispatch(allItemsFetch());
-		if (id && Number(id) <= JSON.parse(localStorage.getItem("maxLength")!)) {
+		if (id && Number(id) <= JSON.parse(localStorage.getItem("allItems")!).length) {
 			dispatch(singleItemFetch(id));
 		} else navigate({ pathname: PATH.ERROR });
 	}, [dispatch, id, navigate]);

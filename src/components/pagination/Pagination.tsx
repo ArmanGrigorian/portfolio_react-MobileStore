@@ -8,12 +8,8 @@ const Pagination = () => {
 	const dispatch = useAppDispatch();
 
 	let pagPageCount = null;
-	if (localStorage.getItem("pagLength")) {
-		pagPageCount = Math.ceil(JSON.parse(localStorage.getItem("pagLength")!) / 8);
-	} else if (localStorage.getItem("allItems")) {
-		pagPageCount = Math.ceil(JSON.parse(localStorage.getItem("allItems")!).length / 8);
-	} else {
-		pagPageCount = 40;
+	if (localStorage.getItem("length")) {
+		pagPageCount = Math.ceil(JSON.parse(localStorage.getItem("length")!) / 8);
 	}
 
 	return (

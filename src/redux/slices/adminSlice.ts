@@ -116,7 +116,6 @@ const adminSlice = createSlice({
 		});
 		builder.addCase(allItemsFetch.fulfilled, (state, action): void => {
 			state.isLoading = false;
-			localStorage.setItem("maxLength", JSON.stringify(action.payload.length));
 			localStorage.setItem("allItems", JSON.stringify(action.payload));
 			state.allItems = action.payload;
 		});

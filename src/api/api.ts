@@ -1,7 +1,6 @@
 import axios from "axios";
 import { T_Params, T_initialValues } from "../types/types";
 
-
 const instance = axios.create({
 	baseURL: "https://64d772272a017531bc134033.mockapi.io",
 });
@@ -13,6 +12,10 @@ export const productsAPI = {
 
 	getSingleItem: (id: string) => {
 		return instance.get("/mobileStore/" + id);
+	},
+
+	getProductsByCategory: (brand: string = "") => {
+		return instance.get("/mobileStore?filter=" + brand);
 	},
 
 	getProductsBy: ({
