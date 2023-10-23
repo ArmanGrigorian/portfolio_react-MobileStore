@@ -23,7 +23,7 @@ const initialState: I_ProductsSlice = {
 	},
 	storeItems: [],
 	cartItems: [],
-	isLoading: true,
+	isPending: true,
 	currentItem: {
 		id: "",
 		brand: "",
@@ -118,29 +118,34 @@ const productsSlice = createSlice({
 	},
 
 	extraReducers: (builder) => {
-		// SINGLE_ITEM
+		// SINGLE_ITEM //////////////////////////////////////
 		builder.addCase(singleItemFetch.pending, (state) => {
-			state.isLoading = true;
+			state.isPending = true;
+			state.currentItem = initialState.currentItem;
 		});
 		builder.addCase(singleItemFetch.fulfilled, (state, action) => {
-			state.isLoading = false;
+			state.isPending = false;
 			localStorage.setItem("singleItem", JSON.stringify(action.payload));
 			state.currentItem = action.payload;
 		});
-		builder.addCase(singleItemFetch.rejected, (state) => {
-			state.isLoading = false;
+		builder.addCase(singleItemFetch.rejected, (state, action) => {
+			state.isPending = false;
+			state.currentItem = initialState.currentItem;
+			console.log(action.payload);
 		});
-		// SORT
+		// SORT /////////////////////////////////////////////////
 		builder.addCase(separateFetch.pending, (state): void => {
-			state.isLoading = true;
+			state.isPending = true;
 		});
 		builder.addCase(separateFetch.fulfilled, (state, action): void => {
-			state.isLoading = false;
+			state.isPending = false;
 			localStorage.setItem("singleItem", JSON.stringify(state.currentItem));
 			state.storeItems = action.payload;
 		});
-		builder.addCase(separateFetch.rejected, (state): void => {
-			state.isLoading = false;
+		builder.addCase(separateFetch.rejected, (state, action): void => {
+			state.isPending = false;
+			state.storeItems = initialState.storeItems;
+			console.log(action.payload)
 		});
 	},
 });

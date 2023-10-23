@@ -4,7 +4,7 @@ import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { I_AdminSlice, T_SingleItem, T_initialValues } from "../../types/types";
 
 const initialState: I_AdminSlice = {
-	isLoading: true,
+	isPending: true,
 	isAdmin: false,
 	login: "admin",
 	password: "admin",
@@ -110,38 +110,55 @@ const adminSlice = createSlice({
 	},
 
 	extraReducers: (builder) => {
-		// ALL
+		// ALL //////////////////////////////////////////////////
 		builder.addCase(allItemsFetch.pending, (state): void => {
-			state.isLoading = true;
+			state.isPending = true;
+			state.allItems = initialState.allItems;
 		});
 		builder.addCase(allItemsFetch.fulfilled, (state, action): void => {
-			state.isLoading = false;
+			state.isPending = false;
 			localStorage.setItem("allItems", JSON.stringify(action.payload));
 			state.allItems = action.payload;
 		});
-		builder.addCase(allItemsFetch.rejected, (state): void => {
-			state.isLoading = false;
+		builder.addCase(allItemsFetch.rejected, (state, action): void => {
+			state.isPending = false;
+			console.log(action.payload);
 		});
-		// POST
+		// POST /////////////////////////////////////////////////////
+		builder.addCase(postFetch.pending, (state): void => {
+			state.isPending = true;
+		});
 		builder.addCase(postFetch.fulfilled, (state, action): void => {
+			state.isPending = false;
 			state.allItems = action.payload;
 		});
-		builder.addCase(postFetch.rejected, (state): void => {
-			state.isLoading = false;
+		builder.addCase(postFetch.rejected, (state, action): void => {
+			state.isPending = false;
+			console.log(action.payload);
 		});
-		// PUT
+		// PUT ///////////////////////////////////////////////////////
+		builder.addCase(putFetch.pending, (state): void => {
+			state.isPending = true;
+		});
 		builder.addCase(putFetch.fulfilled, (state, action): void => {
+			state.isPending = false;
 			state.allItems = action.payload;
 		});
-		builder.addCase(putFetch.rejected, (state): void => {
-			state.isLoading = false;
+		builder.addCase(putFetch.rejected, (state, action): void => {
+			state.isPending = false;
+			console.log(action.payload);
 		});
-		// DELETE
+		// DELETE ///////////////////////////////////////////////////////
+		builder.addCase(deleteFetch.pending, (state): void => {
+			state.isPending = true;
+		});
 		builder.addCase(deleteFetch.fulfilled, (state, action): void => {
+			state.isPending = false;
 			state.allItems = action.payload;
 		});
-		builder.addCase(deleteFetch.rejected, (state): void => {
-			state.isLoading = false;
+		builder.addCase(deleteFetch.rejected, (state, action): void => {
+			state.isPending = false;
+			console.log(action.payload);
 		});
 	},
 });

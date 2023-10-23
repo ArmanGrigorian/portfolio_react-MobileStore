@@ -51,12 +51,12 @@ export interface I_ProductsSlice {
 	params: T_Params;
 	storeItems: [] | T_SingleItem[];
 	cartItems: [] | T_SingleItem[];
-	isLoading: boolean;
+	isPending: boolean;
 	currentItem: T_SingleItem;
 }
 
 export interface I_AdminSlice {
-	isLoading: boolean;
+	isPending: boolean;
 	isAdmin: boolean;
 	login: string;
 	password: string;
