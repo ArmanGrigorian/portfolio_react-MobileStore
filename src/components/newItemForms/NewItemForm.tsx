@@ -22,7 +22,7 @@ const initialValues: T_initialValues = {
 
 const NewItemForm = () => {
 	const dispatch = useAppDispatch();
-	const allItems = useAppSelector(selectAllItems)
+	const allItems = useAppSelector(selectAllItems);
 
 	function handleSubmit(e: FormEvent<HTMLFormElement>) {
 		e.preventDefault();
@@ -60,8 +60,7 @@ const NewItemForm = () => {
 			validateOnChange={false}
 			validateOnBlur={true}
 			validationSchema={newItemValidation}
-			onSubmit={handleSubmit}
-		>
+			onSubmit={handleSubmit}>
 			{({ isValid, handleReset }) => {
 				return (
 					<Form className={"NewItemForm"} onSubmit={handleSubmit}>
@@ -70,16 +69,19 @@ const NewItemForm = () => {
 
 							<div>
 								<div className={"NewItemForm__left"}>
-									{["brand", "model"].map((category) => {
-										return (
-											<fieldset key={crypto.randomUUID()}>
-												<legend>
-													{category} <ErrorMessage name={category} component={"span"} />
-												</legend>
-												<Field type={"text"} name={category} placeholder={`${category}...`} />
-											</fieldset>
-										);
-									})}
+									<fieldset>
+										<legend>
+											brand <ErrorMessage name={"brand"} component={"span"} />
+										</legend>
+										<Field type={"text"} name={"brand"} placeholder={"brand..."} />
+									</fieldset>
+
+									<fieldset>
+										<legend>
+											model <ErrorMessage name={"model"} component={"span"} />
+										</legend>
+										<Field type={"text"} name={"model"} placeholder={"model..."} />
+									</fieldset>
 
 									<fieldset>
 										<legend>
@@ -123,17 +125,19 @@ const NewItemForm = () => {
 										<Field type={"number"} name={"rating"} placeholder={"rating..."} />
 									</fieldset>
 
-									{["src", "alt"].map((category) => {
-										return (
-											<fieldset key={crypto.randomUUID()}>
-												<legend>
-													{category} <ErrorMessage name={category} component={"span"} />
-												</legend>
+									<fieldset>
+										<legend>
+											src <ErrorMessage name={"src"} component={"span"} />
+										</legend>
+										<Field type={"text"} name={"src"} placeholder={"src..."} />
+									</fieldset>
 
-												<Field type={"text"} name={category} placeholder={`${category}...`} />
-											</fieldset>
-										);
-									})}
+									<fieldset>
+										<legend>
+											alt <ErrorMessage name={"alt"} component={"span"} />
+										</legend>
+										<Field type={"text"} name={"alt"} placeholder={"alt..."} />
+									</fieldset>
 								</div>
 							</div>
 

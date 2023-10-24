@@ -77,16 +77,20 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 
 								<div>
 									<div className={"EditItemForm__left"}>
-										{["brand", "model"].map((category) => {
-											return (
-												<fieldset key={crypto.randomUUID()}>
-													<legend>
-														{category} <ErrorMessage name={category} component={"span"} />
-													</legend>
-													<Field type={"text"} name={category} placeholder={`${category}...`} />
-												</fieldset>
-											);
-										})}
+										<fieldset>
+											<legend>
+												brand <ErrorMessage name={"brand"} component={"span"} />
+											</legend>
+											<Field type={"text"} name={"brand"} placeholder={"brand..."} />
+										</fieldset>
+
+										<fieldset>
+											<legend>
+												model <ErrorMessage name={"model"} component={"span"} />
+											</legend>
+											<Field type={"text"} name={"model"} placeholder={"model..."} />
+										</fieldset>
+
 										<fieldset>
 											<legend>
 												Price <ErrorMessage name={"price"} component={"span"} />
@@ -130,16 +134,19 @@ const EditItemForm: FC<T_EditItemFormProps> = forwardRef(({ item }, editDialogRe
 											<Field type={"number"} name={"rating"} placeholder={"rating..."} />
 										</fieldset>
 
-										{["src", "alt"].map((category) => {
-											return (
-												<fieldset key={crypto.randomUUID()}>
-													<legend>
-														{category} <ErrorMessage name={category} component={"span"} />
-													</legend>
-													<Field type={"text"} name={category} placeholder={`${category}...`} />
-												</fieldset>
-											);
-										})}
+										<fieldset>
+											<legend>
+												src <ErrorMessage name={"src"} component={"span"} />
+											</legend>
+											<Field type={"text"} name={"src"} placeholder={"src..."} />
+										</fieldset>
+
+										<fieldset>
+											<legend>
+												alt <ErrorMessage name={"alt"} component={"span"} />
+											</legend>
+											<Field type={"text"} name={"alt"} placeholder={"alt..."} />
+										</fieldset>
 									</div>
 								</div>
 
