@@ -5,7 +5,6 @@ import Magnifier from "../magnifier/Magnifier";
 import { DownloadIcon, StarIcon } from "../svgs";
 import { dataRevealer } from "../../utilities/index.ts";
 import { useNavigate, useParams } from "react-router-dom";
-import { allItemsFetch } from "../../redux/slices/adminSlice";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { addToCart, selectCurrentItem, singleItemFetch } from "../../redux/slices/productsSlice";
 
@@ -16,7 +15,6 @@ const SingleItem = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		dispatch(allItemsFetch());
 		if (id && Number(id) <= JSON.parse(localStorage.getItem("allItems")!).length) {
 			dispatch(singleItemFetch(id));
 		} else navigate({ pathname: PATH.ERROR });
