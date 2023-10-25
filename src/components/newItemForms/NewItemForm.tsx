@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { dateToNumber, numberToDate } from "../../utilities/index.ts";
 import { postFetch, selectAllItems } from "../../redux/slices/adminSlice";
 
-const initialValues: T_initialValues = {
+const initialValues = {
 	brand: "",
 	model: "",
 	price: 0,
@@ -56,7 +56,7 @@ const NewItemForm = () => {
 
 	return (
 		<Formik
-			initialValues={initialValues}
+			initialValues={initialValues as FormEvent<HTMLFormElement> & T_initialValues}
 			validateOnChange={false}
 			validateOnBlur={true}
 			validationSchema={newItemValidation}

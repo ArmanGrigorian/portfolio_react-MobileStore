@@ -1,6 +1,6 @@
 import "./EditItemForm.scss";
 import { EditItemFormTypes } from "./types";
-import { FC, FormEvent, forwardRef} from "react";
+import { FC, FormEvent, forwardRef } from "react";
 import { useAppDispatch } from "../../redux/hooks";
 import { T_initialValues } from "../../types/types";
 import { putFetch } from "../../redux/slices/adminSlice";
@@ -8,11 +8,10 @@ import { Form, Field, Formik, ErrorMessage } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
 import { dateToNumber, numberToDate } from "../../utilities/index.ts";
 
-
 const EditItemForm: FC<EditItemFormTypes> = forwardRef(({ item }, editDialogRef) => {
 	const dispatch = useAppDispatch();
 
-	const initialValues: T_initialValues = {
+	const initialValues = {
 		brand: item.brand,
 		model: item.model,
 		price: item.price,
@@ -51,7 +50,7 @@ const EditItemForm: FC<EditItemFormTypes> = forwardRef(({ item }, editDialogRef)
 
 	return (
 		<Formik
-			initialValues={initialValues}
+			initialValues={initialValues as FormEvent<HTMLFormElement> & T_initialValues}
 			validateOnChange={false}
 			validateOnBlur={true}
 			validationSchema={newItemValidation}
