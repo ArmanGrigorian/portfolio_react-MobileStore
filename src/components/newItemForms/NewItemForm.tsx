@@ -4,8 +4,8 @@ import { Form, Field, Formik, ErrorMessage } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
 import { T_SingleItem, T_initialValues } from "../../types/types";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { dateToNumber, numberToDate } from "../../utilities/index.ts";
 import { postFetch, selectAllItems } from "../../redux/slices/adminSlice";
-import { dateToNumber, numberToDate } from "../../utilities/dateRevealer";
 
 const initialValues: T_initialValues = {
 	brand: "",

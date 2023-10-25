@@ -1,10 +1,6 @@
-import { FC, useState, MouseEvent } from "react";
+import { useState, MouseEvent } from "react";
 
-type T_MagnifierProps = {
-	src: string;
-};
-
-const Magnifier: FC<T_MagnifierProps> = ({ src }) => {
+const Magnifier = ({ src }: { src: string }) => {
 	const [[x, y], setXY] = useState([0, 0]);
 	const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
 	const [showMagnifier, setShowMagnifier] = useState(false);

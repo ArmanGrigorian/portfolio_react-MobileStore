@@ -1,5 +1,7 @@
 import "./CartPage.scss";
+import { ACTION } from "../../types/types";
 import CartItem from "../cartItem/CartItem";
+import { getTotalOf } from "../../utilities/index.ts";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { clearCart, selectCartItems } from "../../redux/slices/productsSlice";
 
@@ -7,15 +9,8 @@ const CartPage = () => {
 	const cartItems = useAppSelector(selectCartItems);
 	const dispatch = useAppDispatch();
 
-	const totalPrice = cartItems?.reduce((acc, val) => {
-		acc += val.price * val.count;
-		return acc;
-	}, 0);
-
-	const totalCount = cartItems?.reduce((acc, val) => {
-		acc += val.count;
-		return acc;
-	}, 0);
+	const totalPrice = getTotalOf(ACTION.PRICE, cartItems);
+	const totalCount = getTotalOf(ACTION.COUNT, cartItems);
 
 	return (
 		<section className={"CartPage"}>

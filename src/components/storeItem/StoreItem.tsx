@@ -1,17 +1,12 @@
 import "./StoreItem.scss";
-import { FC } from "react";
 import { Link } from "react-router-dom";
+import { discounter } from "../../utilities/index.ts";
 import { useAppDispatch } from "../../redux/hooks.ts";
 import { DiscountIcon } from "../svgs/DiscountIcon.tsx";
 import { PATH, T_SingleItem } from "../../types/types.ts";
-import { discounter } from "../../utilities/discounter.ts";
 import { addToCart } from "../../redux/slices/productsSlice.ts";
 
-type T_StoreItemProps = {
-	item: T_SingleItem;
-};
-
-const StoreItem: FC<T_StoreItemProps> = ({ item }) => {
+const StoreItem = ({ item }: { item: T_SingleItem }) => {
 	const dispatch = useAppDispatch();
 
 	return (

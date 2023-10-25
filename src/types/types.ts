@@ -8,6 +8,11 @@ export enum PATH {
 	ERROR = "*",
 }
 
+export enum ACTION {
+	PRICE = "PRICE",
+	COUNT = "COUNT",
+}
+
 export type T_Params = {
 	param1: string;
 	param2: string;
@@ -47,7 +52,7 @@ export type T_initialValues = {
 export interface I_ProductsSlice {
 	categories: string[];
 	activeCategory: string;
-	sortOptions: [string, string][],
+	sortOptions: [string, string][];
 	params: T_Params;
 	storeItems: [] | T_SingleItem[];
 	cartItems: [] | T_SingleItem[];

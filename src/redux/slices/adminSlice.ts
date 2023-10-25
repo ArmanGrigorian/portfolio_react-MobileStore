@@ -1,6 +1,6 @@
 import { RootState } from "../store";
 import { productsAPI } from "../../api/api";
-import { allTrim } from "../../utilities/allTrim";
+import { fullTrim } from "../../utilities/index.ts";
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { I_AdminSlice, T_SingleItem, T_initialValues } from "../../types/types";
 
@@ -90,8 +90,8 @@ const adminSlice = createSlice({
 				state.allItems = state.allItems.filter((item: T_SingleItem) => {
 					if (
 						String(item.id) === String(state.searchValue) ||
-						String(allTrim(item.brand)) === String(allTrim(state.searchValue)) ||
-						String(allTrim(item.model)) === String(allTrim(state.searchValue))
+						String(fullTrim(item.brand)) === String(fullTrim(state.searchValue)) ||
+						String(fullTrim(item.model)) === String(fullTrim(state.searchValue))
 					) {
 						return item;
 					}

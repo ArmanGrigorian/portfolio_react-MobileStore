@@ -1,6 +1,6 @@
 export { default as Nav} from "./nav/Nav.tsx";
-export { default as Header} from "./header/Header.tsx";
 export { default as Brief} from "./brief/Brief.tsx";
+export { default as Header} from "./header/Header.tsx";
 export { default as AuxNav} from "./auxNav/AuxNav.tsx";
 export { default as Footer} from "./footer/Footer.tsx";
 export { default as SearchBar} from "./search/SearchBar.tsx";

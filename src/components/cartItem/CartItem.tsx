@@ -3,11 +3,7 @@ import { T_SingleItem } from "../../types/types";
 import { useAppDispatch } from "../../redux/hooks";
 import { addToCart, deleteFromCart, removeFromCart } from "../../redux/slices/productsSlice";
 
-type T_CartItemProps = {
-	item: T_SingleItem;
-};
-
-const CartItem = ({ item }: T_CartItemProps) => {
+const CartItem = ({ item }: { item: T_SingleItem }) => {
 	const dispatch = useAppDispatch();
 
 	return (

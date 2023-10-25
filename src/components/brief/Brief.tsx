@@ -1,15 +1,11 @@
 import "./Brief.scss";
 import { useRef } from "react";
-import { T_SingleItem } from "../../types/types";
 import { useAppDispatch } from "../../redux/hooks";
+import { T_SingleItem } from "../../types/types.ts";
 import { deleteFetch } from "../../redux/slices/adminSlice";
 import EditItemForm from "../editItemForm/EditItemForm.tsx";
 
-type T_BriefProps = {
-	item: T_SingleItem;
-};
-
-const Brief = ({ item }: T_BriefProps) => {
+const Brief = ({ item }: { item: T_SingleItem }) => {
 	const dispatch = useAppDispatch();
 	const editDialogRef = useRef<HTMLDialogElement | null>(null);
 

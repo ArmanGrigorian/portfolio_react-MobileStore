@@ -1,14 +1,9 @@
 import "./Nav.scss";
-import { FC } from "react";
 import Clock from "../clock/Clock";
 import { PATH } from "../../types/types";
 import { NavLink } from "react-router-dom";
 
-type T_NavProps = {
-	showClock: boolean;
-};
-
-const Nav: FC<T_NavProps> = ({ showClock }) => {
+const Nav = ({ showClock }: { showClock: boolean }) => {
 	return (
 		<nav className={"Nav"}>
 			<ul>
