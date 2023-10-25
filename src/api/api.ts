@@ -14,10 +14,6 @@ export const productsAPI = {
 		return instance.get("/mobileStore/" + id);
 	},
 
-	getProductsByCategory: (brand: string = "") => {
-		return instance.get("/mobileStore?filter=" + brand);
-	},
-
 	getProductsBy: ({
 		param1 = "1",
 		param2 = "sortBy",
