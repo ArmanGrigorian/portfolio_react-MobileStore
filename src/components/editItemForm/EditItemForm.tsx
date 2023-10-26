@@ -18,7 +18,7 @@ const EditItemForm: FC<EditItemFormTypes> = forwardRef(({ item }, editDialogRef)
 		count: item.count,
 		isDiscounted: item.isDiscounted,
 		discountPercent: item.discountPercent,
-		release: numberToDate(Number(item.release)),
+		release: numberToDate(item.release as number),
 		rating: item.rating,
 		src: item.src,
 		alt: item.alt,

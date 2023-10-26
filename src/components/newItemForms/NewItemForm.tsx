@@ -35,7 +35,7 @@ const NewItemForm = () => {
 			count: 0,
 			isDiscounted: form.isDiscounted.checked,
 			discountPercent: Number(form.discountPercent.value),
-			release: dateToNumber(String(form.release.value)),
+			release: dateToNumber(form.release.value as string),
 			rating: 0,
 			src: form.src.value,
 			alt: form.alt.value,
