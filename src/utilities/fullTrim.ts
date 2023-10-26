@@ -1,5 +1,5 @@
 const fullTrim = (str: string): string => {
-	const res = str.split(" ").join("").toLocaleLowerCase();
+	const res: string = str.split(" ").join("").toLocaleLowerCase();
 	return res;
 };
 
