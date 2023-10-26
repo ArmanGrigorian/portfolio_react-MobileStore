@@ -1,6 +1,6 @@
 import { ACTION, T_SingleItem } from "../types/types";
 
-const getTotalOf = (action: string, cartItems: T_SingleItem[]): number => {
+const getTotalOf = (action: ACTION.PRICE | ACTION.COUNT, cartItems: T_SingleItem[]): number => {
 	switch (action) {
 		case ACTION.PRICE:
 			return cartItems.reduce((acc, val): number => {
