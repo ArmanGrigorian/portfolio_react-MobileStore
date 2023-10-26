@@ -1,6 +1,6 @@
 import { RootState } from "../store";
 import { productsAPI } from "../../api/api";
-import { I_ProductsSlice, T_Params, T_SingleItem, T_initialValues } from "../../types/types";
+import { I_ProductsSlice, T_Params, T_SingleItem } from "../../types/types";
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState: I_ProductsSlice = {
@@ -48,7 +48,7 @@ export const separateFetch = createAsyncThunk(
 			let brand = all.data;
 
 			if (params && params.param6) {
-				brand = all.data.filter((item: T_initialValues) => {
+				brand = all.data.filter((item: T_SingleItem) => {
 					return item.brand.toLowerCase() === params.param6?.toLocaleLowerCase();
 				});
 			}

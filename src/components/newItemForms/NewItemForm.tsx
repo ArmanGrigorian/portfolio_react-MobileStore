@@ -2,7 +2,7 @@ import "./NewItemForm.scss";
 import { FormEvent } from "react";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
-import { T_SingleItem, T_initialValues } from "../../types/types";
+import { T_SingleItem } from "../../types/types";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { dateToNumber, numberToDate } from "../../utilities/index.ts";
 import { postFetch, selectAllItems } from "../../redux/slices/adminSlice";
@@ -28,14 +28,14 @@ const NewItemForm = () => {
 		e.preventDefault();
 		const form = e.target as HTMLFormElement;
 
-		const newItem: T_initialValues = {
+		const newItem: T_SingleItem = {
 			brand: form.brand.value,
 			model: form.model.value,
 			price: Number(form.price.value),
 			count: 0,
 			isDiscounted: form.isDiscounted.checked,
 			discountPercent: Number(form.discountPercent.value),
-			release: dateToNumber(form.release.value),
+			release: dateToNumber(String(form.release.value)),
 			rating: 0,
 			src: form.src.value,
 			alt: form.alt.value,
@@ -56,7 +56,7 @@ const NewItemForm = () => {
 
 	return (
 		<Formik
-			initialValues={initialValues as FormEvent<HTMLFormElement> & T_initialValues}
+			initialValues={initialValues as FormEvent<HTMLFormElement> & T_SingleItem}
 			validateOnChange={false}
 			validateOnBlur={true}
 			validationSchema={newItemValidation}

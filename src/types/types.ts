@@ -23,32 +23,18 @@ export type T_Params = {
 };
 
 export type T_SingleItem = {
-	id: string;
+	id?: string;
 	brand: string;
 	model: string;
 	price: number;
 	count: number;
 	discountPercent: number;
 	isDiscounted: boolean;
-	release: number;
+	release: number | string;
 	rating: number;
 	src: string;
 	alt: string;
 };
-
-export type T_initialValues = {
-	brand: string;
-	model: string;
-	price: number;
-	count: number;
-	isDiscounted: boolean;
-	discountPercent: number;
-	release: string | number;
-	rating: number;
-	src: string;
-	alt: string;
-};
-
 export interface I_ProductsSlice {
 	categories: string[];
 	activeCategory: string;

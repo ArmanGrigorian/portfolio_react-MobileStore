@@ -2,7 +2,7 @@ import "./EditItemForm.scss";
 import { EditItemFormTypes } from "./types";
 import { FC, FormEvent, forwardRef } from "react";
 import { useAppDispatch } from "../../redux/hooks";
-import { T_initialValues } from "../../types/types";
+import { T_SingleItem } from "../../types/types";
 import { putFetch } from "../../redux/slices/adminSlice";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
@@ -18,7 +18,7 @@ const EditItemForm: FC<EditItemFormTypes> = forwardRef(({ item }, editDialogRef)
 		count: item.count,
 		isDiscounted: item.isDiscounted,
 		discountPercent: item.discountPercent,
-		release: numberToDate(item.release),
+		release: numberToDate(Number(item.release)),
 		rating: item.rating,
 		src: item.src,
 		alt: item.alt,
@@ -42,15 +42,22 @@ const EditItemForm: FC<EditItemFormTypes> = forwardRef(({ item }, editDialogRef)
 			alt: form.alt.value,
 		};
 
-		dispatch(putFetch({ id: item.id, data: data }));
-		if (editDialogRef && "current" in editDialogRef && editDialogRef.current) {
-			editDialogRef.current.close();
+		if (item.id) {
+			dispatch(putFetch({ id: item.id, data: data }));
+			if (editDialogRef && "current" in editDialogRef && editDialogRef.current) {
+				editDialogRef.current.close();
+			}
+		} else {
+			dispatch(putFetch({ id: "1", data: data }));
+			if (editDialogRef && "current" in editDialogRef && editDialogRef.current) {
+				editDialogRef.current.close();
+			}
 		}
 	}
 
 	return (
 		<Formik
-			initialValues={initialValues as FormEvent<HTMLFormElement> & T_initialValues}
+			initialValues={initialValues as FormEvent<HTMLFormElement> & T_SingleItem}
 			validateOnChange={false}
 			validateOnBlur={true}
 			validationSchema={newItemValidation}

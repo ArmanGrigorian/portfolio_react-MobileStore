@@ -1,5 +1,5 @@
 import axios from "axios";
-import { T_Params, T_initialValues } from "../types/types";
+import { T_Params, T_SingleItem } from "../types/types";
 
 const instance = axios.create({
 	baseURL: "https://64d772272a017531bc134033.mockapi.io",
@@ -27,13 +27,13 @@ export const productsAPI = {
 		);
 	},
 
-	postItem: (data: T_initialValues) => {
+	postItem: (data: T_SingleItem) => {
 		return instance.post("/mobileStore", data, {
 			headers: { "content-type": "application/json" },
 		});
 	},
 
-	putItem: (id: string, data: T_initialValues) => {
+	putItem: (id: string, data: T_SingleItem) => {
 		return instance.put("/mobileStore/" + id, data, {
 			headers: { "content-type": "application/json" },
 		});
