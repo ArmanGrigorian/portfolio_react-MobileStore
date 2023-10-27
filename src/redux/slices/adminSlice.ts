@@ -1,8 +1,9 @@
+import { DATA } from "../../DATA.ts";
 import { RootState } from "../store";
 import { productsAPI } from "../../api/api";
 import { fullTrim } from "../../utilities/index.ts";
+import { I_AdminSlice, LS, T_SingleItem } from "../../types/types";
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { I_AdminSlice, T_SingleItem } from "../../types/types";
 
 const initialState: I_AdminSlice = {
 	isPending: true,
@@ -85,7 +86,7 @@ const adminSlice = createSlice({
 
 		searchItem: (state) => {
 			if (state.searchValue === "all") {
-				state.allItems = JSON.parse(localStorage.getItem("allItems")!);
+				state.allItems = JSON.parse(localStorage.getItem(LS.ALL_ITEMS)!);
 			} else {
 				state.allItems = state.allItems.filter((item: T_SingleItem) => {
 					if (
@@ -118,11 +119,12 @@ const adminSlice = createSlice({
 		});
 		builder.addCase(allItemsFetch.fulfilled, (state, action): void => {
 			state.isPending = false;
-			localStorage.setItem("allItems", JSON.stringify(action.payload));
+			localStorage.setItem(LS.ALL_ITEMS, JSON.stringify(action.payload));
 			state.allItems = action.payload;
 		});
 		builder.addCase(allItemsFetch.rejected, (state, action): void => {
 			state.isPending = false;
+			state.allItems = DATA;
 			console.log(action.payload);
 		});
 		// POST /////////////////////////////////////////////////////

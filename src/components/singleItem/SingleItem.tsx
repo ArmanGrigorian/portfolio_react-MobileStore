@@ -1,6 +1,6 @@
 import "./SingleItem.scss";
 import { useEffect } from "react";
-import { PATH } from "../../types/types";
+import { LS, PATH } from "../../types/types";
 import Magnifier from "../magnifier/Magnifier";
 import { DownloadIcon, StarIcon } from "../svgs";
 import { dataRevealer } from "../../utilities/index.ts";
@@ -15,7 +15,7 @@ const SingleItem = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (id && Number(id) <= JSON.parse(localStorage.getItem("allItems")!).length) {
+		if (id && Number(id) <= JSON.parse(localStorage.getItem(LS.ALL_ITEMS)!).length) {
 			dispatch(singleItemFetch(id));
 		} else navigate({ pathname: PATH.ERROR });
 	}, [dispatch, id, navigate]);
@@ -39,7 +39,7 @@ const SingleItem = () => {
 
 					<tr>
 						<th>Release date</th>
-						<td>{dataRevealer(currentItem.release)}</td>
+						<td>{dataRevealer(currentItem.release as number)}</td>
 					</tr>
 
 					<tr>

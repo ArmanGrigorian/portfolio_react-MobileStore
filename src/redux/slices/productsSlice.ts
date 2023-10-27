@@ -1,6 +1,7 @@
+import { DATA } from "../../DATA.ts";
 import { RootState } from "../store";
 import { productsAPI } from "../../api/api";
-import { I_ProductsSlice, T_Params, T_SingleItem } from "../../types/types";
+import { I_ProductsSlice, LS, T_Params, T_SingleItem } from "../../types/types";
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState: I_ProductsSlice = {
@@ -53,8 +54,8 @@ export const separateFetch = createAsyncThunk(
 				});
 			}
 
-			localStorage.setItem("length", JSON.stringify(brand.length));
-			localStorage.setItem("allItems", JSON.stringify(all.data));
+			localStorage.setItem(LS.LENGTH, JSON.stringify(brand.length));
+			localStorage.setItem(LS.ALL_ITEMS, JSON.stringify(all.data));
 
 			const response = await productsAPI.getProductsBy(params);
 			return response.data;
@@ -132,7 +133,7 @@ const productsSlice = createSlice({
 		});
 		builder.addCase(singleItemFetch.fulfilled, (state, action) => {
 			state.isPending = false;
-			localStorage.setItem("singleItem", JSON.stringify(action.payload));
+			localStorage.setItem(LS.SINGLE_ITEM, JSON.stringify(action.payload));
 			state.currentItem = action.payload;
 		});
 		builder.addCase(singleItemFetch.rejected, (state, action) => {
@@ -146,12 +147,13 @@ const productsSlice = createSlice({
 		});
 		builder.addCase(separateFetch.fulfilled, (state, action): void => {
 			state.isPending = false;
-			localStorage.setItem("singleItem", JSON.stringify(state.currentItem));
+			localStorage.setItem(LS.SINGLE_ITEM, JSON.stringify(state.currentItem));
 			state.storeItems = action.payload;
 		});
 		builder.addCase(separateFetch.rejected, (state, action): void => {
 			state.isPending = false;
-			state.storeItems = initialState.storeItems;
+			// state.storeItems = initialState.storeItems;
+			state.storeItems = DATA;
 			console.log(action.payload);
 		});
 	},

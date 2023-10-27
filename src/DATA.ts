@@ -1,4 +1,10 @@
-[
+import { T_SingleItem } from "./types/types";
+
+// This is a FALLBACK option. Please do not modify it.
+// If suddenly all the data is deleted from the backend (mockApi),
+// it will be possible to restore it...
+
+export const DATA: T_SingleItem[] = [
 	{
 		id: "1",
 		brand: "Apple",

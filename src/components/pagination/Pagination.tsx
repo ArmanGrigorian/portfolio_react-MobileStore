@@ -1,4 +1,5 @@
 import "./Pagination.scss";
+import { LS } from "../../types/types";
 import ReactPaginate from "react-paginate";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectParams, setParams } from "../../redux/slices/productsSlice";
@@ -9,8 +10,8 @@ const Pagination = () => {
 
 	let pagPageCount = 40;
 	
-	if (localStorage.getItem("length")) {
-		pagPageCount = Math.ceil(JSON.parse(localStorage.getItem("length")!) / 8);
+	if (localStorage.getItem(LS.LENGTH)) {
+		pagPageCount = Math.ceil(JSON.parse(localStorage.getItem(LS.LENGTH)!) / 8);
 	}
 
 	return (

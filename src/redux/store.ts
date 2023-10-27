@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import clockReducer from "./slices/clockSlice.ts"
+import clockReducer from "./slices/clockSlice.ts";
 import adminReducer from "./slices/adminSlice.ts";
 import productsReducer from "./slices/productsSlice.ts";
 

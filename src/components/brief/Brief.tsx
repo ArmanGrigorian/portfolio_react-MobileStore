@@ -19,7 +19,7 @@ const Brief = ({ item }: { item: T_SingleItem }) => {
 					<button onClick={() => editDialogRef.current && editDialogRef.current.showModal()}>
 						EDIT
 					</button>
-					<button onClick={() => dispatch(deleteFetch(item.id))}>DELETE</button>
+					<button onClick={() => dispatch(deleteFetch(item.id as string))}>DELETE</button>
 				</div>
 			</div>
 		</>

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { discounter } from "../../utilities/index.ts";
 import { useAppDispatch } from "../../redux/hooks.ts";
 import { DiscountIcon } from "../svgs/DiscountIcon.tsx";
-import { PATH, T_SingleItem } from "../../types/types.ts";
+import { LS, PATH, T_SingleItem } from "../../types/types.ts";
 import { addToCart } from "../../redux/slices/productsSlice.ts";
 
 const StoreItem = ({ item }: { item: T_SingleItem }) => {
@@ -18,7 +18,7 @@ const StoreItem = ({ item }: { item: T_SingleItem }) => {
 			<Link
 				to={PATH.PRODUCTS + item.id}
 				onClick={() => {
-					localStorage.setItem("singleItem", JSON.stringify(item));
+					localStorage.setItem(LS.SINGLE_ITEM, JSON.stringify(item));
 				}}>
 				<img src={item.src} alt={item.alt} />
 			</Link>

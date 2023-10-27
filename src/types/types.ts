@@ -13,6 +13,13 @@ export enum ACTION {
 	COUNT = "COUNT",
 }
 
+// LocalStorage
+export enum LS {
+	LENGTH = "length",
+	ALL_ITEMS = "allItems",
+	SINGLE_ITEM = "singleItem",
+}
+
 export type T_Params = {
 	param1: string;
 	param2: string;
