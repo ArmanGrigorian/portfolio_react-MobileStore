@@ -1,5 +1,5 @@
 import "./NewItemForm.scss";
-import { FormEvent, useCallback } from "react";
+import { FormEvent, useMemo } from "react";
 import { T_SingleItem } from "../../types/types";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
@@ -24,36 +24,37 @@ const NewItemForm = () => {
 	const dispatch = useAppDispatch();
 	const allItems = useAppSelector(selectAllItems);
 
-	const handleSubmit = useCallback(
-		(e: FormEvent<HTMLFormElement>): void => {
-			e.preventDefault();
-			const form = e.target as HTMLFormElement;
+	const handleSubmit = useMemo(
+		() =>
+			(e: FormEvent<HTMLFormElement>): void => {
+				e.preventDefault();
+				const form = e.target as HTMLFormElement;
 
-			const newItem: T_SingleItem = {
-				brand: form.brand.value,
-				model: form.model.value,
-				price: Number(form.price.value),
-				count: 0,
-				isDiscounted: form.isDiscounted.checked,
-				discountPercent: Number(form.discountPercent.value),
-				release: dateToNumber(form.release.value as string),
-				rating: 0,
-				src: form.src.value,
-				alt: form.alt.value,
-			};
+				const newItem: T_SingleItem = {
+					brand: form.brand.value,
+					model: form.model.value,
+					price: Number(form.price.value),
+					count: 0,
+					isDiscounted: form.isDiscounted.checked,
+					discountPercent: Number(form.discountPercent.value),
+					release: dateToNumber(form.release.value as string),
+					rating: 0,
+					src: form.src.value,
+					alt: form.alt.value,
+				};
 
-			const addRequirement = allItems.some((item: T_SingleItem) => {
-				return (
-					item.brand.toLowerCase() === newItem.brand.toLowerCase() &&
-					item.model.toLowerCase() === newItem.model.toLowerCase()
-				);
-			});
+				const addRequirement = allItems.some((item: T_SingleItem) => {
+					return (
+						item.brand.toLowerCase() === newItem.brand.toLowerCase() &&
+						item.model.toLowerCase() === newItem.model.toLowerCase()
+					);
+				});
 
-			if (!addRequirement) {
-				dispatch(postFetch(newItem));
-				form.reset();
-			}
-		},
+				if (!addRequirement) {
+					dispatch(postFetch(newItem));
+					form.reset();
+				}
+			},
 		[allItems, dispatch],
 	);
 

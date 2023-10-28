@@ -8,30 +8,30 @@ import {
 import { PATH } from "../../types/types";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { FormEvent, forwardRef, ChangeEvent, ForwardedRef, useCallback } from "react";
+import { FormEvent, forwardRef, ChangeEvent, ForwardedRef, useMemo } from "react";
 
 const LoginModal = forwardRef((_, dialogRef: ForwardedRef<HTMLDialogElement>) => {
-	
 	const { login, password, loginValue, passwordValue } = useAppSelector(selectAdmin);
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	const handleSubmit = useCallback(
-		(e: FormEvent<HTMLFormElement>): void => {
-			e.preventDefault();
+	const handleSubmit = useMemo(
+		() =>
+			(e: FormEvent<HTMLFormElement>): void => {
+				e.preventDefault();
 
-			dispatch(checkLogPass({ loginValue, passwordValue }));
+				dispatch(checkLogPass({ loginValue, passwordValue }));
 
-			if (loginValue === login && passwordValue === password) {
-				navigate({ pathname: PATH.ADMIN });
-				if (dialogRef && "current" in dialogRef && dialogRef.current) {
-					dialogRef.current.close();
+				if (loginValue === login && passwordValue === password) {
+					navigate({ pathname: PATH.ADMIN });
+					if (dialogRef && "current" in dialogRef && dialogRef.current) {
+						dialogRef.current.close();
+					}
 				}
-			}
 
-			dispatch(setLoginValue(""));
-			dispatch(setPasswordValue(""));
-		},
+				dispatch(setLoginValue(""));
+				dispatch(setPasswordValue(""));
+			},
 		[dialogRef, dispatch, login, loginValue, navigate, password, passwordValue],
 	);
 
