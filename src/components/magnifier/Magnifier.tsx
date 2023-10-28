@@ -1,15 +1,17 @@
 import { useState, MouseEvent } from "react";
 
 const Magnifier = ({ src }: { src: string }) => {
-	const [[x, y], setXY] = useState([0, 0]);
-	const [[imgWidth, imgHeight], setSize] = useState([0, 0]);
-	const [showMagnifier, setShowMagnifier] = useState(false);
+	const [[x, y], setXY] = useState<[number, number]>([0, 0]);
 
-	const width = "100%";
-	const height = "100%";
-	const magnifierWidth = 120;
-	const magnifierHeight = 120;
-	const zoomLevel = 1.2;
+	const [[imgWidth, imgHeight], setSize] = useState<[number, number]>([0, 0]);
+
+	const [showMagnifier, setShowMagnifier] = useState<boolean>(false);
+
+	const width: string = "100%";
+	const height: string = "100%";
+	const magnifierWidth: number = 120;
+	const magnifierHeight: number = 120;
+	const zoomLevel: number = 1.2;
 
 	return (
 		<div
