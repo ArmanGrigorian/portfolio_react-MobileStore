@@ -1,30 +1,39 @@
 import "./LoginModal.scss";
+import {
+	checkLogPass,
+	selectAdmin,
+	setLoginValue,
+	setPasswordValue,
+} from "../../redux/slices/adminSlice";
 import { PATH } from "../../types/types";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { FormEvent, forwardRef, ChangeEvent, ForwardedRef } from "react";
-import { checkLogPass, selectAdmin, setLoginValue, setPasswordValue } from "../../redux/slices/adminSlice";
+import { FormEvent, forwardRef, ChangeEvent, ForwardedRef, useCallback } from "react";
 
 const LoginModal = forwardRef((_, dialogRef: ForwardedRef<HTMLDialogElement>) => {
+	
 	const { login, password, loginValue, passwordValue } = useAppSelector(selectAdmin);
 	const dispatch = useAppDispatch();
 	const navigate = useNavigate();
 
-	function handleSubmit(e: FormEvent<HTMLFormElement>) {
-		e.preventDefault();
+	const handleSubmit = useCallback(
+		(e: FormEvent<HTMLFormElement>): void => {
+			e.preventDefault();
 
-		dispatch(checkLogPass({ loginValue, passwordValue }));
+			dispatch(checkLogPass({ loginValue, passwordValue }));
 
-		if (loginValue === login && passwordValue === password) {
-			navigate({ pathname: PATH.ADMIN });
-			if (dialogRef && "current" in dialogRef && dialogRef.current) {
-				dialogRef.current.close();
+			if (loginValue === login && passwordValue === password) {
+				navigate({ pathname: PATH.ADMIN });
+				if (dialogRef && "current" in dialogRef && dialogRef.current) {
+					dialogRef.current.close();
+				}
 			}
-		}
 
-		dispatch(setLoginValue(""));
-		dispatch(setPasswordValue(""));
-	}
+			dispatch(setLoginValue(""));
+			dispatch(setPasswordValue(""));
+		},
+		[dialogRef, dispatch, login, loginValue, navigate, password, passwordValue],
+	);
 
 	return (
 		<dialog open={false} ref={dialogRef} className={"LoginModal"}>

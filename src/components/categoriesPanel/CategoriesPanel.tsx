@@ -5,8 +5,8 @@ import {
 	setActiveCategory,
 	selectProducts,
 } from "../../redux/slices/productsSlice.ts";
-import { useEffect, MouseEvent } from "react";
 import { MenuIcon } from "../svgs/MenuIcon.tsx";
+import { useEffect, MouseEvent, useCallback } from "react";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
 
 const CategoriesPanel = () => {
@@ -17,25 +17,28 @@ const CategoriesPanel = () => {
 		dispatch(separateFetch(params));
 	}, [dispatch, params]);
 
-	function handleClick(e: MouseEvent<HTMLLIElement>) {
-		const li = e.target as HTMLLIElement;
-		li.dataset.name && dispatch(setActiveCategory(li.dataset.name));
+	const handleClick = useCallback(
+		(e: MouseEvent<HTMLLIElement>): void => {
+			const li = e.target as HTMLLIElement;
+			li.dataset.name && dispatch(setActiveCategory(li.dataset.name));
 
-		if (li.dataset.name === "all") {
-			dispatch(
-				setParams({
-					param1: "1",
-					param2: "sortBy",
-					param3: "release",
-					param4: "desc",
-					param5: "",
-					param6: "",
-				}),
-			);
-		} else {
-			dispatch(setParams({ ...params, param5: "filter", param6: li.dataset.name }));
-		}
-	}
+			if (li.dataset.name === "all") {
+				dispatch(
+					setParams({
+						param1: "1",
+						param2: "sortBy",
+						param3: "release",
+						param4: "desc",
+						param5: "",
+						param6: "",
+					}),
+				);
+			} else {
+				dispatch(setParams({ ...params, param5: "filter", param6: li.dataset.name }));
+			}
+		},
+		[dispatch, params],
+	);
 
 	return (
 		<>

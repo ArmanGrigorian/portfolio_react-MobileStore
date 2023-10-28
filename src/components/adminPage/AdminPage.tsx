@@ -1,5 +1,6 @@
 import "./AdminPage.scss";
 import { useEffect } from "react";
+import { T_SingleItem } from "../../types/types.ts";
 import { Brief, SearchBar, NewItemForm } from "../index.ts";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
 import { allItemsFetch, selectAdmin } from "../../redux/slices/adminSlice.ts";
@@ -24,7 +25,7 @@ const AdminPage = () => {
 			<NewItemForm />
 
 			<div className={"AdminPage__panel"}>
-				{allItems?.map((item) => {
+				{allItems?.map((item: T_SingleItem) => {
 					return <Brief key={item.id} item={item} />;
 				})}
 			</div>

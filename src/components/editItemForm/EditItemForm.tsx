@@ -1,17 +1,17 @@
 import "./EditItemForm.scss";
 import { EditItemFormTypes } from "./types";
-import { FC, FormEvent, forwardRef } from "react";
-import { useAppDispatch } from "../../redux/hooks";
 import { T_SingleItem } from "../../types/types";
+import { useAppDispatch } from "../../redux/hooks";
 import { putFetch } from "../../redux/slices/adminSlice";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
+import { FC, FormEvent, forwardRef, useCallback } from "react";
 import { dateToNumber, numberToDate } from "../../utilities/index.ts";
 
 const EditItemForm: FC<EditItemFormTypes> = forwardRef(({ item }, editDialogRef) => {
 	const dispatch = useAppDispatch();
 
-	const initialValues = {
+	const initialValues: T_SingleItem = {
 		brand: item.brand,
 		model: item.model,
 		price: item.price,
@@ -24,36 +24,39 @@ const EditItemForm: FC<EditItemFormTypes> = forwardRef(({ item }, editDialogRef)
 		alt: item.alt,
 	};
 
-	function handleSubmit(e: FormEvent<HTMLFormElement>) {
-		e.preventDefault();
+	const handleSubmit = useCallback(
+		(e: FormEvent<HTMLFormElement>): void => {
+			e.preventDefault();
 
-		const form = e.target as HTMLFormElement;
+			const form = e.target as HTMLFormElement;
 
-		const data = {
-			brand: form.brand.value,
-			model: form.model.value,
-			price: Number(form.price.value),
-			count: 0,
-			isDiscounted: form.isDiscounted.checked,
-			discountPercent: Number(form.discountPercent.value),
-			release: dateToNumber(form.release.value),
-			rating: 0,
-			src: form.src.value,
-			alt: form.alt.value,
-		};
+			const data = {
+				brand: form.brand.value,
+				model: form.model.value,
+				price: Number(form.price.value),
+				count: 0,
+				isDiscounted: form.isDiscounted.checked,
+				discountPercent: Number(form.discountPercent.value),
+				release: dateToNumber(form.release.value),
+				rating: 0,
+				src: form.src.value,
+				alt: form.alt.value,
+			};
 
-		if (item.id) {
-			dispatch(putFetch({ id: item.id, data: data }));
-			if (editDialogRef && "current" in editDialogRef && editDialogRef.current) {
-				editDialogRef.current.close();
+			if (item.id) {
+				dispatch(putFetch({ id: item.id, data: data }));
+				if (editDialogRef && "current" in editDialogRef && editDialogRef.current) {
+					editDialogRef.current.close();
+				}
+			} else {
+				dispatch(putFetch({ id: "1", data: data }));
+				if (editDialogRef && "current" in editDialogRef && editDialogRef.current) {
+					editDialogRef.current.close();
+				}
 			}
-		} else {
-			dispatch(putFetch({ id: "1", data: data }));
-			if (editDialogRef && "current" in editDialogRef && editDialogRef.current) {
-				editDialogRef.current.close();
-			}
-		}
-	}
+		},
+		[dispatch, editDialogRef, item.id],
+	);
 
 	return (
 		<Formik

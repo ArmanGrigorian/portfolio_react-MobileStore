@@ -1,5 +1,5 @@
 import "./NewItemForm.scss";
-import { FormEvent } from "react";
+import { FormEvent, useCallback } from "react";
 import { T_SingleItem } from "../../types/types";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { dateToNumber, numberToDate } from "../../utilities/index.ts";
 import { postFetch, selectAllItems } from "../../redux/slices/adminSlice";
 
-const initialValues = {
+const initialValues: T_SingleItem = {
 	brand: "",
 	model: "",
 	price: 0,
@@ -24,35 +24,38 @@ const NewItemForm = () => {
 	const dispatch = useAppDispatch();
 	const allItems = useAppSelector(selectAllItems);
 
-	function handleSubmit(e: FormEvent<HTMLFormElement>) {
-		e.preventDefault();
-		const form = e.target as HTMLFormElement;
+	const handleSubmit = useCallback(
+		(e: FormEvent<HTMLFormElement>): void => {
+			e.preventDefault();
+			const form = e.target as HTMLFormElement;
 
-		const newItem: T_SingleItem = {
-			brand: form.brand.value,
-			model: form.model.value,
-			price: Number(form.price.value),
-			count: 0,
-			isDiscounted: form.isDiscounted.checked,
-			discountPercent: Number(form.discountPercent.value),
-			release: dateToNumber(form.release.value as string),
-			rating: 0,
-			src: form.src.value,
-			alt: form.alt.value,
-		};
+			const newItem: T_SingleItem = {
+				brand: form.brand.value,
+				model: form.model.value,
+				price: Number(form.price.value),
+				count: 0,
+				isDiscounted: form.isDiscounted.checked,
+				discountPercent: Number(form.discountPercent.value),
+				release: dateToNumber(form.release.value as string),
+				rating: 0,
+				src: form.src.value,
+				alt: form.alt.value,
+			};
 
-		const addRequirement = allItems.some((item: T_SingleItem) => {
-			return (
-				item.brand.toLowerCase() === newItem.brand.toLowerCase() &&
-				item.model.toLowerCase() === newItem.model.toLowerCase()
-			);
-		});
+			const addRequirement = allItems.some((item: T_SingleItem) => {
+				return (
+					item.brand.toLowerCase() === newItem.brand.toLowerCase() &&
+					item.model.toLowerCase() === newItem.model.toLowerCase()
+				);
+			});
 
-		if (!addRequirement) {
-			dispatch(postFetch(newItem));
-			form.reset();
-		}
-	}
+			if (!addRequirement) {
+				dispatch(postFetch(newItem));
+				form.reset();
+			}
+		},
+		[allItems, dispatch],
+	);
 
 	return (
 		<Formik
