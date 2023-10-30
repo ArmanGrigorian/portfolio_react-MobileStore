@@ -45,6 +45,8 @@ export const separateFetch = createAsyncThunk(
 	"products/separateFetch",
 	async (params: T_Params) => {
 		try {
+			//  this line was added because of mockApi...
+			//  it has a limit of requests that can be sent at the same time...
 			if (!localStorage.getItem(LS.ALL_ITEMS)) {
 				const all = await productsAPI.getAllProducts();
 				let brand = all.data;
