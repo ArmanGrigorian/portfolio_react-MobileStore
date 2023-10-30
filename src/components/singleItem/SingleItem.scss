@@ -23,9 +23,12 @@
       tr {
 
          .SingleItem__imgTd {
-            width: 36%;
-            height: 100%;
+            width: 40%;
             cursor: none;
+
+            img{
+               max-height: 469px;
+            }
          }
 
          th {
@@ -34,12 +37,12 @@
 
          td {
             color: var(--my-color-black);
+            height: 60px;
          }
 
          th,
          td {
-            width: 32%;
-            height: fit-content;
+            width: 30%;
             padding-block: 10px;
             text-align: center;
             font-size: clamp(12px, 2vw, 17px);
