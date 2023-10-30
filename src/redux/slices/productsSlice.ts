@@ -45,17 +45,19 @@ export const separateFetch = createAsyncThunk(
 	"products/separateFetch",
 	async (params: T_Params) => {
 		try {
-			const all = await productsAPI.getAllProducts();
-			let brand = all.data;
+			if (!localStorage.getItem(LS.ALL_ITEMS)) {
+				const all = await productsAPI.getAllProducts();
+				let brand = all.data;
 
-			if (params && params.param6) {
-				brand = all.data.filter((item: T_SingleItem) => {
-					return item.brand.toLowerCase() === params.param6?.toLocaleLowerCase();
-				});
+				if (params && params.param6) {
+					brand = all.data.filter((item: T_SingleItem) => {
+						return item.brand.toLowerCase() === params.param6?.toLocaleLowerCase();
+					});
+				}
+
+				localStorage.setItem(LS.LENGTH, JSON.stringify(brand.length));
+				localStorage.setItem(LS.ALL_ITEMS, JSON.stringify(all.data));
 			}
-
-			localStorage.setItem(LS.LENGTH, JSON.stringify(brand.length));
-			localStorage.setItem(LS.ALL_ITEMS, JSON.stringify(all.data));
 
 			const response = await productsAPI.getProductsBy(params);
 			return response.data;
