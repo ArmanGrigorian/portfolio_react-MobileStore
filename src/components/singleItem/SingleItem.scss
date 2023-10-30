@@ -39,6 +39,7 @@
          th,
          td {
             width: 32%;
+            height: fit-content;
             padding-block: 10px;
             text-align: center;
             font-size: clamp(12px, 2vw, 17px);
@@ -49,7 +50,7 @@
                height: 100%;
             }
 
-            &:has(button){
+            &:has(button) {
                @include mxs.rowFlex(space-evenly, center);
                border: none;
                width: 100%;
@@ -57,8 +58,8 @@
                button {
                   @include mxs.button;
                }
-               
-               .SingleItem__downloadButton{
+
+               .SingleItem__downloadButton {
                   width: 32px;
                   height: 30px;
                   line-height: 28px;
@@ -69,11 +70,11 @@
                      color: inherit;
                   }
 
-                  &:hover{
+                  &:hover {
                      background-color: var(--my-color-blue);
                      border: 1px solid var(--my-color-blue);
 
-                     path{
+                     path {
                         fill: var(--my-color-white);
                      }
                   }
