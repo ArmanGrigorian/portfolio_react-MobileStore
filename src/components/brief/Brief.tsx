@@ -1,12 +1,11 @@
 import "./Brief.scss";
 import { useRef } from "react";
-import { useAppDispatch } from "../../redux/hooks";
 import { T_SingleItem } from "../../types/types.ts";
-import { deleteFetch } from "../../redux/slices/adminSlice";
 import EditItemForm from "../editItemForm/EditItemForm.tsx";
+import { useDeleteProductMutation } from "../../redux/api/products.api.ts";
 
 const Brief = ({ item }: { item: T_SingleItem }) => {
-	const dispatch = useAppDispatch();
+	const [deleteProduct] = useDeleteProductMutation();
 	const editDialogRef = useRef<HTMLDialogElement | null>(null);
 
 	return (
@@ -19,7 +18,7 @@ const Brief = ({ item }: { item: T_SingleItem }) => {
 					<button onClick={() => editDialogRef.current && editDialogRef.current.showModal()}>
 						EDIT
 					</button>
-					<button onClick={() => dispatch(deleteFetch(item.id as string))}>DELETE</button>
+					<button onClick={() => deleteProduct(item.id as string)}>DELETE</button>
 				</div>
 			</div>
 		</>

@@ -1,15 +1,14 @@
 import "./EditItemForm.scss";
 import { EditItemFormTypes } from "./types";
 import { T_SingleItem } from "../../types/types";
-import { useAppDispatch } from "../../redux/hooks";
-import { putFetch } from "../../redux/slices/adminSlice";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import { FC, FormEvent, forwardRef, useMemo } from "react";
 import { newItemValidation } from "../schemas/newItemSchema";
 import { dateToNumber, numberToDate } from "../../utilities/index.ts";
+import { usePutProductMutation } from "../../redux/api/products.api.ts";
 
 const EditItemForm: FC<EditItemFormTypes> = forwardRef(({ item }, editDialogRef) => {
-	const dispatch = useAppDispatch();
+	const [putProduct] = usePutProductMutation();
 
 	const initialValues: T_SingleItem = {
 		brand: item.brand,
@@ -45,18 +44,18 @@ const EditItemForm: FC<EditItemFormTypes> = forwardRef(({ item }, editDialogRef)
 				};
 
 				if (item.id) {
-					dispatch(putFetch({ id: item.id, data: data }));
+					putProduct({ id: item.id, data: data });
 					if (editDialogRef && "current" in editDialogRef && editDialogRef.current) {
 						editDialogRef.current.close();
 					}
 				} else {
-					dispatch(putFetch({ id: "1", data: data }));
+					putProduct({ id: "1", data: data });
 					if (editDialogRef && "current" in editDialogRef && editDialogRef.current) {
 						editDialogRef.current.close();
 					}
 				}
 			},
-		[dispatch, editDialogRef, item.id],
+		[editDialogRef, item.id, putProduct],
 	);
 
 	return (

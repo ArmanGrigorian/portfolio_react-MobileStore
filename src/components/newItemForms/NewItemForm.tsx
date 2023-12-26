@@ -1,11 +1,12 @@
 import "./NewItemForm.scss";
 import { FormEvent, useMemo } from "react";
 import { T_SingleItem } from "../../types/types";
+import { useAppSelector } from "../../redux/hooks";
 import { Form, Field, Formik, ErrorMessage } from "formik";
 import { newItemValidation } from "../schemas/newItemSchema";
-import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { selectAllItems } from "../../redux/slices/adminSlice";
 import { dateToNumber, numberToDate } from "../../utilities/index.ts";
-import { postFetch, selectAllItems } from "../../redux/slices/adminSlice";
+import { usePostProductMutation } from "../../redux/api/products.api.ts";
 
 const initialValues: T_SingleItem = {
 	brand: "",
@@ -21,7 +22,7 @@ const initialValues: T_SingleItem = {
 };
 
 const NewItemForm = () => {
-	const dispatch = useAppDispatch();
+	const [postProduct] = usePostProductMutation();
 	const allItems = useAppSelector(selectAllItems);
 
 	const handleSubmit = useMemo(
@@ -51,11 +52,11 @@ const NewItemForm = () => {
 				});
 
 				if (!addRequirement) {
-					dispatch(postFetch(newItem));
+					postProduct(newItem);
 					form.reset();
 				}
 			},
-		[allItems, dispatch],
+		[allItems, postProduct],
 	);
 
 	return (

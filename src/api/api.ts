@@ -1,8 +1,8 @@
 import axios from "axios";
-import { T_Params, T_SingleItem } from "../types/types";
+import { T_Params } from "../types/types";
 
 const instance = axios.create({
-	baseURL: "https://64d772272a017531bc134033.mockapi.io",
+	baseURL: import.meta.env.VITE_BASE_URL,
 });
 
 export const productsAPI = {
@@ -25,21 +25,5 @@ export const productsAPI = {
 		return instance.get(
 			`/mobileStore?page=${param1}&limit=8&${param2}=${param3}&order=${param4}&${param5}=${param6}`,
 		);
-	},
-
-	postItem: (data: T_SingleItem) => {
-		return instance.post("/mobileStore", data, {
-			headers: { "content-type": "application/json" },
-		});
-	},
-
-	putItem: (id: string, data: T_SingleItem) => {
-		return instance.put("/mobileStore/" + id, data, {
-			headers: { "content-type": "application/json" },
-		});
-	},
-
-	deleteItem: (id: string) => {
-		return instance.delete("/mobileStore/" + id);
 	},
 };

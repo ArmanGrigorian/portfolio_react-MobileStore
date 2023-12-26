@@ -25,38 +25,6 @@ export const allItemsFetch = createAsyncThunk("admin/allItemsFetch", async () =>
 	}
 });
 
-export const postFetch = createAsyncThunk("admin/postFetch", async (data: T_SingleItem) => {
-	try {
-		await productsAPI.postItem(data);
-		const response = await productsAPI.getAllProducts();
-		return response.data;
-	} catch (err) {
-		console.log(err);
-	}
-});
-
-export const putFetch = createAsyncThunk(
-	"admin/putFetch",
-	async ({ id, data }: { id: string; data: T_SingleItem }) => {
-		try {
-			await productsAPI.putItem(id, data);
-			const response = await productsAPI.getAllProducts();
-			return response.data;
-		} catch (err) {
-			console.log(err);
-		}
-	},
-);
-
-export const deleteFetch = createAsyncThunk("admin/deleteFetch", async (id: string) => {
-	try {
-		await productsAPI.deleteItem(id);
-		const { data } = await productsAPI.getAllProducts();
-		return data;
-	} catch (err) {
-		console.log(err);
-	}
-});
 
 const adminSlice = createSlice({
 	name: "products",
@@ -125,42 +93,6 @@ const adminSlice = createSlice({
 		builder.addCase(allItemsFetch.rejected, (state, action): void => {
 			state.isPending = false;
 			state.allItems = DATA;
-			console.log(action.payload);
-		});
-		// POST /////////////////////////////////////////////////////
-		builder.addCase(postFetch.pending, (state): void => {
-			state.isPending = true;
-		});
-		builder.addCase(postFetch.fulfilled, (state, action): void => {
-			state.isPending = false;
-			state.allItems = action.payload;
-		});
-		builder.addCase(postFetch.rejected, (state, action): void => {
-			state.isPending = false;
-			console.log(action.payload);
-		});
-		// PUT ///////////////////////////////////////////////////////
-		builder.addCase(putFetch.pending, (state): void => {
-			state.isPending = true;
-		});
-		builder.addCase(putFetch.fulfilled, (state, action): void => {
-			state.isPending = false;
-			state.allItems = action.payload;
-		});
-		builder.addCase(putFetch.rejected, (state, action): void => {
-			state.isPending = false;
-			console.log(action.payload);
-		});
-		// DELETE ///////////////////////////////////////////////////////
-		builder.addCase(deleteFetch.pending, (state): void => {
-			state.isPending = true;
-		});
-		builder.addCase(deleteFetch.fulfilled, (state, action): void => {
-			state.isPending = false;
-			state.allItems = action.payload;
-		});
-		builder.addCase(deleteFetch.rejected, (state, action): void => {
-			state.isPending = false;
 			console.log(action.payload);
 		});
 	},
