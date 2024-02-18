@@ -23,7 +23,7 @@
       flex-wrap: wrap;
       scroll-snap-type: y mandatory;
       margin-top: 20px;
-      height: calc(100vh - 521px);
+      height: calc(100dvh - 521px);
       padding: 20px;
       overflow-y: auto;
       border: 2px solid var(--my-color-black);

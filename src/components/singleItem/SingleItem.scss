@@ -1,7 +1,7 @@
 @use "../sass/mixins" as mxs;
 
 .SingleItem {
-   min-height: calc(100vh - 148px);
+   min-height: calc(100dvh - 148px);
    padding: 20px;
    @include mxs.rowFlex(start, start);
 

@@ -9,7 +9,7 @@
    .StorePage__items {
       @include mxs.rowFlex(space-evenly, center, 30px 3%);
       flex-wrap: wrap;
-      height: calc(100vh - 289px);
+      height: calc(100dvh - 289px);
       padding: 10px 20px;
       overflow-y: auto;
    }

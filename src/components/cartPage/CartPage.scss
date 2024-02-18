@@ -10,7 +10,7 @@
 
    .CartPage__items {
       @include mxs.colFlex(start, start, 20px);
-      height: calc(100vh - 284px);
+      height: calc(100dvh - 284px);
       overflow-y: auto;
       padding: 20px;
    }
