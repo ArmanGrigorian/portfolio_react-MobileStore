@@ -3,14 +3,14 @@
 .StorePage {
 
    h2 {
+      font-size: 32px;
       padding: 0px 0px 10px 20px;
    }
 
    .StorePage__items {
-      @include mxs.rowFlex(space-evenly, center, 30px 3%);
+      @include mxs.rowFlex(space-around, center, 40px);
       flex-wrap: wrap;
-      height: calc(100dvh - 289px);
       padding: 10px 20px;
-      overflow-y: auto;
+
    }
 }

@@ -2,7 +2,7 @@
 
 .StoreItem {
    @include mxs.colFlex(space-between, space-between, );
-   width: max(240px, 22%);
+   width: min(80%, 230px);
    min-height: 350px;
    padding: 20px;
    background-image: linear-gradient(225deg,
@@ -61,6 +61,7 @@
       img {
          width: 100%;
          aspect-ratio: 1;
+         object-fit: contain;
       }
    }
 
