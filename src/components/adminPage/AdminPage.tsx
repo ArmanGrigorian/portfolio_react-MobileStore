@@ -4,10 +4,12 @@ import { T_SingleItem } from "../../types/types.ts";
 import { Brief, SearchBar, NewItemForm } from "../index.ts";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks.ts";
 import { allItemsFetch, selectAdmin } from "../../redux/slices/adminSlice.ts";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const AdminPage = () => {
 	const { login, allItems } = useAppSelector(selectAdmin);
 	const dispatch = useAppDispatch();
+	const [parent] = useAutoAnimate();
 
 	useEffect(() => {
 		dispatch(allItemsFetch());
@@ -24,7 +26,9 @@ const AdminPage = () => {
 
 			<NewItemForm />
 
-			<div className={"AdminPage__panel"}>
+			<div
+				ref={parent}
+				className={"AdminPage__panel"}>
 				{allItems?.map((item: T_SingleItem) => {
 					return <Brief key={item.id} item={item} />;
 				})}

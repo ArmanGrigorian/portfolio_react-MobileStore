@@ -1,13 +1,15 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 export const productsApi = createApi({
 	reducerPath: "productsApi",
 	baseQuery: fetchBaseQuery({
-		baseUrl: import.meta.env.BASE_URL,
+		baseUrl: BASE_URL,
 	}),
 	endpoints: (builder) => ({
 		getProducts: builder.query({
 			query: () => "/mobileStore",
+			providesTags: ["mobileStore"],
 		}),
 		postProduct: builder.mutation({
 			query: (body) => ({
@@ -16,20 +18,23 @@ export const productsApi = createApi({
 				url: "/mobileStore",
 				body: JSON.stringify(body),
 			}),
+			invalidatesTags: ["mobileStore"],
 		}),
 		putProduct: builder.mutation({
 			query: (params) => ({
 				method: "PUT",
 				headers: { "content-type": "application/json" },
 				url: `/mobileStore/${params.id}`,
-				body: JSON.stringify(params.body),
+				body: JSON.stringify(params.data),
 			}),
+			invalidatesTags: ["mobileStore"],
 		}),
 		deleteProduct: builder.mutation({
 			query: (params) => ({
 				method: "DELETE",
 				url: `/mobileStore/${params.id}`,
 			}),
+			invalidatesTags: ["mobileStore"],
 		}),
 	}),
 	tagTypes: ["mobileStore"],

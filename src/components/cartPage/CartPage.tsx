@@ -4,10 +4,12 @@ import { getTotalOf } from "../../utilities/index.ts";
 import { ACTION, T_SingleItem } from "../../types/types";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { clearCart, selectCartItems } from "../../redux/slices/productsSlice";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 const CartPage = () => {
 	const cartItems = useAppSelector(selectCartItems);
 	const dispatch = useAppDispatch();
+	const [parent] = useAutoAnimate();
 
 	const totalPrice: number = getTotalOf(ACTION.PRICE, cartItems);
 	const totalCount: number = getTotalOf(ACTION.COUNT, cartItems);
@@ -16,7 +18,7 @@ const CartPage = () => {
 		<section className={"CartPage"}>
 			<h2>CartPage</h2>
 
-			<div className={"CartPage__items"}>
+			<div ref={parent} className={"CartPage__items"}>
 				{cartItems?.map((item: T_SingleItem) => {
 					return <CartItem key={item.id} item={item} />;
 				})}

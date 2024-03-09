@@ -3,8 +3,7 @@
 .Pagination {
    @include mxs.rowFlex(space-between, center);
    width: 50%;
-   margin-inline: auto;
-   margin-block: 14px;
+   margin: 14px auto 24px;
 
    li {
       list-style-type: none;
